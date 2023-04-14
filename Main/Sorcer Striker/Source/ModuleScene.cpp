@@ -39,7 +39,6 @@ update_status ModuleScene::Update()
 update_status ModuleScene::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, 0, NULL);
-
+	App->render->Blit(bgTexture, 00, -510 + 250, NULL);
 	return update_status::UPDATE_CONTINUE;
 }

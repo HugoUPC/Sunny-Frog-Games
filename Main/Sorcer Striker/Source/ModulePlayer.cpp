@@ -11,11 +11,11 @@
 
 ModulePlayer::ModulePlayer()
 {
-	position.x = 150;
-	position.y = 120;
+	position.x = 110;
+	position.y = 150;
 
 	// idle animation - just one sprite
-	idleAnim.PushBack({ 66, 1, 32, 14 });
+	idleAnim.PushBack({ 0, 0, 29, 38 });
 
 	// move upwards
 	upAnim.PushBack({ 100, 1, 32, 14 });
@@ -65,28 +65,29 @@ update_status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
 		position.y += speed;
-		if (currentAnimation != &downAnim)
+		/*if (currentAnimation != &downAnim)
 		{
 			downAnim.Reset();
 			currentAnimation = &downAnim;
-		}
+		}*/
 	}
 
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		position.y -= speed;
-		if (currentAnimation != &upAnim)
+		/*if (currentAnimation != &upAnim)
 		{
 			upAnim.Reset();
 			currentAnimation = &upAnim;
-		}
+		}*/
 	}
 
 	// TODO 3: Shoot lasers when the player hits SPACE
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(App->particles->laser, position.x, position.y);
+		App->particles->AddParticle(App->particles->laser, position.x - 1, position.y - 80);
+		App->particles->AddParticle(App->particles->laser, position.x + 16, position.y - 80);
 	}
 
 	// Spawn explosion particles when pressing B

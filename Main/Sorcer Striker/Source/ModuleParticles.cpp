@@ -37,11 +37,11 @@ bool ModuleParticles::Start()
 	//			Remember: not all the code goes here!
 	//			Follow the example with the "explosion" particle
 
-	laser.anim.PushBack({102, 168, 83, 20});
-	laser.anim.PushBack({185, 168, 83, 20});
+	laser.anim.PushBack({ 10, 10, 10, 10});
+	
 	laser.anim.loop = true;
 	laser.anim.speed = 0.3f;
-	laser.speed = iPoint(5,0);
+	laser.speed.y = -6;
 	
 	return true;
 }
