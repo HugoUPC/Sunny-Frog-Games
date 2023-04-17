@@ -56,6 +56,9 @@ public:
 	//Template particle for an explosion
 	Particle explosion;
 	Particle laser;
+	Particle laserR;
+	Particle laserL;
+
 };
 
 #endif // !__MODULEPARTICLES_H__
