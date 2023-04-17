@@ -86,8 +86,8 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(App->particles->laser, position.x - 1, position.y - 80);
-		App->particles->AddParticle(App->particles->laser, position.x + 16, position.y - 80);
+		App->particles->AddParticle(App->particles->laser, position.x + 1, position.y - 40);
+		App->particles->AddParticle(App->particles->laser, position.x + 20, position.y - 40);
 	}
 
 	// Spawn explosion particles when pressing B
