@@ -95,10 +95,8 @@ update_status ModulePlayer::Update()
 	// Spawn explosion particles when pressing B
 	if (App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y + 25);
-		App->particles->AddParticle(App->particles->explosion, position.x - 25, position.y, 30);
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y - 25, 60);
-		App->particles->AddParticle(App->particles->explosion, position.x + 25, position.y, 90);
+		App->particles->AddParticle(App->particles->bat_shotsR, position.x - 15, position.y - 60);
+		App->particles->AddParticle(App->particles->bat_shotsL, position.x - 50, position.y - 60);
 	}
 
 	// If no up/down movement detected, set the current animation back to idle

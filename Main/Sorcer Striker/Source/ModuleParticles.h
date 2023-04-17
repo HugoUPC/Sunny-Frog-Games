@@ -58,6 +58,8 @@ public:
 	Particle laser;
 	Particle laserR;
 	Particle laserL;
+	Particle bat_shotsR;
+	Particle bat_shotsL;
 
 };
 
