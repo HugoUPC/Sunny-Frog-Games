@@ -4,9 +4,12 @@
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
+#include "ModuleAudio.h"
 #include "ModulePlayer.h"
 #include "ModuleScene.h"
 #include "ModuleParticles.h"
+#include "ModuleEnemies.h"
+#include "ModuleCollisions.h"
 #include "ModuleRender.h"
 
 Application::Application()
@@ -17,12 +20,16 @@ Application::Application()
 	modules[0] = window = new ModuleWindow();
 	modules[1] = input = new ModuleInput();
 	modules[2] = textures = new ModuleTextures();
+	modules[3] = audio = new ModuleAudio();
 
-	modules[3] = scene = new ModuleScene();
-	modules[4] = player = new ModulePlayer();
+	modules[4] = scene = new ModuleScene();
+	modules[5] = player = new ModulePlayer();
+	modules[6] = particles = new ModuleParticles();
+	modules[7] = enemies = new ModuleEnemies();
 
-	modules[5] = particles = new ModuleParticles();
-	modules[6] = render = new ModuleRender();
+	modules[8] = collisions = new ModuleCollisions();
+
+	modules[9] = render = new ModuleRender();
 }
 
 Application::~Application()

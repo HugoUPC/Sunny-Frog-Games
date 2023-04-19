@@ -6,6 +6,7 @@
 #include "p2Point.h"
 
 struct SDL_Texture;
+struct Collider;
 
 class ModulePlayer : public Module
 {
@@ -28,12 +29,14 @@ public:
 	// Performs the render call of the player sprite
 	update_status PostUpdate() override;
 
+	void OnCollision(Collider* c1, Collider* c2) override;
+
 public:
 	// Position of the player in the map
 	iPoint position;
 
 	// The speed in which we move the player (pixels per frame)
-	int speed = 2;
+	int speed = 1;
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
@@ -46,6 +49,14 @@ public:
 	Animation idleAnim;
 	Animation upAnim;
 	Animation downAnim;
+
+	Collider* collider = nullptr;
+
+	bool destroyed = false;
+	uint destroyedCountdown = 120;
+
+	uint laserFx = 0;
+	uint explosionFx = 0;
 };
 
 #endif //!__MODULE_PLAYER_H__

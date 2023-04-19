@@ -5,6 +5,8 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
+#include "ModuleAudio.h"
+#include "ModuleCollisions.h"
 
 #include "SDL/include/SDL_scancode.h"
 
@@ -43,6 +45,9 @@ bool ModulePlayer::Start()
 
 	texture = App->textures->Load("Assets/ship.png"); // arcade version
 	currentAnimation = &idleAnim;
+
+	laserFx = App->audio->LoadFx("Assets/laser.wav");
+	explosionFx = App->audio->LoadFx("Assets/explosion.wav");
 
 	return ret;
 }
@@ -90,6 +95,7 @@ update_status ModulePlayer::Update()
 		App->particles->AddParticle(App->particles->laser, position.x + 7, position.y - 60);
 		App->particles->AddParticle(App->particles->laserR, position.x + 15, position.y - 60);
 
+		App->audio->PlayFx(laserFx);
 	}
 
 	// Spawn explosion particles when pressing B
@@ -115,4 +121,20 @@ update_status ModulePlayer::PostUpdate()
 	App->render->Blit(texture, position.x, position.y - rect.h, &rect);
 
 	return update_status::UPDATE_CONTINUE;
+}
+
+void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
+{
+	if (c1 == collider && destroyed == false)
+	{
+		App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->explosion, position.x - 7, position.y + 12, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE);
+
+		App->audio->PlayFx(explosionFx);
+
+		destroyed = true;
+	}
 }
