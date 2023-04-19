@@ -4,7 +4,6 @@
 
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
-#include "ModuleCollisions.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -34,12 +33,39 @@ bool ModuleParticles::Start()
 	explosion.anim.loop = false;
 	explosion.anim.speed = 0.3f;
 
-	laser.anim.PushBack({ 232, 103, 16, 12 });
-	laser.anim.PushBack({ 249, 103, 16, 12 });
-	laser.speed.x = 5;
-	laser.lifetime = 180;
-	laser.anim.speed = 0.2f;
+	// TODO 2:	Create the template for a new particle "laser"
+	//			Remember: not all the code goes here!
+	//			Follow the example with the "explosion" particle
 
+	laser.anim.PushBack({ 0, 0, 16, 33});
+	laser.anim.loop = true;
+	laser.anim.speed = 0.3f;
+	laser.speed.y = -6;
+	
+	laserR.anim.PushBack({ 0, 0, 16, 33 });
+	laserR.anim.loop = true;
+	laserR.anim.speed = 0.3f;
+	laserR.speed.y = -6;
+	laserR.speed.x = 1;
+
+	laserL.anim.PushBack({ 0, 0, 16, 33 });
+	laserL.anim.loop = true;
+	laserL.anim.speed = 0.3f;
+	laserL.speed.y = -6;
+	laserL.speed.x = -1;
+
+	bat_shotsR.anim.PushBack({ 17, 0, 112, 33 });
+	bat_shotsR.anim.loop = true;
+	bat_shotsR.anim.speed = 0.3f;
+	bat_shotsR.speed.y = -6;
+	bat_shotsR.speed.x = 2;
+
+	bat_shotsL.anim.PushBack({ 17, 0, 112, 33 });
+	bat_shotsL.anim.loop = true;
+	bat_shotsL.anim.speed = 0.3f;
+	bat_shotsL.speed.y = -6;
+	bat_shotsL.speed.x = -2;
+	
 	return true;
 }
 
@@ -58,20 +84,6 @@ bool ModuleParticles::CleanUp()
 	}
 
 	return true;
-}
-
-void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
-{
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
-	{
-		// Always destroy particles that collide
-		if (particles[i] != nullptr && particles[i]->collider == c1)
-		{
-			delete particles[i];
-			particles[i] = nullptr;
-			break;
-		}
-	}
 }
 
 update_status ModuleParticles::Update()
@@ -109,25 +121,14 @@ update_status ModuleParticles::PostUpdate()
 	return update_status::UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType, uint delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, uint delay)
 {
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
-	{
-		//Finding an empty slot for a new particle
-		if (particles[i] == nullptr)
-		{
-			Particle* p = new Particle(particle);
+	Particle* p = new Particle(particle);
+	
+	p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
+	p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
+	p->position.y = y;						
 
-			p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
-			p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
-			p->position.y = y;
-
-			//Adding the particle's collider
-			if (colliderType != Collider::Type::NONE)
-				p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
-
-			particles[i] = p;
-			break;
-		}
-	}
+	particles[lastParticle++] = p;
+	lastParticle %= MAX_ACTIVE_PARTICLES;
 }

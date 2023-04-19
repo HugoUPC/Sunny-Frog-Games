@@ -29,7 +29,6 @@ public:
 	// Performs the render call of the player sprite
 	update_status PostUpdate() override;
 
-	// Collision callback, called when the player intersects with another collider
 	void OnCollision(Collider* c1, Collider* c2) override;
 
 public:
@@ -51,19 +50,13 @@ public:
 	Animation upAnim;
 	Animation downAnim;
 
-	// The player's collider
 	Collider* collider = nullptr;
 
-	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
-
-	// A countdown to when the player gets destroyed. After a while, the game exits
 	uint destroyedCountdown = 120;
 
-	// Sound effects indices
 	uint laserFx = 0;
 	uint explosionFx = 0;
-
 };
 
 #endif //!__MODULE_PLAYER_H__

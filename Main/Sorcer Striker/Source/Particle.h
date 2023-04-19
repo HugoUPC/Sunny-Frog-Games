@@ -4,8 +4,6 @@
 #include "Animation.h"
 #include "p2Point.h"
 
-struct Collider;
-
 struct Particle
 {
 public:
@@ -14,9 +12,6 @@ public:
 
 	// Copy constructor
 	Particle(const Particle& p);
-
-	// Destructor
-	~Particle();
 
 	// Called in ModuleParticles' Update
 	// Handles the logic of the particle
@@ -37,15 +32,11 @@ public:
 	// Particles will be set to not alive until "spawnTime" is reached
 	bool isAlive = false;
 
-	// Defines the amout of frames this particle has been active
-	// Negative values mean the particle is waiting to be activated
+	// Defines the time when the particle will be spawned
 	int frameCount = 0;
 
-	// Defines the total amount of frames during which the particle will be active
-	uint lifetime = 0;
-
-	// The particle's collider
-	Collider* collider = nullptr;
+	// Defines the total amount of time during which the particle will be active (in miliseconds)
+	Uint32 lifetime = 0;
 };
 
 #endif //__PARTICLE_H__
