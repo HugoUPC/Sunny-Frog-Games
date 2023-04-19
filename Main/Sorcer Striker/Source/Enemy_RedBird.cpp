@@ -24,8 +24,8 @@ void Enemy_RedBird::Update()
 {
 	waveRatio += waveRatioSpeed;
 
-	position.y = spawnPos.y + (waveHeight * sinf(waveRatio));
-	position.x -= 1;
+	position.x = spawnPos.x + (waveHeight * sinf(waveRatio));
+	position.y += 1;
 
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
