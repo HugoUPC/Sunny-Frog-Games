@@ -7,11 +7,12 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
+#include "ModuleFadeToBlack.h"
 
 #include "SDL/include/SDL_scancode.h"
 
 
-ModulePlayer::ModulePlayer()
+ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	position.x = 110;
 	position.y = 150;
@@ -43,11 +44,11 @@ bool ModulePlayer::Start()
 
 	bool ret = true;
 
-	texture = App->textures->Load("Assets/ship.png"); // arcade version
+	texture = App->textures->Load("Assets/Sprites/ship.png"); // arcade version
 	currentAnimation = &idleAnim;
 
-	laserFx = App->audio->LoadFx("Assets/laser.wav");
-	explosionFx = App->audio->LoadFx("Assets/explosion.wav");
+	laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
+	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
 	return ret;
 }
@@ -87,7 +88,6 @@ update_status ModulePlayer::Update()
 		}*/
 	}
 
-	// TODO 3: Shoot lasers when the player hits SPACE
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
@@ -136,6 +136,9 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE);
 
 		App->audio->PlayFx(explosionFx);
+
+		App->textures->Unload(texture);
+		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 90);
 
 		destroyed = true;
 	}

@@ -11,7 +11,7 @@ class ModuleTextures : public Module
 {
 public:
 	//Constructor
-	ModuleTextures();
+	ModuleTextures(bool startEnabled);
 
 	//Destructor
 	~ModuleTextures();
@@ -30,6 +30,7 @@ public:
 	// Returns nullptr if the texture could not be created
 	SDL_Texture* const Load(const char* path);
 
+	bool Unload(SDL_Texture* texture);
 public:
 	// An array of all the loaded textures
 	// Allows us to keep track of all textures and free them on application exit

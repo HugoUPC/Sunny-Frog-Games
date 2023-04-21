@@ -12,7 +12,7 @@
 #define SPAWN_MARGIN 50
 
 
-ModuleEnemies::ModuleEnemies()
+ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 {
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 		enemies[i] = nullptr;
@@ -25,7 +25,7 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
-	texture = App->textures->Load("Assets/enemies.png");
+	texture = App->textures->Load("Assets/Sprites/enemies.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/explosion.wav");
 
 	return true;

@@ -8,6 +8,7 @@ struct Collider;
 class Module
 {
 public:
+	Module(bool startEnabled);
 
 	//Called at the beginning of the application execution
 	virtual bool Init();
@@ -29,6 +30,16 @@ public:
 	virtual bool CleanUp();
 
 	virtual void OnCollision(Collider* c1, Collider* c2);
+
+	void Enable();
+
+	// Switches isEnabled and calls CleanUp() method
+	void Disable();
+
+	inline bool IsEnabled() const { return isEnabled; } 
+
+private:
+	bool isEnabled = true;
 };
 
 #endif // __MODULE_H__

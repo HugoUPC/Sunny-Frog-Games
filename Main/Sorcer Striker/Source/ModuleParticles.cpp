@@ -7,7 +7,7 @@
 
 #include "SDL/include/SDL_timer.h"
 
-ModuleParticles::ModuleParticles()
+ModuleParticles::ModuleParticles(bool startEnabled) : Module(startEnabled)
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		particles[i] = nullptr;
@@ -21,7 +21,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	texture = App->textures->Load("Assets/particles.png");
+	texture = App->textures->Load("Assets/Sprites/particles.png");
 
 	// Explosion particle
 	explosion.anim.PushBack({274, 296, 33, 30});
