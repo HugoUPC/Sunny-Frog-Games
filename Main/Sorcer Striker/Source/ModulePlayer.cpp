@@ -103,6 +103,8 @@ update_status ModulePlayer::Update()
 	{
 		App->particles->AddParticle(App->particles->bat_shotsR, position.x - 15, position.y - 60);
 		App->particles->AddParticle(App->particles->bat_shotsL, position.x - 50, position.y - 60);
+
+		App->audio->PlayFx(laserFx);
 	}
 
 	// If no up/down movement detected, set the current animation back to idle
