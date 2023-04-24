@@ -4,6 +4,8 @@
 #include "Animation.h"
 #include "p2Point.h"
 
+struct Collider;
+
 struct Particle
 {
 public:
@@ -37,6 +39,8 @@ public:
 
 	// Defines the total amount of time during which the particle will be active (in miliseconds)
 	Uint32 lifetime = 0;
+
+	Collider* collider = nullptr;
 };
 
 #endif //__PARTICLE_H__

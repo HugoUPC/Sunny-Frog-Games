@@ -3,11 +3,14 @@
 
 #include "Module.h"
 
+#include "Globals.h"
 #include "Particle.h"
+#include "Collider.h"
 
 #define MAX_ACTIVE_PARTICLES 100
 
 struct SDL_Texture;
+struct Collider;
 
 class ModuleParticles : public Module
 {
@@ -36,15 +39,18 @@ public:
 	// Destroys all active particles left in the array
 	bool CleanUp() override;
 
+	void OnCollision(Collider* c1, Collider* c2) override;
+
 	// Creates a new particle and adds it to the array
 	// Param particle	- A template particle from which the new particle will be created
 	// Param x, y		- Position x,y in the screen (upper left axis)
 	// Param delay		- Delay time from the moment the function is called until the particle is displayed in screen
-	void AddParticle(const Particle& particle, int x, int y, uint delay = 0);
+	void AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
 
 private:
 	// Particles spritesheet loaded into an SDL Texture
-	SDL_Texture* texture = nullptr;
+	SDL_Texture* lasertexture = nullptr;
+	SDL_Texture* explosiontexture = nullptr;
 
 	// An array to store and handle all the particles
 	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };

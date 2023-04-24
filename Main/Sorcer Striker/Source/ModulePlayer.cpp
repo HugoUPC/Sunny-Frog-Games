@@ -8,14 +8,15 @@
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleFonts.h"
+
+#include <stdio.h>
 
 #include "SDL/include/SDL_scancode.h"
 
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
-	position.x = 110;
-	position.y = 150;
 
 	// idle animation - just one sprite
 	idleAnim.PushBack({ 0, 0, 29, 38 });
@@ -49,6 +50,18 @@ bool ModulePlayer::Start()
 
 	laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
+
+	position.x = 110;
+	position.y = 150;
+
+	// TODO 4: Retrieve the player when playing a second time
+	destroyed = false;
+
+	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
+
+	char lookupTable[] = { "!  ,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz" };
+	scoreFont = App->fonts->Load("Assets/Fonts/rtype_font.png", "! @,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz", 1);
+
 
 	return ret;
 }
@@ -112,16 +125,28 @@ update_status ModulePlayer::Update()
 		&& App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE)
 		currentAnimation = &idleAnim;
 
+	// TODO 4: Update collider position to player position
+	collider->SetPos(position.x, position.y);
+
 	currentAnimation->Update();
+
+	if (destroyed)
+	{
+		destroyedCountdown--;
+		if (destroyedCountdown <= 0)
+			return update_status::UPDATE_STOP;
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }
 
 update_status ModulePlayer::PostUpdate()
 {
-	SDL_Rect rect = currentAnimation->GetCurrentFrame();
-	App->render->Blit(texture, position.x, position.y - rect.h, &rect);
-
+	if (!destroyed)
+	{
+		SDL_Rect rect = currentAnimation->GetCurrentFrame();
+		App->render->Blit(texture, position.x, position.y, &rect);
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -129,15 +154,15 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1 == collider && destroyed == false)
 	{
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE);
-		App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, Collider::Type::NONE);
-		App->particles->AddParticle(App->particles->explosion, position.x - 7, position.y + 12, Collider::Type::NONE);
-		App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, Collider::Type::NONE);
-		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE, 9);
+		App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, Collider::Type::NONE, 14);
+		App->particles->AddParticle(App->particles->explosion, position.x - 7, position.y + 12, Collider::Type::NONE, 40);
+		App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, Collider::Type::NONE, 28);
+		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE, 21);
 
 		App->audio->PlayFx(explosionFx);
 
-		App->textures->Unload(texture);
+		//App->textures->Unload(texture);
 		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 90);
 
 		destroyed = true;

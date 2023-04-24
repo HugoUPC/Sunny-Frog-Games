@@ -91,6 +91,9 @@
     <ClCompile Include="ModuleEnemies.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleFonts.cpp">
+      <Filter>Source Files\Modules\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -161,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="ModuleEnemies.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFonts.h">
+      <Filter>Source Files\Modules\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

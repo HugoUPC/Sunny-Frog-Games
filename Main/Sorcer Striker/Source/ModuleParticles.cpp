@@ -4,6 +4,7 @@
 
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "ModuleCollisions.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -21,7 +22,8 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	texture = App->textures->Load("Assets/Sprites/particles.png");
+	lasertexture = App->textures->Load("Assets/Sprites/particles.png");
+	explosiontexture = App->textures->Load("Assets/Sprites/explosion.png");
 
 	// Explosion particle
 	explosion.anim.PushBack({274, 296, 33, 30});
@@ -86,6 +88,23 @@ bool ModuleParticles::CleanUp()
 	return true;
 }
 
+void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
+{
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		// Always destroy particles that collide
+		if (particles[i] != nullptr && particles[i]->collider == c1)
+		{
+			// TODO 6: Make so every time a particle hits a wall it triggers an explosion particle
+			AddParticle(explosion, particles[i]->position.x, particles[i]->position.y);
+
+			delete particles[i];
+			particles[i] = nullptr;
+			break;
+		}
+	}
+}
+
 update_status ModuleParticles::Update()
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
@@ -114,21 +133,33 @@ update_status ModuleParticles::PostUpdate()
 
 		if (particle != nullptr && particle->isAlive)
 		{
-			App->render->Blit(texture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			App->render->Blit(lasertexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			App->render->Blit(explosiontexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 		}
 	}
 
 	return update_status::UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, uint delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType, uint delay)
 {
-	Particle* p = new Particle(particle);
-	
-	p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
-	p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
-	p->position.y = y;						
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		//Finding an empty slot for a new particle
+		if (particles[i] == nullptr)
+		{
+			Particle* p = new Particle(particle);
 
-	particles[lastParticle++] = p;
-	lastParticle %= MAX_ACTIVE_PARTICLES;
+			p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
+			p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
+			p->position.y = y;
+
+			//Adding the particle's collider
+			if (colliderType != Collider::Type::NONE)
+				p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
+
+			particles[i] = p;
+			break;
+		}
+	}
 }

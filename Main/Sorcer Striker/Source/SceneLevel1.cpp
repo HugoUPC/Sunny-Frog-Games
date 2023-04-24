@@ -33,6 +33,7 @@ bool SceneLevel1::Start()
 	//App->collisions->AddCollider({ 0, -3000, 240, 3000 }, Collider::Type::WALL);
 	//App->collisions->AddCollider({ 1375, 0, 111, 96 }, Collider::Type::WALL);
 	//App->collisions->AddCollider({ 1375, 145, 111, 96 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 8000, 8000, 10, 3000 }, Collider::Type::WALL);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 110, 0);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 125, -100);
@@ -40,6 +41,7 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 165, 50);
 
 	App->player->Enable(); 
+	App->enemies->Enable();
 
 	return ret;
 }
@@ -63,6 +65,9 @@ bool SceneLevel1::CleanUp()
 {
 	// TODO 5: Remove all memory leaks
 	App->player->Disable();
-	App->textures->Unload(bgTexture);
+	App->enemies->Disable();
+
+	//App->textures->Unload(bgTexture);
+
 	return true;
 }

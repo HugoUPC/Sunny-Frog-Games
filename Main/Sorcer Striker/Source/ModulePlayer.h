@@ -57,6 +57,10 @@ public:
 
 	uint laserFx = 0;
 	uint explosionFx = 0;
+
+	uint score = 000;
+	int scoreFont = -1;
+	char scoreText[10] = { "\0" };
 };
 
 #endif //!__MODULE_PLAYER_H__
