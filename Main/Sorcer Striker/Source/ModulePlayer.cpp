@@ -162,7 +162,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		App->audio->PlayFx(explosionFx);
 
-		//App->textures->Unload(texture);
+		App->textures->Unload(texture);
 		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 90);
 
 		destroyed = true;

@@ -11,7 +11,7 @@ class ModuleInput;
 class ModuleTextures;
 class ModuleAudio;
 class ModulePlayer;
-class SceneIntro; 
+class SceneIntro;
 class SceneLevel1;
 class ModuleParticles;
 class ModuleCollisions;
