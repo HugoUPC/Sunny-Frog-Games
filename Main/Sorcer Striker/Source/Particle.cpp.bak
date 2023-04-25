@@ -1,6 +1,7 @@
 #include "Particle.h"
-
 #include "Collider.h"
+
+#include "SDL/include/SDL_timer.h"
 
 Particle::Particle()
 {
@@ -11,11 +12,6 @@ Particle::Particle()
 Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), speed(p.speed),
 										frameCount(p.frameCount), lifetime(p.lifetime)
 {
-
-}
-
-Particle::~Particle()
-{
 	if (collider != nullptr)
 		collider->pendingToDelete = true;
 }
@@ -25,7 +21,7 @@ bool Particle::Update()
 	bool ret = true;
 	frameCount++;
 
-	// The particle is set to 'alive' when the delay has been reached
+	// The particle is set to 'alive' when the spawnTime is reached
 	if (!isAlive && frameCount >= 0)
 		isAlive = true;
 
@@ -52,11 +48,4 @@ bool Particle::Update()
 	}
 
 	return ret;
-}
-
-void Particle::SetToDelete()
-{
-	pendingToDelete = true;
-	if (collider != nullptr)
-		collider->pendingToDelete = true;
 }

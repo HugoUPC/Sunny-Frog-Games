@@ -8,6 +8,8 @@
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 
+// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
+
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
 
@@ -38,10 +40,7 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 150, 50);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 165, 50);
 
-	App->render->camera.x = 0;
-	App->render->camera.y = 0;
-
-	App->player->Enable();
+	App->player->Enable(); 
 	App->enemies->Enable();
 
 	return ret;
@@ -58,7 +57,7 @@ update_status SceneLevel1::Update()
 update_status SceneLevel1::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, 0, NULL);
+	App->render->Blit(bgTexture, 00, -510 + 250, NULL);
 	return update_status::UPDATE_CONTINUE;
 }
 
