@@ -41,6 +41,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 
 	bool ret = true;
+	destroyed = false;
 
 	texture = App->textures->Load("Assets/Sprites/ship.png"); // arcade version
 	currentAnimation = &idleAnim;
@@ -137,13 +138,6 @@ update_status ModulePlayer::Update()
 	collider->SetPos(position.x, position.y);
 
 	currentAnimation->Update();
-
-	if (destroyed)
-	{
-		destroyedCountdown--;
-		if (destroyedCountdown <= 0)
-			return update_status::UPDATE_STOP;
-	}
 
 	return update_status::UPDATE_CONTINUE;
 }

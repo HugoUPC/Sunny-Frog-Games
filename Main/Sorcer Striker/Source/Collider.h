@@ -3,7 +3,7 @@
 
 #include "SDL/include/SDL_Rect.h"
 
-#define MAX_LISTENERS 50
+#define MAX_LISTENERS 5
 
 class Module;
 
