@@ -33,18 +33,29 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 150, -650);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 165, -700);
 
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 110, -820);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 125, -920);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 150, -1020);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 165, -1020);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 110, -400);
+	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 125, -500);
+	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 150, -600);
+	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 165, -650);
+
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
 	App->player->Enable();
 	App->enemies->Enable();
+	App->collisions->Enable(); 
 
 	return ret;
 }
 
 update_status SceneLevel1::Update()
 {
-	App->render->camera.y -= 3;
+	App->render->camera.y -= 2;
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -62,7 +73,7 @@ bool SceneLevel1::CleanUp()
 	// TODO 5: Remove all memory leaks
 	App->player->Disable();
 	App->enemies->Disable();
-
+	App->collisions->Disable();
 	//App->textures->Unload(bgTexture);
 
 	return true;

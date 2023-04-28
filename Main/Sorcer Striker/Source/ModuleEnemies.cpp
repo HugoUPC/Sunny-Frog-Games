@@ -8,6 +8,7 @@
 
 #include "Enemy.h"
 #include "Enemy_RedBird.h"
+#include "Enemy_BrownShip.h"
 
 #define SPAWN_MARGIN 50
 
@@ -158,9 +159,9 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				case ENEMY_TYPE::REDBIRD:
 					enemies[i] = new Enemy_RedBird(info.x, info.y);
 					break;
-				/*case ENEMY_TYPE::BROWNSHIP:
+				case ENEMY_TYPE::BROWNSHIP:
 					enemies[i] = new Enemy_BrownShip(info.x, info.y);
-					break;*/
+					break;
 			}
 			enemies[i]->texture = texture;
 			enemies[i]->destroyedFx = enemyDestroyedFx;
@@ -176,9 +177,6 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
-
-
-
 			break;
 		}
 	}
