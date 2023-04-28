@@ -75,17 +75,23 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
-		position.x -= speed;
+		if (position.x >= 0) {
+			position.x -= speed;
+		}
 	}
 
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
-		position.x += speed;
+		if (position.x <= 208) {
+			position.x += speed;
+		}
 	}
 
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
-		position.y += speed;
+		if (position.y <= App->render->camera.y) {
+			position.y += speed;
+		}
 		/*if (currentAnimation != &downAnim)
 		{
 			downAnim.Reset();

@@ -28,11 +28,6 @@ bool SceneLevel1::Start()
 	bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
 
-	//App->collisions->AddCollider({ 0, -3000, 240, 3000 }, Collider::Type::WALL);
-	//App->collisions->AddCollider({ 1375, 0, 111, 96 }, Collider::Type::WALL);
-	//App->collisions->AddCollider({ 1375, 145, 111, 96 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 8000, 8000, 10, 3000 }, Collider::Type::WALL);
-
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 110, -450);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 125, -500);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 150, -650);
