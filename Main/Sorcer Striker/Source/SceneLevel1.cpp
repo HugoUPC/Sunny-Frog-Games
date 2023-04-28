@@ -33,10 +33,10 @@ bool SceneLevel1::Start()
 	//App->collisions->AddCollider({ 1375, 145, 111, 96 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 8000, 8000, 10, 3000 }, Collider::Type::WALL);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 110, 0);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 125, -100);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 150, 50);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 165, 50);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 110, -450);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 125, -500);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 150, -650);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 165, -700);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
