@@ -7,6 +7,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
+#include <stdio.h>
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
@@ -69,9 +70,17 @@ update_status SceneLevel1::PostUpdate()
 	bgSize.w = 240;
 	bgSize.h = 340;
 
+	LOG("(%d, %d", App->render->camera.y + App->render->camera.h, bgPos);
+
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, 0, &bgSize);
-	App->render->Blit(bgTexture, 0, -340, &bgSize);
+	if ((bgPos - 340) <= (App->render->camera.y + 680)) {
+		App->render->Blit(bgTexture, 0, bgPos, &bgSize);
+		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize);
+	}
+	else {
+		bgPos -= 340;
+	}
+	
 
 	return update_status::UPDATE_CONTINUE;
 }
