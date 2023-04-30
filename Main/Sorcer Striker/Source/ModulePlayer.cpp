@@ -62,8 +62,8 @@ bool ModulePlayer::Start()
 	//scoreFont = App->fonts->Load("Assets/Fonts/rtype_font.png", "! @,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz", 1);
 
 	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
-	char lookupTable[] = { "01  3    4    567829" };
-	scoreFont = App->fonts->Load("Assets/Fonts/yb-numbers.png", lookupTable, 4);
+	char lookupTable[] = { "01          23456789" };
+	scoreFont = App->fonts->Load("Assets/Fonts/yb-numbers.png", lookupTable, 1);
 
 	return ret;
 }
