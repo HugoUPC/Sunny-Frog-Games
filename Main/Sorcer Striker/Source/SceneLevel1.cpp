@@ -62,9 +62,17 @@ update_status SceneLevel1::Update()
 
 // Update: draw background
 update_status SceneLevel1::PostUpdate()
-{
+{	
+	SDL_Rect bgSize;
+	bgSize.x = 518;
+	bgSize.y = 0;
+	bgSize.w = 240;
+	bgSize.h = 340;
+
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, 0, NULL);
+	App->render->Blit(bgTexture, 0, 0, &bgSize);
+	App->render->Blit(bgTexture, 0, -340, &bgSize);
+
 	return update_status::UPDATE_CONTINUE;
 }
 

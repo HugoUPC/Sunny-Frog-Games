@@ -62,8 +62,8 @@ bool ModulePlayer::Start()
 	//scoreFont = App->fonts->Load("Assets/Fonts/rtype_font.png", "! @,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz", 1);
 
 	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
-	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
-	scoreFont = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable, 2);
+	char lookupTable[] = { "01  3    4    567829" };
+	scoreFont = App->fonts->Load("Assets/Fonts/yb-numbers.png", lookupTable, 4);
 
 	return ret;
 }
@@ -89,9 +89,11 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
-		if (position.y <= App->render->camera.y) {
+		position.y += speed;
+
+		/*if (position.y <= App->render->camera.y) {
 			position.y += speed;
-		}
+		}*/
 		/*if (currentAnimation != &downAnim)
 		{
 			downAnim.Reset();
@@ -112,13 +114,13 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		Particle* laserL = App->particles->AddParticle(App->particles->laserL, position.x - 1, position.y - 60, Collider::Type::PLAYER_SHOT);
+		//Particle* laserL = App->particles->AddParticle(App->particles->laserL, position.x - 1, position.y - 60, Collider::Type::PLAYER_SHOT);
 		Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 7, position.y - 60, Collider::Type::PLAYER_SHOT);
-		Particle* laserR = App->particles->AddParticle(App->particles->laserR, position.x + 15, position.y - 60, Collider::Type::PLAYER_SHOT);
+		//Particle* laserR = App->particles->AddParticle(App->particles->laserR, position.x + 15, position.y - 60, Collider::Type::PLAYER_SHOT);
 
-		laserL->collider->AddListener(this);
+		//laserL->collider->AddListener(this);
 		laser->collider->AddListener(this);
-		laserR->collider->AddListener(this);
+		//laserR->collider->AddListener(this);
 
 
 		App->audio->PlayFx(laserFx);
@@ -160,9 +162,9 @@ update_status ModulePlayer::PostUpdate()
 	sprintf_s(scoreText, 10, "%7d", score);
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
-	App->fonts->BlitText(58, 248, scoreFont, scoreText);
+	App->fonts->BlitText(-30 , 20, scoreFont, scoreText);
 
-	App->fonts->BlitText(150, 248, scoreFont, "this is just a font test");
+	App->fonts->BlitText(50, 300, scoreFont, "this is just a font test");
 
 	return update_status::UPDATE_CONTINUE;
 }
