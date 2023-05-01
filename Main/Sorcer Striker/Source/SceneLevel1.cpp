@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
+#include "ModuleInput.h"
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 #include <stdio.h>
@@ -83,8 +84,40 @@ update_status SceneLevel1::PostUpdate()
 	}
 	//App->render->Blit(bgTexture, 0, 0, NULL);
 
-	App->render->Blit(wintexture, 2, App->render->camera.y + 2, NULL);
-	//App->render->Blit(wintexture, 0, 0, NULL);
+	App->render->Blit(wintexture, 0, App->player->position.y - 150, NULL);
+
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	{
+
+	}
+
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	{
+
+	}
+
+	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+	{
+
+	}
+
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+	{
+
+	}
+
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+	{
+
+	}
+
+	if (App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN)
+	{
+
+	}
+
+
+	
 	return update_status::UPDATE_CONTINUE;
 }
 
