@@ -43,7 +43,6 @@
     <ClCompile Include="SceneIntro.cpp" />
     <ClCompile Include="SceneLevel1.cpp" />
     <ClCompile Include="ScenePlayerSelect.cpp" />
-    <ClCompile Include="WinOrLose.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -72,7 +71,6 @@
     <ClInclude Include="SceneIntro.h" />
     <ClInclude Include="SceneLevel1.h" />
     <ClInclude Include="ScenePlayerSelect.h" />
-    <ClInclude Include="WinOrLose.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

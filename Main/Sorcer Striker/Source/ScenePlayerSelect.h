@@ -31,9 +31,7 @@ public:
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* Texture1 = nullptr;
-	SDL_Texture* Texture2 = nullptr;
-	SDL_Texture* Texture3 = nullptr;
-	SDL_Texture* Texture4 = nullptr;
+	SDL_Texture* texture = nullptr;
 };
 
 #endif
