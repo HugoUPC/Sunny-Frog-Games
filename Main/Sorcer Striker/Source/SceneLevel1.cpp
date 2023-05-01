@@ -27,6 +27,7 @@ bool SceneLevel1::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Sprites/background.png");
+	wintexture = App->textures->Load("Assets/Sprites/stageclear.png");
 	App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 110, -450);
@@ -80,8 +81,10 @@ update_status SceneLevel1::PostUpdate()
 	else {
 		bgPos -= 340;
 	}
-	
+	//App->render->Blit(bgTexture, 0, 0, NULL);
 
+	App->render->Blit(wintexture, 2, App->render->camera.y + 2, NULL);
+	//App->render->Blit(wintexture, 0, 0, NULL);
 	return update_status::UPDATE_CONTINUE;
 }
 
