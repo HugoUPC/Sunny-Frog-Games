@@ -75,16 +75,28 @@ update_status SceneLevel1::PostUpdate()
 	LOG("(%d, %d", App->render->camera.y + App->render->camera.h, bgPos);
 
 	// Draw everything --------------------------------------
-	if ((bgPos - 340) <= (App->render->camera.y + 680)) {
+	/*if ((bgPos - 340) <= (App->render->camera.y + 680)) {
 		App->render->Blit(bgTexture, 0, bgPos, &bgSize);
 		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize);
 	}
 	else {
 		bgPos -= 340;
-	}
+	}*/
 	//App->render->Blit(bgTexture, 0, 0, NULL);
 
-	App->render->Blit(wintexture, 0, App->player->position.y - 150, NULL);
+	//Infinite Background (Necessita ajustar los  valores para que no de saltos)
+	if (bgPos < 340) {
+		App->render->Blit(bgTexture, 0, bgPos, &bgSize, 0);
+		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize, 0);
+		bgPos += 2;
+	}
+	else {
+		bgPos = 0;
+		App->render->Blit(bgTexture, 0, bgPos, &bgSize, 0);
+		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize, 0);
+	}
+
+	App->render->Blit(wintexture, 0, 0, NULL, 0);
 
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
