@@ -28,9 +28,9 @@ Application::Application()
 	modules[2] =	textures =		new ModuleTextures(true);
 	modules[3] =	audio =			new ModuleAudio(true);
 
-	modules[4] =	sceneIntro =	new SceneIntro(false);
+	modules[4] =	sceneIntro =	new SceneIntro(true);
 	modules[5] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
-	modules[6] =    scenePlayerSelect = new ScenePlayerSelect(true);
+	modules[6] =    scenePlayerSelect = new ScenePlayerSelect(false);
 
 	modules[7] =	player =		new ModulePlayer(false);	//Player starts disabled
 	modules[8] =	particles =		new ModuleParticles(true);

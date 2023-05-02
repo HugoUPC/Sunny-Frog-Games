@@ -89,7 +89,9 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
-		position.y += speed;
+		if (position.y <= 340) {
+			position.y += speed;
+		}
 
 		/*if (position.y <= App->render->camera.y) {
 			position.y += speed;
@@ -103,7 +105,10 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
-		position.y -= speed;
+		if (position.y >= 0) {
+			position.y -= speed;
+		}
+		
 		/*if (currentAnimation != &upAnim)
 		{
 			upAnim.Reset();
