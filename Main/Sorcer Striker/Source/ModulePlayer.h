@@ -32,6 +32,10 @@ public:
 	void OnCollision(Collider* c1, Collider* c2) override;
 
 public:
+
+	uint lives = 3;
+	uint respawnTimer = 5;
+
 	// Position of the player in the map
 	iPoint position;
 
@@ -57,6 +61,8 @@ public:
 
 	uint laserFx = 0;
 	uint explosionFx = 0;
+
+	uint kills;
 
 	uint score = 000;
 	int scoreFont = -1;

@@ -23,6 +23,7 @@ bool ModuleUI::Start()
 {
 
 	UIElements = App->textures->Load("Assets/UI/gp-ui.png");
+	wintexture = App->textures->Load("Assets/Sprites/stageclear.png");
 
 	// TODO 0: Notice how a font is loaded and the meaning of all its arguments 
 	//char lookupTable[] = { "!  ,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz" };
@@ -38,7 +39,13 @@ bool ModuleUI::Start()
 update_status ModuleUI::PostUpdate()
 {
 
-	App->render->Blit(UIElements, 0, 0, NULL, 0);
+	SDL_Rect Player1 = { 35,1,71,8 };
+
+	App->render->Blit(UIElements, 5, 5, &Player1, 0);
+
+	if (App->player->kills == 5) {
+		App->render->Blit(wintexture, 0, 0, NULL, 0);
+	}
 
 
 	// Draw UI (score) --------------------------------------
@@ -46,7 +53,7 @@ update_status ModuleUI::PostUpdate()
 	sprintf_s(scoreText, 10, "%7d", App->player->score);
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
-	App->fonts->BlitText(50, 20, scoreFont, scoreText);
+	App->fonts->BlitText(0, 13, scoreFont, scoreText);
 
 	App->fonts->BlitText(50, 300, scoreFont, "0123456789");
 

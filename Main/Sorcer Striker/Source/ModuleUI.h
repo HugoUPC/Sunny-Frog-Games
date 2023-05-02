@@ -30,6 +30,7 @@ public:
 	char scoreText[10] = { "\0" };
 
 	SDL_Texture* UIElements = nullptr;
+	SDL_Texture* wintexture = nullptr;
 };
 
 #endif //!__MODULE_PLAYER_H__
