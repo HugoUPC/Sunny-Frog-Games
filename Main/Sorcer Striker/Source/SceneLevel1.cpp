@@ -67,11 +67,7 @@ update_status SceneLevel1::Update()
 // Update: draw background
 update_status SceneLevel1::PostUpdate()
 {	
-	SDL_Rect bgSize;
-	bgSize.x = 518;
-	bgSize.y = 0;
-	bgSize.w = 240;
-	bgSize.h = 340;
+	SDL_Rect bgSize = { 518, 1, 240, 340 };
 
 	LOG("(%d, %d", App->render->camera.y + App->render->camera.h, bgPos);
 
