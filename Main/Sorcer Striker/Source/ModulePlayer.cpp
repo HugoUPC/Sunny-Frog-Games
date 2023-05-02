@@ -41,7 +41,6 @@ bool ModulePlayer::Start()
 	LOG("Loading player textures");
 
 	bool ret = true;
-	destroyed = false;
 
 	texture = App->textures->Load("Assets/Sprites/ship.png"); // arcade version
 	currentAnimation = &idleAnim;
@@ -117,19 +116,36 @@ update_status ModulePlayer::Update()
 	}
 
 
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || burst) && shootCooldown <= 0)
 	{
-		//Particle* laserL = App->particles->AddParticle(App->particles->laserL, position.x - 1, position.y - 60, Collider::Type::PLAYER_SHOT);
-		Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 7, position.y - 60, Collider::Type::PLAYER_SHOT);
-		//Particle* laserR = App->particles->AddParticle(App->particles->laserR, position.x + 15, position.y - 60, Collider::Type::PLAYER_SHOT);
+		if (!burst && burstCounter == 2) {
+			burst = true;
+			Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 7, position.y - 60, Collider::Type::PLAYER_SHOT);
+			laser->collider->AddListener(this);
+			App->audio->PlayFx(laserFx);
+		}
 
-		//laserL->collider->AddListener(this);
-		laser->collider->AddListener(this);
-		//laserR->collider->AddListener(this);
+		if (burstCounter <= 0) {
+			burst = false;
+			burstCounter = 2;
+			shootCooldown = 30;
+		}
+			
+		if (burstCountdown <= 0) {
+			Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 7, position.y - 60, Collider::Type::PLAYER_SHOT);
+			laser->collider->AddListener(this);
+			App->audio->PlayFx(laserFx);
+			burstCountdown = 10;
+			burstCounter--;
+		}
+		else {
+			burstCountdown--;
+		}
 
-
-		App->audio->PlayFx(laserFx);
+		
 	}
+
+	if(shootCooldown > 0) shootCooldown--;
 
 	// Spawn explosion particles when pressing B
 	if (App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN)
@@ -203,7 +219,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		destroyed = true;
 	}
-	else if(destroyed == false){
+	else if(c1 == collider && destroyed == false){
 		destroyed = true;
 		lives--;
 	}

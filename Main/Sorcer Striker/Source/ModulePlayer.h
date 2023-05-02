@@ -48,6 +48,11 @@ public:
 	// It will be switched depending on the player's movement direction
 	Animation* currentAnimation = nullptr;
 
+	bool burst = false;
+	uint burstCountdown = 10;
+	uint burstCounter = 2;
+	uint shootCooldown = 0;
+
 	// A set of animations
 	Animation idleAnim;
 	Animation upAnim;
