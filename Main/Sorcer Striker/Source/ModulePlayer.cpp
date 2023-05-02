@@ -53,6 +53,9 @@ bool ModulePlayer::Start()
 
 	// TODO 4: Retrieve the player when playing a second time
 	destroyed = false;
+	lives = 3;
+	kills = 0;
+
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
 
@@ -167,6 +170,16 @@ update_status ModulePlayer::Update()
 	collider->SetPos(position.x, position.y);
 
 	currentAnimation->Update();
+
+	if (App->input->keys[SDL_SCANCODE_F3] == KEY_STATE::KEY_REPEAT) {
+		kills = 5;
+		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+	}
+	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_REPEAT) {
+		lives = 0;
+		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+	}
+
 
 	return update_status::UPDATE_CONTINUE;
 }

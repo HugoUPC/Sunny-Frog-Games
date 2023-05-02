@@ -66,7 +66,7 @@ public:
 	uint laserFx = 0;
 	uint explosionFx = 0;
 
-	uint kills;
+	uint kills = 0;
 
 	uint score = 000;
 	int scoreFont = -1;

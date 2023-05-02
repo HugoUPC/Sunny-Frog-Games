@@ -38,7 +38,15 @@ void Enemy::Draw()
 }
 
 void Enemy::OnCollision(Collider* collider)
-{
+{	
+	//Attempt to make enemies invencible off-screen
+	/*if (position.y > 0 && position.y < 340) {
+		App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+		App->audio->PlayFx(destroyedFx);
+
+		SetToDelete();
+	}*/
+
 	App->particles->AddParticle(App->particles->explosion, position.x, position.y);
 	App->audio->PlayFx(destroyedFx);
 

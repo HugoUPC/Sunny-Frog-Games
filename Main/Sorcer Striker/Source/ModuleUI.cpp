@@ -39,12 +39,18 @@ bool ModuleUI::Start()
 update_status ModuleUI::PostUpdate()
 {
 
-	SDL_Rect Player1 = { 35,1,71,8 };
+	SDL_Rect Player1 = { 35, 1, 71, 8 };
+	SDL_Rect GameOver = { 1, 47, 143, 16 };
+
 
 	App->render->Blit(UIElements, 5, 5, &Player1, 0);
 
 	if (App->player->kills == 5) {
 		App->render->Blit(wintexture, 0, 0, NULL, 0);
+	}
+
+	if (App->player->lives <= 0) {
+		App->render->Blit(UIElements, 50, 150, &GameOver, 0);
 	}
 
 
