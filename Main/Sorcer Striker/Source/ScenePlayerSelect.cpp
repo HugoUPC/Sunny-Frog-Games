@@ -43,7 +43,7 @@ update_status ScenePlayerSelect::Update()
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
 	}
 
 	return update_status::UPDATE_CONTINUE;
@@ -61,24 +61,24 @@ update_status ScenePlayerSelect::PostUpdate()
 	
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
-		if (x >= -738 && x <= 0) {
-			x == -738;
-		}
-		else{ x += 246; }
-		
-		//y -= 2;
-		//App->render->Blit(Texture1, -246, 2, NULL);
+		//if (x >= -738 && x <= 0) {
+		//	x == -738;
+		//}
+		//else{ x += 246; }
+		//
+		////y -= 2;
+		App->render->Blit(Texture1, -246, 2, NULL);
 	}
 
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
 	{
-		if (x >= -738 && x <= 0) {
-			x == 0;
-		}
-		else{ x -= 246; }
-		
-		//y += 2;
-		//App->render->Blit(Texture1, -492, 0, NULL);
+		//if (x >= -738 && x <= 0) {
+		//	x == 0;
+		//}
+		//else{ x -= 246; }
+		//
+		////y += 2;
+		App->render->Blit(Texture1, -492, 0, NULL);
 	}
 
 	
