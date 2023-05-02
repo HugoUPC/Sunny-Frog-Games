@@ -34,7 +34,6 @@ public:
 public:
 
 	uint lives = 3;
-	uint respawnTimer = 5;
 
 	// Position of the player in the map
 	iPoint position;

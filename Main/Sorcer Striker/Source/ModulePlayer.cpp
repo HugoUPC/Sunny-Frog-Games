@@ -157,6 +157,20 @@ update_status ModulePlayer::PostUpdate()
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
 		App->render->Blit(texture, position.x, position.y, &rect);
 	}
+	else
+	{
+		if (destroyedCountdown <= 0) {
+			position.x = 0;
+			position.y = 0;
+			destroyed = false;
+		}
+		else {
+			position.x = 50000;
+			position.y = -50000;
+			destroyedCountdown--;
+		}
+	}
+	
 
 	//// Draw UI (score) --------------------------------------
 	//sprintf_s(scoreText, 10, "%7d", score);
@@ -171,7 +185,7 @@ update_status ModulePlayer::PostUpdate()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1 == collider && destroyed == false && lives <= 0)
+	if (c1 == collider && lives <= 0)
 	{
 		App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE, 9);
 		App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, Collider::Type::NONE, 14);
@@ -184,7 +198,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		destroyed = true;
 	}
-	else {
+	else if(destroyed == false){
+		destroyed = true;
 		lives--;
 	}
 
