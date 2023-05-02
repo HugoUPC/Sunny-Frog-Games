@@ -34,6 +34,8 @@ public:
 public:
 
 	uint lives = 3;
+	
+	bool godMode = false;
 
 	// Position of the player in the map
 	iPoint position;

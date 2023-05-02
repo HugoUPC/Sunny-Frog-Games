@@ -171,13 +171,19 @@ update_status ModulePlayer::Update()
 
 	currentAnimation->Update();
 
-	if (App->input->keys[SDL_SCANCODE_F3] == KEY_STATE::KEY_REPEAT) {
+	if (App->input->keys[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) {
 		kills = 5;
 		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
 	}
-	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_REPEAT) {
+	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN) {
 		lives = 0;
 		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+	}
+	if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN && !godMode) {
+		godMode = true;
+	}
+	else if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN && godMode){
+		godMode = false;
 	}
 
 
@@ -232,7 +238,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		destroyed = true;
 	}
-	else if(c1 == collider && destroyed == false){
+	else if(c1 == collider && destroyed == false && !godMode){
 		destroyed = true;
 		lives--;
 	}
