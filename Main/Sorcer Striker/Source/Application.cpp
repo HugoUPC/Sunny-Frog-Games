@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
+#include "ModuleUI.h"
 #include "ModulePlayer.h"
 #include "SceneIntro.h"
 #include "SceneLevel1.h"
@@ -36,9 +37,10 @@ Application::Application()
 	modules[9] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
 
 	modules[10] =	collisions =	new ModuleCollisions(true);
-	modules[11] =	fade =			new ModuleFadeToBlack(true);
-	modules[12] =	fonts =			new ModuleFonts(true);
-	modules[13] =	render =		new ModuleRender(true);
+	modules[11] =	UI =			new ModuleUI(false);
+	modules[12] =	fade =			new ModuleFadeToBlack(true);
+	modules[13] =	fonts =			new ModuleFonts(true);
+	modules[14] =	render =		new ModuleRender(true);
 }
 
 Application::~Application()

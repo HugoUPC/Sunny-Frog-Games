@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
+#include "ModuleUI.h"
 #include "ModuleCollisions.h"
 #include "ModuleInput.h"
 #include "ModuleEnemies.h"
@@ -49,6 +50,7 @@ bool SceneLevel1::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
+	App->UI->Enable();
 	App->player->Enable();
 	App->enemies->Enable();
 	App->collisions->Enable(); 
@@ -74,16 +76,6 @@ update_status SceneLevel1::PostUpdate()
 
 	LOG("(%d, %d", App->render->camera.y + App->render->camera.h, bgPos);
 
-	// Draw everything --------------------------------------
-	/*if ((bgPos - 340) <= (App->render->camera.y + 680)) {
-		App->render->Blit(bgTexture, 0, bgPos, &bgSize);
-		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize);
-	}
-	else {
-		bgPos -= 340;
-	}*/
-	//App->render->Blit(bgTexture, 0, 0, NULL);
-
 	//Infinite Background (Necessita ajustar los  valores para que no de saltos)
 	if (bgPos < 340) {
 		App->render->Blit(bgTexture, 0, bgPos, &bgSize, 0);
@@ -98,37 +90,6 @@ update_status SceneLevel1::PostUpdate()
 
 	App->render->Blit(wintexture, 0, 0, NULL, 0);
 
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
-	{
-
-	}
-
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-	{
-
-	}
-
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
-	{
-
-	}
-
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
-	{
-
-	}
-
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
-	{
-
-	}
-
-	if (App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN)
-	{
-
-	}
-
-
 	
 	return update_status::UPDATE_CONTINUE;
 }
@@ -136,6 +97,7 @@ update_status SceneLevel1::PostUpdate()
 bool SceneLevel1::CleanUp()
 {
 	// TODO 5: Remove all memory leaks
+	App->UI->Disable();
 	App->player->Disable();
 	App->enemies->Disable();
 	App->collisions->Disable();

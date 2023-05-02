@@ -45,7 +45,7 @@ bool ModulePlayer::Start()
 
 	texture = App->textures->Load("Assets/Sprites/ship.png"); // arcade version
 	currentAnimation = &idleAnim;
-
+	
 	laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
@@ -62,7 +62,7 @@ bool ModulePlayer::Start()
 	//scoreFont = App->fonts->Load("Assets/Fonts/rtype_font.png", "! @,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz", 1);
 
 	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
-	char lookupTable[] = { "01          23456789" };
+	char lookupTable[] = { " 01..........23456789" };
 	scoreFont = App->fonts->Load("Assets/Fonts/yb-numbers.png", lookupTable, 1);
 
 	return ret;
@@ -158,13 +158,13 @@ update_status ModulePlayer::PostUpdate()
 		App->render->Blit(texture, position.x, position.y, &rect);
 	}
 
-	// Draw UI (score) --------------------------------------
-	sprintf_s(scoreText, 10, "%7d", score);
+	//// Draw UI (score) --------------------------------------
+	//sprintf_s(scoreText, 10, "%7d", score);
 
-	// TODO 3: Blit the text of the score in at the bottom of the screen
-	App->fonts->BlitText(-30 , 20, scoreFont, scoreText);
+	//// TODO 3: Blit the text of the score in at the bottom of the screen
+	//App->fonts->BlitText( 50, 20, scoreFont, scoreText);
 
-	App->fonts->BlitText(50, 300, scoreFont, "this is just a font test");
+	//App->fonts->BlitText(50, 300, scoreFont, "this is just a font test");
 
 	return update_status::UPDATE_CONTINUE;
 }
