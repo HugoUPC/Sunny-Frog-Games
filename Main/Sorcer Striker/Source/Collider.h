@@ -15,6 +15,8 @@ struct Collider
 		WALL,
 		PLAYER,
 		ENEMY,
+		POWERUP,
+		SCREENBOUNDINGBOX,
 		PLAYER_SHOT,
 		ENEMY_SHOT,
 

@@ -8,6 +8,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleInput.h"
 #include "ModuleEnemies.h"
+#include "ModulePowerUp.h"
 #include "ModulePlayer.h"
 #include <stdio.h>
 
@@ -46,12 +47,15 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 150, -600);
 	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 165, -650);
 
+	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP, 110, -400);
+
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
 	App->UI->Enable();
 	App->player->Enable();
 	App->enemies->Enable();
+	App->powerups->Enable();
 	App->collisions->Enable(); 
 
 	return ret;

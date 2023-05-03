@@ -165,15 +165,6 @@ update_status ModulePlayer::Update()
 		App->audio->PlayFx(laserFx);
 	}
 
-	if (App->input->keys[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) {
-		if (PowerUpActivated) {
-			PowerUpActivated = false;
-		}
-		else {
-			PowerUpActivated = true;
-		}
-	}
-
 	// If no up/down movement detected, set the current animation back to idle
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE)
@@ -238,7 +229,7 @@ update_status ModulePlayer::PostUpdate()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1 == collider && lives <= 0)
+	if (c1->type == Collider::Type::ENEMY && lives <= 0)
 	{
 		App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE, 9);
 		App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, Collider::Type::NONE, 14);
@@ -251,7 +242,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		destroyed = true;
 	}
-	else if(c1 == collider && destroyed == false && !godMode){
+	else if(c1->type == Collider::Type::ENEMY && destroyed == false && !godMode){
 		destroyed = true;
 		lives--;
 	}
@@ -260,6 +251,15 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		score += 23;
 		kills++;
+	}
+
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::POWERUP) {
+		if (PowerUpActivated) {
+			PowerUpActivated = false;
+		}
+		else {
+			PowerUpActivated = true;
+		}
 	}
 }
 
