@@ -43,6 +43,7 @@
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="Path.cpp" />
     <ClCompile Include="PowerUp.cpp" />
+    <ClCompile Include="SceneDescription.cpp" />
     <ClCompile Include="SceneIntro.cpp" />
     <ClCompile Include="SceneLevel1.cpp" />
     <ClCompile Include="ScenePlayerSelect.cpp" />
@@ -75,6 +76,7 @@
     <ClInclude Include="Particle.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="PowerUp.h" />
+    <ClInclude Include="SceneDescription.h" />
     <ClInclude Include="SceneIntro.h" />
     <ClInclude Include="SceneLevel1.h" />
     <ClInclude Include="ScenePlayerSelect.h" />

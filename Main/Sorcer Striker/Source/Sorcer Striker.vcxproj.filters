@@ -115,6 +115,9 @@
     <ClCompile Include="PowerUp_Test.cpp">
       <Filter>Source Files\Entities\PowerUps</Filter>
     </ClCompile>
+    <ClCompile Include="SceneDescription.cpp">
+      <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -206,6 +209,9 @@
     </ClInclude>
     <ClInclude Include="PowerUp_Test.h">
       <Filter>Source Files\Entities\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneDescription.h">
+      <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
