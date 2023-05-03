@@ -24,7 +24,7 @@ bool SceneDescription::Start()
 
 	bool ret = true;
 
-	textura = App->textures->Load("Assets/background1.png");
+	textura = App->textures->Load("Assets/Sprites/Description.png");
 	App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
 
 	App->render->camera.x = 0;
@@ -37,7 +37,7 @@ update_status SceneDescription::Update()
 {
 	//680 porque serian dos paginas de 240x340, cuando acaba de pasar esa pagina se va solo a la intro
 	if (App->render->camera.y < 680) {
-		App->render->camera.y += 3;
+		App->render->camera.y += 1;
 	}
 	if (App->render->camera.y >= 680) {
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
