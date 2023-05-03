@@ -28,8 +28,8 @@ A - Move to the Left<br>
 S - Move Backwards<br>
 D - Move to the Right<br>
 SpaceKey - Shoot/Confirm action<br>
-F1 - Display Colliders<br>
-F2 - Activate/Deactivate God Mode<br>
+F1 - Activate/Deactivate God Mode<br>
+F2 - Display Colliders<br>
 F3 - Direct Win<br>
 F4 - Direct Lose<br>
 
