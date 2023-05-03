@@ -28,6 +28,7 @@ public:
 public:
 	int scoreFont = -1;
 	char scoreText[10] = { "\0" };
+	char livesText[10] = { "\0" };
 
 	SDL_Texture* UIElements = nullptr;
 	SDL_Texture* wintexture = nullptr;
