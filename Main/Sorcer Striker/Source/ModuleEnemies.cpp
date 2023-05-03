@@ -9,6 +9,7 @@
 #include "Enemy.h"
 #include "Enemy_RedBird.h"
 #include "Enemy_BrownShip.h"
+#include "Enemy_RedBall.h"
 
 #define SPAWN_MARGIN 50
 
@@ -26,7 +27,8 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
-	texture = App->textures->Load("Assets/Sprites/enemies.png");
+	texture = App->textures->Load("Assets/red-ball-1.png");
+	
 	enemyDestroyedFx = App->audio->LoadFx("Assets/explosion.wav");
 
 	return true;
@@ -162,8 +164,12 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				case ENEMY_TYPE::BROWNSHIP:
 					enemies[i] = new Enemy_BrownShip(info.x, info.y);
 					break;
+				case ENEMY_TYPE::REDBALL:
+					enemies[i] = new Enemy_RedBall(info.x, info.y);
+					break;
 			}
 			enemies[i]->texture = texture;
+			
 			enemies[i]->destroyedFx = enemyDestroyedFx;
 			break;
 		}

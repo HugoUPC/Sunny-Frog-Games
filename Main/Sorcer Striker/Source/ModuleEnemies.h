@@ -13,6 +13,7 @@ enum class ENEMY_TYPE
 	REDBIRD,
 	BROWNSHIP,
 	MERCH,
+	REDBALL,
 };
 
 struct EnemySpawnpoint
@@ -79,6 +80,7 @@ private:
 
 	// The enemies sprite sheet
 	SDL_Texture* texture = nullptr;
+	
 
 	// The audio fx for destroying an enemy
 	int enemyDestroyedFx = 0;

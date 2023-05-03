@@ -32,20 +32,22 @@ bool SceneLevel1::Start()
 	bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 110, -450);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 125, -500);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 150, -650);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 165, -700);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 110, -450);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 125, -500);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 150, -650);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 165, -700);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 110, -820);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 125, -920);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 150, -1020);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 165, -1020);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 110, -820);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 125, -920);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 150, -1020);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 165, -1020);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 110, -400);
 	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 125, -500);
 	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 150, -600);
 	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 165, -650);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 110, -450);
 
 	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP, 110 / 2, -400 / 2);
 
