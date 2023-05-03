@@ -51,6 +51,7 @@ bool SceneLevel1::Start()
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
+	screenBoundingBox = App->collisions->AddCollider({ 0, 0, 240, 10 }, Collider::Type::SCREENBOUNDINGBOX, this);
 
 	App->UI->Enable();
 	App->player->Enable();
@@ -64,6 +65,7 @@ bool SceneLevel1::Start()
 update_status SceneLevel1::Update()
 {
 	App->render->camera.y -= 2;
+	screenBoundingBox->SetPos(0, App->render->camera.y / 2);
 
 	return update_status::UPDATE_CONTINUE;
 }

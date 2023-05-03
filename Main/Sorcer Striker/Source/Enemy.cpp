@@ -5,7 +5,6 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
-#include "BoundingBox.h"
 
 
 Enemy::Enemy(int x, int y) : position(x, y)
@@ -41,22 +40,12 @@ void Enemy::Draw()
 
 void Enemy::OnCollision(Collider* collider)
 {	
-	//WIP MAKING ENEMIES INVINCIBLE WHEN OFF SCREEN
-	bool tof = isOffScreen(position.x, position.y);
-	if (tof == false)
-	{
+	if (collider->type != Collider::Type::SCREENBOUNDINGBOX) {
 		App->particles->AddParticle(App->particles->explosion, position.x, position.y);
 		App->audio->PlayFx(destroyedFx);
 
 		SetToDelete();
 	}
-	else {
-		
-		
-	}
-
-	
-	
 }
 
 void Enemy::SetToDelete()

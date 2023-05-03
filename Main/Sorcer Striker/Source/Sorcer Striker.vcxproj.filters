@@ -118,9 +118,6 @@
     <ClCompile Include="SceneDescription.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="BoundingBox.cpp">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -214,9 +211,6 @@
       <Filter>Source Files\Entities\PowerUps</Filter>
     </ClInclude>
     <ClInclude Include="SceneDescription.h">
-      <Filter>Source Files\Modules\Gameplay</Filter>
-    </ClInclude>
-    <ClInclude Include="BoundingBox.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
