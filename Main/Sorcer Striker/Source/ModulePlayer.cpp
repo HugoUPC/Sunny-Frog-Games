@@ -144,7 +144,7 @@ update_status ModulePlayer::Update()
 			Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 11, position.y - 20, Collider::Type::PLAYER_SHOT);
 			laser->collider->AddListener(this);
 			App->audio->PlayFx(laserFx);
-			burstCountdown = 10;
+			burstCountdown = 5;
 			burstCounter--;
 		}
 		else {
@@ -156,7 +156,7 @@ update_status ModulePlayer::Update()
 
 	if(shootCooldown > 0) shootCooldown--;
 
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && PowerUpActivated) {
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && PowerUpActivated && shootCooldown <= 0) {
 		PowerUp();
 	}
 
@@ -266,8 +266,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 }
 
 void ModulePlayer::PowerUp() {
-	Particle* batShotL = App->particles->AddParticle(App->particles->bat_shotsR, position.x - 100, position.y - 20, Collider::Type::PLAYER_SHOT);
-	Particle* batShotR = App->particles->AddParticle(App->particles->bat_shotsL, position.x + 50, position.y - 20, Collider::Type::PLAYER_SHOT);
+	Particle* batShotL = App->particles->AddParticle(App->particles->bat_shotsR, position.x - 75, position.y + 20, Collider::Type::PLAYER_SHOT);
+	Particle* batShotR = App->particles->AddParticle(App->particles->bat_shotsL, position.x + 50, position.y + 20, Collider::Type::PLAYER_SHOT);
 	batShotL->collider->AddListener(this);
 	batShotR->collider->AddListener(this);
 

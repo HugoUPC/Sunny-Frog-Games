@@ -69,7 +69,7 @@ update_status ModuleUI::PostUpdate()
 	App->fonts->BlitText(100, 13, scoreFont, "999999");
 	App->fonts->BlitText(220, 13, scoreFont, "0");
 
-	App->fonts->BlitText(50, 300, scoreFont, "0123456789");
+	//App->fonts->BlitText(50, 300, scoreFont, "0123456789");
 
 	if (App->player->kills == 5) {
 		App->render->Blit(wintexture, 0, 0, NULL, 0);

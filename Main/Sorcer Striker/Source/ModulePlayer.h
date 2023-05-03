@@ -53,7 +53,7 @@ public:
 	Animation* currentAnimation = nullptr;
 
 	bool burst = false;
-	uint burstCountdown = 10;
+	uint burstCountdown = 5;
 	uint burstCounter = 2;
 	uint shootCooldown = 0;
 
