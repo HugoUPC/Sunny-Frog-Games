@@ -32,6 +32,7 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* Texture1 = nullptr;
 	SDL_Texture* texture = nullptr;
+	int PowerUpCollectFx = 0;
 };
 
 #endif

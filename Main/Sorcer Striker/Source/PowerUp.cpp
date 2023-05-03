@@ -9,6 +9,7 @@
 PowerUp::PowerUp(int x, int y) : position(x, y)
 {
 	spawnPos = position;
+	PowerUpCollectFx = App->audio->LoadFx("Assets/Fx/powerUp.wav");
 }
 
 PowerUp::~PowerUp()
@@ -41,6 +42,7 @@ void PowerUp::OnCollision(Collider* collider)
 {
 	if (collider->type == Collider::Type::PLAYER) {
 		SetToDelete();
+		App->audio->PlayFx(PowerUpCollectFx);
 	}
 }
 
