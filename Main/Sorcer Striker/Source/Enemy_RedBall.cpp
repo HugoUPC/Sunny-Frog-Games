@@ -5,8 +5,11 @@
 
 Enemy_RedBall::Enemy_RedBall(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 0,0,24,35 });
-	fly.PushBack({ 0,0,24,35 });
+	fly.PushBack({ 0,0,26,35 });
+	fly.PushBack({ 45,0,26,35 });
+	fly.speed = 0.2f;
+	
+	
 	currentAnim = &fly;
 
 	/*path.PushBack({-1.0f, -0.5f}, 100);
@@ -19,6 +22,7 @@ Enemy_RedBall::Enemy_RedBall(int x, int y) : Enemy(x, y)
 void Enemy_RedBall::Update()
 {
 	path.Update();
+	position.y += 1;
 	position = spawnPos + path.GetRelativePosition();
 
 	// Call to the base class. It must be called at the end
