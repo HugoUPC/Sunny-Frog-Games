@@ -31,6 +31,7 @@ bool ScenePlayerSelect::Start()
 	//App->render->Blit(Texture1, -738, 0, NULL);
 
 	App->audio->PlayMusic("Assets/Music/characterSelect.ogg", 1.0f);
+	PowerUpCollectFx = App->audio->LoadFx("Assets/Fx/powerUp.wav");
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -44,6 +45,7 @@ update_status ScenePlayerSelect::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+		App->audio->PlayFx(PowerUpCollectFx);
 	}
 	
 
