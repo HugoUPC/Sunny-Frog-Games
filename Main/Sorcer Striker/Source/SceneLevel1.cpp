@@ -77,7 +77,7 @@ update_status SceneLevel1::PostUpdate()
 
 	LOG("(%d, %d", App->render->camera.y + App->render->camera.h, bgPos);
 
-	//Infinite Background (Necessita ajustar los  valores para que no de saltos)
+	//Infinite Background (Hem penso que amb App->render->camera.y / 2 es pot fer)
 	if (bgPos < 340) {
 		App->render->Blit(bgTexture, 0, bgPos, &bgSize, 0);
 		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize, 0);

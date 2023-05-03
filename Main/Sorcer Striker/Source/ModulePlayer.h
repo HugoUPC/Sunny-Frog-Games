@@ -34,7 +34,7 @@ public:
 
 public:
 
-	uint lives = 3;
+	int lives = 3;
 	
 	bool godMode = false;
 
