@@ -123,7 +123,7 @@ update_status ModulePlayer::Update()
 	{
 		if (!burst && burstCounter == 2) {
 			burst = true;
-			Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 7, position.y - 20, Collider::Type::PLAYER_SHOT);
+			Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 11, position.y - 20, Collider::Type::PLAYER_SHOT);
 			laser->collider->AddListener(this);
 			App->audio->PlayFx(laserFx);
 		}
@@ -135,7 +135,7 @@ update_status ModulePlayer::Update()
 		}
 			
 		if (burstCountdown <= 0) {
-			Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 7, position.y - 20, Collider::Type::PLAYER_SHOT);
+			Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 11, position.y - 20, Collider::Type::PLAYER_SHOT);
 			laser->collider->AddListener(this);
 			App->audio->PlayFx(laserFx);
 			burstCountdown = 10;
