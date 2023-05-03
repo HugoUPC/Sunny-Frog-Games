@@ -57,6 +57,7 @@ bool ModulePlayer::Start()
 	destroyed = false;
 	lives = 3;
 	kills = 0;
+	PowerUpActivated = false;
 
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
