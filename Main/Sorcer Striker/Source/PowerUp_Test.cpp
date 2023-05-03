@@ -5,7 +5,7 @@
 
 PowerUp_Test::PowerUp_Test(int x, int y) : PowerUp(x, y)
 {
-	flyAnim.PushBack({ 4,1,32,18 });
+	flyAnim.PushBack({ 0,0,17,22 });
 
 	flyAnim.speed = 0.2f;
 

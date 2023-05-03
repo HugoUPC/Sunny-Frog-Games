@@ -25,7 +25,7 @@ ModulePowerUp::~ModulePowerUp()
 
 bool ModulePowerUp::Start()
 {
-	texture = App->textures->Load("Assets/Sprites/BOOK.png");
+	texture = App->textures->Load("Assets/Sprites/book.png");
 	PowerUpDestroyedFx = App->audio->LoadFx("Assets/explosion.wav");
 
 	return true;
