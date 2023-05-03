@@ -30,7 +30,7 @@ bool ScenePlayerSelect::Start()
 	//App->render->Blit(Texture1, -492, 0, NULL);
 	//App->render->Blit(Texture1, -738, 0, NULL);
 
-	App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/Music/characterSelect.ogg", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -45,6 +45,7 @@ update_status ScenePlayerSelect::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
 	}
+	
 
 	return update_status::UPDATE_CONTINUE;
 }
