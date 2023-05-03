@@ -123,7 +123,7 @@ update_status ModulePlayer::Update()
 	{
 		if (!burst && burstCounter == 2) {
 			burst = true;
-			Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 7, position.y - 60, Collider::Type::PLAYER_SHOT);
+			Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 7, position.y - 20, Collider::Type::PLAYER_SHOT);
 			laser->collider->AddListener(this);
 			App->audio->PlayFx(laserFx);
 		}
@@ -135,7 +135,7 @@ update_status ModulePlayer::Update()
 		}
 			
 		if (burstCountdown <= 0) {
-			Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 7, position.y - 60, Collider::Type::PLAYER_SHOT);
+			Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 7, position.y - 20, Collider::Type::PLAYER_SHOT);
 			laser->collider->AddListener(this);
 			App->audio->PlayFx(laserFx);
 			burstCountdown = 10;
@@ -150,6 +150,10 @@ update_status ModulePlayer::Update()
 
 	if(shootCooldown > 0) shootCooldown--;
 
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && PowerUpActivated) {
+		PowerUp();
+	}
+
 	// Spawn explosion particles when pressing B
 	if (App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN)
 	{
@@ -159,6 +163,15 @@ update_status ModulePlayer::Update()
 		batShotR->collider->AddListener(this);
 
 		App->audio->PlayFx(laserFx);
+	}
+
+	if (App->input->keys[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) {
+		if (PowerUpActivated) {
+			PowerUpActivated = false;
+		}
+		else {
+			PowerUpActivated = true;
+		}
 	}
 
 	// If no up/down movement detected, set the current animation back to idle
@@ -248,4 +261,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		score += 23;
 		kills++;
 	}
+}
+
+void ModulePlayer::PowerUp() {
+	Particle* batShotL = App->particles->AddParticle(App->particles->bat_shotsR, position.x - 100, position.y - 20, Collider::Type::PLAYER_SHOT);
+	Particle* batShotR = App->particles->AddParticle(App->particles->bat_shotsL, position.x + 50, position.y - 20, Collider::Type::PLAYER_SHOT);
+	batShotL->collider->AddListener(this);
+	batShotR->collider->AddListener(this);
+
+	App->audio->PlayFx(laserFx);
 }

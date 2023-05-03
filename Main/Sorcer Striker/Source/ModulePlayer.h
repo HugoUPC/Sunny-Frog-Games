@@ -30,6 +30,7 @@ public:
 	update_status PostUpdate() override;
 
 	void OnCollision(Collider* c1, Collider* c2) override;
+	void PowerUp();
 
 public:
 
@@ -54,6 +55,8 @@ public:
 	uint burstCountdown = 10;
 	uint burstCounter = 2;
 	uint shootCooldown = 0;
+
+	bool PowerUpActivated = false;
 
 	// A set of animations
 	Animation idleAnim;
