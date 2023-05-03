@@ -212,6 +212,7 @@ update_status ModulePlayer::PostUpdate()
 		if (destroyedCountdown <= 0) {
 			position.x = backupPosition.x;
 			position.y = backupPosition.y;
+			destroyedCountdown = 120;
 			destroyed = false;
 		}
 		else {
