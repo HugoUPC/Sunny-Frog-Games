@@ -244,6 +244,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	}
 	else if(c1->type == Collider::Type::ENEMY && destroyed == false && !godMode){
 		destroyed = true;
+		PowerUpActivated = false;
 		lives--;
 	}
 

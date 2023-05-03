@@ -11,7 +11,7 @@ PowerUp_Test::PowerUp_Test(int x, int y) : PowerUp(x, y)
 
 	currentAnim = &flyAnim;
 
-	collider = App->collisions->AddCollider({ 0, 0, 24, 24 }, Collider::Type::POWERUP, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0, 0, 24, 24 }, Collider::Type::POWERUP, (Module*)App->powerups);
 }
 
 void PowerUp_Test::Update()

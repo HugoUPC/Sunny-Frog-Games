@@ -47,7 +47,7 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 150, -600);
 	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 165, -650);
 
-	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP, 110, -400);
+	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP, 110 / 2, -400 / 2);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
