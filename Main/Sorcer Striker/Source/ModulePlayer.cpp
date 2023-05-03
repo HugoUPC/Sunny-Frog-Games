@@ -51,6 +51,8 @@ bool ModulePlayer::Start()
 	position.x = 110;
 	position.y = 150;
 
+	backupPosition = position;
+
 	// TODO 4: Retrieve the player when playing a second time
 	destroyed = false;
 	lives = 3;
@@ -74,6 +76,7 @@ update_status ModulePlayer::Update()
 {
 	// Moving the player with the camera scroll
 	App->player->position.y -= 1;
+	App->player->backupPosition.y -= 1;
 
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
@@ -93,6 +96,7 @@ update_status ModulePlayer::Update()
 	{
 		//if (position.y <= 340) {
 			position.y += speed;
+			backupPosition.y += speed;
 		//}
 
 		/*if (position.y <= App->render->camera.y) {
@@ -109,6 +113,7 @@ update_status ModulePlayer::Update()
 	{
 		//if (position.y >= 0) {
 			position.y -= speed;
+			backupPosition.y -= speed;
 		//}
 		
 		/*if (currentAnimation != &upAnim)
@@ -204,8 +209,8 @@ update_status ModulePlayer::PostUpdate()
 	else
 	{
 		if (destroyedCountdown <= 0) {
-			position.x = 0;
-			position.y = 0;
+			position.x = backupPosition.x;
+			position.y = backupPosition.y;
 			destroyed = false;
 		}
 		else {
@@ -214,23 +219,17 @@ update_status ModulePlayer::PostUpdate()
 			destroyedCountdown--;
 		}
 	}
-	
 
-	//// Draw UI (score) --------------------------------------
-	//sprintf_s(scoreText, 10, "%7d", score);
-
-	//// TODO 3: Blit the text of the score in at the bottom of the screen
-	//App->fonts->BlitText( 50, 20, scoreFont, scoreText);
-
-	//App->fonts->BlitText(50, 300, scoreFont, "this is just a font test");
+	if(kills == 5) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
 
 	return update_status::UPDATE_CONTINUE;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1->type == Collider::Type::ENEMY && lives <= 0)
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY && lives <= 0)
 	{
+		lives--;
 		App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE, 9);
 		App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, Collider::Type::NONE, 14);
 		App->particles->AddParticle(App->particles->explosion, position.x - 7, position.y + 12, Collider::Type::NONE, 40);
@@ -242,7 +241,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		destroyed = true;
 	}
-	else if(c1->type == Collider::Type::ENEMY && destroyed == false && !godMode){
+	else if(c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY && destroyed == false && !godMode){
 		destroyed = true;
 		PowerUpActivated = false;
 		lives--;

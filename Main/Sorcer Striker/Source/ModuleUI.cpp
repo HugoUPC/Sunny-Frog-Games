@@ -49,7 +49,7 @@ update_status ModuleUI::PostUpdate()
 		App->render->Blit(wintexture, 0, 0, NULL, 0);
 	}
 
-	if (App->player->lives <= 0) {
+	if (App->player->lives < 0) {
 		App->render->Blit(UIElements, 50, 150, &GameOver, 0);
 	}
 
