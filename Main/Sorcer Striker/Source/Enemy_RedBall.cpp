@@ -5,9 +5,9 @@
 
 Enemy_RedBall::Enemy_RedBall(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 0,0,26,35 });
-	fly.PushBack({ 45,0,26,35 });
-	fly.speed = 0.2f;
+	fly.PushBack({ 0,0,24,35 });
+	fly.PushBack({ 34,0,26,35 });
+	fly.speed = 0.3f;
 	
 	
 	currentAnim = &fly;
