@@ -13,7 +13,10 @@ Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 	fly.PushBack({ 314,45,87,100 });
 	
 	fly.speed = 0.09f;
-
+	
+	path.PushBack({ 0.3f, 0.0f }, 50);
+	path.PushBack({ -0.3f, -0.0f }, 50);
+	path.loop;
 
 	currentAnim = &fly;
 
