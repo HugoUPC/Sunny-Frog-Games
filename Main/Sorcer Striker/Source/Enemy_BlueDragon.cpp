@@ -5,9 +5,12 @@
 
 Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 0,0,24,35 });
-	fly.PushBack({ 34,0,26,35 });
-	fly.speed = 0.3f;
+	fly.PushBack({ 0,45,91,100 });
+	fly.PushBack({ 107,45,92,100 });
+	fly.PushBack({ 211,45,88,100 });
+	fly.PushBack({ 314,45,87,100 });
+	
+	fly.speed = 0.09f;
 
 
 	currentAnim = &fly;
@@ -16,7 +19,7 @@ Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 	path.PushBack({-1.0f, 0.5f}, 80);
 	path.PushBack({-1.0f, 1.0f}, 80);*/
 
-	collider = App->collisions->AddCollider({ 0, 0, 24, 24 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0, 0, 88, 90 }, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
 void Enemy_BlueDragon::Update()

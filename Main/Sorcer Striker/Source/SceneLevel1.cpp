@@ -39,12 +39,16 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -360);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -400);
 
+	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 100, -320);
+
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -880);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -920);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -960);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -1000);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -1040);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -1080);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -900);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1480);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1520);
@@ -53,12 +57,16 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1640);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1680);
 
+	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 130, -1500);
+
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -2000);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -2040);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -2080);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -2120);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -2160);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -2200);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -2100);
 
 	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP, 110 / 2, -400 / 2);
 
