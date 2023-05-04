@@ -10,6 +10,8 @@ Enemy_RedBall::Enemy_RedBall(int x, int y) : Enemy(x, y)
 	fly.speed = 0.3f;
 	
 	
+	
+	
 	currentAnim = &fly;
 
 	/*path.PushBack({-1.0f, -0.5f}, 100);
@@ -22,7 +24,7 @@ Enemy_RedBall::Enemy_RedBall(int x, int y) : Enemy(x, y)
 void Enemy_RedBall::Update()
 {
 	path.Update();
-	position.y = +1;
+	
 	
 	position = spawnPos + path.GetRelativePosition();
 
