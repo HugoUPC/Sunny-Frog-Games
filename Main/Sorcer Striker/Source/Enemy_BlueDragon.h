@@ -1,5 +1,5 @@
-#ifndef __Enemy_BlueDragon_H__
-#define __Enemy_BlueDragon_H__
+#ifndef __ENEMY_BLUEDRAGON_H__
+#define __ENEMY_BLUEDRAGON_H__
 
 #include "Enemy.h"
 #include "Path.h"
@@ -14,6 +14,9 @@ public:
 	// The enemy is going to follow the different steps in the path
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
+	void OnCollision(Collider* collider) override;
+
+	int lives = 5;
 
 private:
 	// A set of steps that define the position in the screen
@@ -25,4 +28,4 @@ private:
 	Animation fly;
 };
 
-#endif // __Enemy_BlueDragon_H__
+#endif // __ENEMY_BLUEDRAGON_H__
