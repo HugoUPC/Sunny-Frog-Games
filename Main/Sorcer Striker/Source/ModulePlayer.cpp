@@ -58,6 +58,7 @@ bool ModulePlayer::Start()
 	lives = 3;
 	kills = 0;
 	PowerUpActivated = false;
+	transitionTimer = 50;
 
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
@@ -211,7 +212,11 @@ update_status ModulePlayer::PostUpdate()
 		}
 	}
 
-	if(kills == 20) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+	if (kills >= 20 && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+	else if (kills >= 20 && transitionTimer > 0) transitionTimer--;
+
+	if (lives < 0 && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+	else if (lives < 0 && transitionTimer > 0) transitionTimer--;
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -228,7 +233,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE, 21);
 
 		App->audio->PlayFx(explosionFx);
-		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
 
 		destroyed = true;
 	}

@@ -59,6 +59,8 @@ public:
 
 	bool PowerUpActivated = false;
 
+	int transitionTimer = 50;
+
 	// A set of animations
 	Animation idleAnim;
 	Animation upAnim;
