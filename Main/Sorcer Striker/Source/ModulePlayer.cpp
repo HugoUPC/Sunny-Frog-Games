@@ -55,6 +55,7 @@ bool ModulePlayer::Start()
 
 	// TODO 4: Retrieve the player when playing a second time
 	destroyed = false;
+	score = 000;
 	lives = 3;
 	kills = 0;
 	PowerUpActivated = false;
