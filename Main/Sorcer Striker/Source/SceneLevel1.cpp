@@ -32,22 +32,33 @@ bool SceneLevel1::Start()
 	bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 110, -450);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 125, -500);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 150, -650);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 165, -700);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -200);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -240);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -280);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -320);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -360);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -400);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 110, -820);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 125, -920);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 150, -1020);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 165, -1020);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -880);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -920);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -960);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -1000);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -1040);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -1080);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 110, -400);
-	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 125, -500);
-	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 150, -600);
-	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 165, -650);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1480);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1520);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1560);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1600);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1640);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1680);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 110, -450);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -2000);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -2040);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -2080);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -2120);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -2160);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 200, -2200);
 
 	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP, 110 / 2, -400 / 2);
 
