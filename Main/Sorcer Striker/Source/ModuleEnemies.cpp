@@ -27,7 +27,7 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
-	texture = App->textures->Load("Assets/Sprites/RedBall.png");
+	texture = App->textures->Load("Assets/Sprites/Enemies.png");
 	
 	enemyDestroyedFx = App->audio->LoadFx("Assets/explosion.wav");
 

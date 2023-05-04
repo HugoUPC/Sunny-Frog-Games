@@ -12,7 +12,7 @@ enum class ENEMY_TYPE
 	NO_TYPE,
 	REDBIRD,
 	BROWNSHIP,
-	MERCH,
+	BLUEDRAGON,
 	REDBALL,
 };
 
@@ -80,6 +80,7 @@ private:
 
 	// The enemies sprite sheet
 	SDL_Texture* texture = nullptr;
+	
 	
 
 	// The audio fx for destroying an enemy
