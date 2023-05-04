@@ -182,7 +182,7 @@ update_status ModulePlayer::Update()
 	currentAnimation->Update();
 
 	if (App->input->keys[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) {
-		kills = 5;
+		kills = 10;
 		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
 	}
 	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN) {
@@ -222,7 +222,7 @@ update_status ModulePlayer::PostUpdate()
 		}
 	}
 
-	if(kills == 5) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+	if(kills == 10) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
 
 	return update_status::UPDATE_CONTINUE;
 }
