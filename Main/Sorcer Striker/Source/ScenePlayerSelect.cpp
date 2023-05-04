@@ -55,31 +55,31 @@ update_status ScenePlayerSelect::Update()
 update_status ScenePlayerSelect::PostUpdate()
 {
     // Draw everything --------------------------------------
-    int x = 0;
+    //int x = 0;
 
     //App->render->Blit(Texture1, -246, 2, NULL); Para saber las coordenadas de los sprites
     //App->render->Blit(Texture1, -492, 0, NULL);
     //App->render->Blit(Texture1, -738, 0, NULL);
 
-    App->render->Blit(Texture1, x, 0, NULL);
+    App->render->Blit(Texture1, -738, 0, NULL);
 
-    if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
-    {
-        //App->textures->Unload(Texture1);
-        if (x < 0) {
-            x += 246;
-        }
-        App->render->Blit(Texture1, x, 0, NULL);
-    }
+    //if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+    //{
+    //    //App->textures->Unload(Texture1);
+    //    if (x < 0) {
+    //        x += 246;
+    //    }
+    //    App->render->Blit(Texture1, x, 0, NULL);
+    //}
 
-    if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-    {
-        //App->textures->Unload(Texture1);
-        if (x > -978) {
-            x -= 246;
-        }
-        App->render->Blit(Texture1, x, 0, NULL);
-    }
+    //if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+    //{
+    //    //App->textures->Unload(Texture1);
+    //    if (x > -978) {
+    //        x -= 246;
+    //    }
+    //    App->render->Blit(Texture1, x, 0, NULL);
+    //}
 
 
 
