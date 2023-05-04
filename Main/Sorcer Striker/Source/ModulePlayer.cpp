@@ -160,17 +160,6 @@ update_status ModulePlayer::Update()
 		PowerUp();
 	}
 
-	// Spawn explosion particles when pressing B
-	if (App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN)
-	{
-		Particle* batShotL = App->particles->AddParticle(App->particles->bat_shotsR, position.x - 15, position.y - 60, Collider::Type::PLAYER_SHOT);
-		Particle* batShotR = App->particles->AddParticle(App->particles->bat_shotsL, position.x - 50, position.y - 60, Collider::Type::PLAYER_SHOT);
-		batShotL->collider->AddListener(this);
-		batShotR->collider->AddListener(this);
-
-		App->audio->PlayFx(laserFx);
-	}
-
 	// If no up/down movement detected, set the current animation back to idle
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE)
@@ -266,8 +255,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 }
 
 void ModulePlayer::PowerUp() {
-	Particle* batShotL = App->particles->AddParticle(App->particles->bat_shotsR, position.x - 75, position.y + 20, Collider::Type::PLAYER_SHOT);
-	Particle* batShotR = App->particles->AddParticle(App->particles->bat_shotsL, position.x + 50, position.y + 20, Collider::Type::PLAYER_SHOT);
+	Particle* batShotL = App->particles->AddParticle(App->particles->bat_shotsR, position.x , position.y + 20, Collider::Type::PLAYER_SHOT);
+	Particle* batShotR = App->particles->AddParticle(App->particles->bat_shotsL, position.x, position.y + 20, Collider::Type::PLAYER_SHOT);
 	batShotL->collider->AddListener(this);
 	batShotR->collider->AddListener(this);
 
