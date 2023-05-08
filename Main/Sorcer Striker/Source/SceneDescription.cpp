@@ -24,7 +24,7 @@ bool SceneDescription::Start()
 
 	bool ret = true;
 
-	textura = App->textures->Load("Assets/Sprites/Description.png");
+	textura = App->textures->Load("Assets/Sprites/DescriptionScene.png");
 	App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
 
 	App->render->camera.x = 0;
