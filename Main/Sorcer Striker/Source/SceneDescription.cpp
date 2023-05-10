@@ -24,7 +24,7 @@ bool SceneDescription::Start()
 
 	bool ret = true;
 
-	textura = App->textures->Load("Assets/Sprites/DescriptionScene.png");
+	textura = App->textures->Load("Assets/Intro/DescriptionScene.png");
 	App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
 
 	App->render->camera.x = 0;
@@ -40,12 +40,12 @@ update_status SceneDescription::Update()
 		App->render->camera.y += 1;
 	}
 	if (App->render->camera.y >= 680) {
-		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		App->fade->FadeToBlack(this, (Module*)App->intro1, 90);	
 	}
 
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) 
 	{
-		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		App->fade->FadeToBlack(this, (Module*)App->intro1, 90);
 	}
 	//pa ir directo al gameplay xd
 	if (App->input->keys[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN)

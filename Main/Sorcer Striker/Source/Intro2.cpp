@@ -1,4 +1,4 @@
-#include "SceneIntro.h"
+#include "Intro2.h"
 
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -7,26 +7,27 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 
-SceneIntro::SceneIntro(bool startEnabled) : Module(startEnabled)
+Intro2::Intro2(bool startEnabled) : Module(startEnabled)
 {
 
 }
 
-SceneIntro::~SceneIntro()
+Intro2::~Intro2()
 {
 
 }
 
 // Load assets
-bool SceneIntro::Start()
+bool Intro2::Start()
 {
 	LOG("Loading background assets");
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Intro/initial.png");
-	App->audio->Enable();
-	App->audio->PlayMusic("Assets/Music/Intro.ogg", 1.0f);
+	textura = App->textures->Load("Assets/Intro/Intro1.png");
+	//NO HA DE SONAR MUSICA EN AQUESTA PANTALLA TAMPOC
+	//App->audio->PlayMusic("Assets/Music/Intro.ogg", 1.0f);
+	//App->audio->Disable();
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -34,26 +35,23 @@ bool SceneIntro::Start()
 	return ret;
 }
 
-update_status SceneIntro::Update()
+update_status Intro2::Update()
 {
+	App->fade->FadeToBlack(this, (Module*)App->scenestory, 90);
+
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
 	}
 
-	/*if (App->input->keys[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN)
-	{
-		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
-	}*/
-
 	return update_status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
-update_status SceneIntro::PostUpdate()
+update_status Intro2::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, 0, NULL);
+	App->render->Blit(textura, -246, 0, NULL);
 
 	return update_status::UPDATE_CONTINUE;
 }

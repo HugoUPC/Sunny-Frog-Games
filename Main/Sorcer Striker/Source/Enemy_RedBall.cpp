@@ -9,9 +9,7 @@ Enemy_RedBall::Enemy_RedBall(int x, int y) : Enemy(x, y)
 	fly.PushBack({ 34,0,26,35 });
 	fly.speed = 0.3f;
 	
-	
-	
-	
+
 	currentAnim = &fly;
 
 	path.PushBack({0.9f, 0.5f}, 200);
