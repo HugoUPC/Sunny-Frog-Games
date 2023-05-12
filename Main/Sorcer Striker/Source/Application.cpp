@@ -20,8 +20,6 @@
 #include "ModuleEnemies.h"
 #include "ModulePowerUp.h"
 
-#include "ModuleAnim.h"
-
 #include "ModuleCollisions.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
@@ -52,13 +50,11 @@ Application::Application()
 	modules[13] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
 	modules[14] =	powerups =		new ModulePowerUp(false);
 
-	modules[15] =   animation =     new ModuleAnim(false);
-
-	modules[16] =	collisions =	new ModuleCollisions(true);
-	modules[17] =	UI =			new ModuleUI(false);
-	modules[18] =	fade =			new ModuleFadeToBlack(true);
-	modules[19] =	fonts =			new ModuleFonts(true);
-	modules[20] =	render =		new ModuleRender(true);
+	modules[15] =	collisions =	new ModuleCollisions(true);
+	modules[16] =	UI =			new ModuleUI(false);
+	modules[17] =	fade =			new ModuleFadeToBlack(true);
+	modules[18] =	fonts =			new ModuleFonts(true);
+	modules[19] =	render =		new ModuleRender(true);
 }
 
 Application::~Application()

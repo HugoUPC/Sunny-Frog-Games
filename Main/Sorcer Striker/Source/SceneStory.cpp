@@ -5,7 +5,6 @@
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
 #include "ModuleUI.h"
-#include "ModuleAnim.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 
@@ -13,7 +12,11 @@
 
 SceneStory::SceneStory(bool startEnabled) : Module(startEnabled)
 {
+	goblins.PushBack({ 877, 201, 431, 85 });
+	goblins.PushBack({ 877, 290, 431, 85 });
+	goblins.speed = 0.1f;
 
+	path.PushBack({ 0.25f, 0.0f }, 200);
 }
 
 SceneStory::~SceneStory()
@@ -28,10 +31,8 @@ bool SceneStory::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Intro/prueba.png");
+	texture = App->textures->Load("Assets/Intro/prueba.png");
 	App->audio->PlayMusic("Assets/Music/Intro.ogg", 1.0f);
-
-	App->animation->AddAnim(ANIM_TYPE::GOBLINS, 0, -16);
 
 
 	App->render->camera.x = 0;
@@ -49,20 +50,29 @@ update_status SceneStory::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
 	}
 
+	goblins.Update();
+	path.Update();
+
 	return update_status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
 update_status SceneStory::PostUpdate()
 {
-	App->render->Blit(bgTexture, 0, 0, NULL);
+	App->render->Blit(texture, 0, 0, NULL);
 	//App->render->Blit(bgTexture, -877, -201, NULL);
+
+	SDL_Rect rect = goblins.GetCurrentFrame();
+	App->render->Blit(texture, -path.GetRelativePosition().x, 16, &rect);
+
+
 	return update_status::UPDATE_CONTINUE;
 }
 
 bool SceneStory::CleanUp()
 {
-	App->textures->Unload(bgTexture);
+	//App->textures->Unload(bgTexture);
+	App->textures->Unload(texture);
 
 	return true;
 }

@@ -32,9 +32,6 @@
     <Filter Include="Source Files\Modules\Game Intro">
       <UniqueIdentifier>{a3fd9dd8-a7a2-4ab9-be0c-5b023084aff9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Entities\Intro Animations">
-      <UniqueIdentifier>{5887d529-2ed5-4403-afa3-bddb8127e683}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp">
@@ -138,15 +135,6 @@
     </ClCompile>
     <ClCompile Include="SceneStory.cpp">
       <Filter>Source Files\Modules\Game Intro</Filter>
-    </ClCompile>
-    <ClCompile Include="Anim_Goblins.cpp">
-      <Filter>Source Files\Entities\Intro Animations</Filter>
-    </ClCompile>
-    <ClCompile Include="Anim.cpp">
-      <Filter>Source Files\Entities\Intro Animations</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleAnim.cpp">
-      <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -257,15 +245,6 @@
     </ClInclude>
     <ClInclude Include="SceneStory.h">
       <Filter>Source Files\Modules\Game Intro</Filter>
-    </ClInclude>
-    <ClInclude Include="Anim_Goblins.h">
-      <Filter>Source Files\Entities\Intro Animations</Filter>
-    </ClInclude>
-    <ClInclude Include="Anim.h">
-      <Filter>Source Files\Entities\Intro Animations</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleAnim.h">
-      <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
