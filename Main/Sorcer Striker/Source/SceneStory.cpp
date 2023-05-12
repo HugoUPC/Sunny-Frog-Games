@@ -44,10 +44,12 @@ bool SceneStory::Start()
 
 update_status SceneStory::Update()
 {
-	App->fade->FadeToBlack(this, (Module*)App->scenestory3, 90);
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
+	}
+	else {
+		App->fade->FadeToBlack(this, (Module*)App->scenestory3, 90);
 	}
 
 	goblins.Update();

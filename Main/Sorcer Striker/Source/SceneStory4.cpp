@@ -12,6 +12,8 @@
 
 SceneStory4::SceneStory4(bool startEnabled) : Module(startEnabled)
 {
+	//1172 638 719 1252
+	characters.PushBack({ 1172, 639, 80, 80 });
 
 }
 
@@ -46,13 +48,18 @@ update_status SceneStory4::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
 	}
 
+	characters.Update();
+
 	return update_status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
 update_status SceneStory4::PostUpdate()
 {
-	App->render->Blit(texture, -492, -347, NULL);
+	App->render->Blit(texture, 0, -694, NULL);
+
+	SDL_Rect rect = characters.GetCurrentFrame();
+	App->render->Blit(texture, 15, 10, &rect);
 
 	return update_status::UPDATE_CONTINUE;
 }

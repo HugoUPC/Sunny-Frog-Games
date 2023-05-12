@@ -36,6 +36,8 @@ public:
 	//SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* texture = nullptr;
 
+	Animation characters; 
+
 	Path path;
 
 

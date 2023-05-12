@@ -36,6 +36,8 @@ bool SceneDescription::Start()
 update_status SceneDescription::Update()
 {
 	//680 porque serian dos paginas de 240x340, cuando acaba de pasar esa pagina se va solo a la intro
+	App->fade->FadeToBlack(this, (Module*)App->scenestory4, 90);
+
 	if (App->render->camera.y < 680) {
 		App->render->camera.y += 1;
 	}
