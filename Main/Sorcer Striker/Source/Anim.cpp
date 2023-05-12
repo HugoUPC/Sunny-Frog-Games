@@ -32,7 +32,7 @@ void Anim::Draw()
 
 }
 
-
+//
 //void Anim::SetToDelete()
 //{
 //	pendingToDelete = true;

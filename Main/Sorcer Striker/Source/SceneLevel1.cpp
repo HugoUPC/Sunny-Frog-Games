@@ -32,12 +32,14 @@ bool SceneLevel1::Start()
 	bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
 
+	
+
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -200);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -210);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -220);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -230);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -240);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -280);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -320);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -360);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -400);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -250);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 100, -320);
 

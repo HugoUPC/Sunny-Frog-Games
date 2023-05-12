@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "ModuleRender.h"
 
 Enemy_RedBall::Enemy_RedBall(int x, int y) : Enemy(x, y)
 {
@@ -12,9 +13,9 @@ Enemy_RedBall::Enemy_RedBall(int x, int y) : Enemy(x, y)
 
 	currentAnim = &fly;
 
-	path.PushBack({0.9f, 0.5f}, 200);
-	path.PushBack({0.0f, 0.0f}, 10);
-	path.PushBack({-0.9f, 0.5f}, 200);
+	path.PushBack({3.0f, 1.5f}, 70);
+	
+	path.PushBack({-3.0f, 1.5f}, 70);
 	path.loop;
 
 	collider = App->collisions->AddCollider({ 0, 0, 24, 24 }, Collider::Type::ENEMY, (Module*)App->enemies);
@@ -22,10 +23,15 @@ Enemy_RedBall::Enemy_RedBall(int x, int y) : Enemy(x, y)
 
 void Enemy_RedBall::Update()
 {
-	path.Update();
-	
+	if (position.y > App->render->camera.y / 2 - 24) {
+		path.Update();
+	}
 	
 	position = spawnPos + path.GetRelativePosition();
+	
+	
+	
+	
 
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
