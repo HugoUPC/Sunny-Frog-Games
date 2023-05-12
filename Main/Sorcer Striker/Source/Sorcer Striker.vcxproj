@@ -53,6 +53,8 @@
     <ClCompile Include="ScenePlayerSelect.cpp" />
     <ClCompile Include="PowerUp_Test.cpp" />
     <ClCompile Include="SceneStory.cpp" />
+    <ClCompile Include="SceneStory3.cpp" />
+    <ClCompile Include="SceneStory4.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -91,6 +93,8 @@
     <ClInclude Include="ScenePlayerSelect.h" />
     <ClInclude Include="PowerUp_Test.h" />
     <ClInclude Include="SceneStory.h" />
+    <ClInclude Include="SceneStory3.h" />
+    <ClInclude Include="SceneStory4.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

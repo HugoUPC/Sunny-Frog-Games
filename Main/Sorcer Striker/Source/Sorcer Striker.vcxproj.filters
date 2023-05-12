@@ -136,6 +136,12 @@
     <ClCompile Include="SceneStory.cpp">
       <Filter>Source Files\Modules\Game Intro</Filter>
     </ClCompile>
+    <ClCompile Include="SceneStory3.cpp">
+      <Filter>Source Files\Modules\Game Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneStory4.cpp">
+      <Filter>Source Files\Modules\Game Intro</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -244,6 +250,12 @@
       <Filter>Source Files\Modules\Game Intro</Filter>
     </ClInclude>
     <ClInclude Include="SceneStory.h">
+      <Filter>Source Files\Modules\Game Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneStory3.h">
+      <Filter>Source Files\Modules\Game Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneStory4.h">
       <Filter>Source Files\Modules\Game Intro</Filter>
     </ClInclude>
   </ItemGroup>

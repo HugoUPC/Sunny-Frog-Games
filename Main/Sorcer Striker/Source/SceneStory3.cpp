@@ -1,4 +1,4 @@
-#include "SceneStory.h"
+#include "SceneStory3.h"
 
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -10,22 +10,18 @@
 
 #include <stdio.h>
 
-SceneStory::SceneStory(bool startEnabled) : Module(startEnabled)
+SceneStory3::SceneStory3(bool startEnabled) : Module(startEnabled)
 {
-	goblins.PushBack({ 877, 201, 431, 85 });
-	goblins.PushBack({ 877, 290, 431, 85 });
-	goblins.speed = 0.1f;
 
-	path.PushBack({ 0.15f, 0.0f }, 200);
 }
 
-SceneStory::~SceneStory()
+SceneStory3::~SceneStory3()
 {
 
 }
 
 // Load assets
-bool SceneStory::Start()
+bool SceneStory3::Start()
 {
 	LOG("Loading background assets");
 
@@ -42,34 +38,26 @@ bool SceneStory::Start()
 	return ret;
 }
 
-update_status SceneStory::Update()
+update_status SceneStory3::Update()
 {
-	App->fade->FadeToBlack(this, (Module*)App->scenestory3, 90);
+	App->fade->FadeToBlack(this, (Module*)App->scenestory4, 90);
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
 	}
 
-	goblins.Update();
-	path.Update();
-
 	return update_status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
-update_status SceneStory::PostUpdate()
+update_status SceneStory3::PostUpdate()
 {
-	App->render->Blit(texture, 0, 0, NULL);
-	//App->render->Blit(bgTexture, -877, -201, NULL);
-
-	SDL_Rect rect = goblins.GetCurrentFrame();
-	App->render->Blit(texture, -path.GetRelativePosition().x, 16, &rect);
-
+	App->render->Blit(texture, -492, -347, NULL);
 
 	return update_status::UPDATE_CONTINUE;
 }
 
-bool SceneStory::CleanUp()
+bool SceneStory3::CleanUp()
 {
 	//App->textures->Unload(bgTexture);
 	App->textures->Unload(texture);
