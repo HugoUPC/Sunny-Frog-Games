@@ -142,6 +142,9 @@
     <ClCompile Include="SceneStory4.cpp">
       <Filter>Source Files\Modules\Game Intro</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy_RedBallStraight.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -257,6 +260,9 @@
     </ClInclude>
     <ClInclude Include="SceneStory4.h">
       <Filter>Source Files\Modules\Game Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_RedBallStraight.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

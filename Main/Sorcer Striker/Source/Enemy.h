@@ -60,4 +60,4 @@ protected:
 	iPoint spawnPos;
 };
 
-#endif // __ENEMY_H__
+#endif // __ENEMY_H_;_

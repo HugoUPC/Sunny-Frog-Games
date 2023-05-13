@@ -11,6 +11,7 @@
 #include "Enemy_BrownShip.h"
 #include "Enemy_RedBall.h"
 #include "Enemy_BlueDragon.h"
+#include "Enemy_RedBallStraight.h"
 
 
 #define SPAWN_MARGIN 50
@@ -160,8 +161,8 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 		{
 			switch (info.type)
 			{
-				case ENEMY_TYPE::REDBIRD:
-					enemies[i] = new Enemy_RedBird(info.x, info.y);
+				case ENEMY_TYPE::REDBALLSTRAIGHT:
+					enemies[i] = new Enemy_RedBallStraight(info.x, info.y);
 					break;
 				case ENEMY_TYPE::BLUEDRAGON:
 					enemies[i] = new Enemy_BlueDragon(info.x, info.y);
