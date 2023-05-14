@@ -72,9 +72,13 @@ bool SceneLevel1::Start()
 
 	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP, 110 / 2, -400 / 2);
 
+	App->enemies->AddEnemy(ENEMY_TYPE::CASTLETURTLE, 5, -200);
+
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 	screenBoundingBox = App->collisions->AddCollider({ 0, 0, 240, 10 }, Collider::Type::SCREENBOUNDINGBOX, this);
+
+	bgSize = { 518, 1, 240, 340 };
 
 	App->UI->Enable();
 	App->player->Enable();
@@ -90,28 +94,39 @@ update_status SceneLevel1::Update()
 	App->render->camera.y -= 2;
 	screenBoundingBox->SetPos(0, App->render->camera.y / 2);
 
+	if (App->input->keys[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN) {
+		App->render->camera.y = -10000;
+		App->player->position.y = -5000;
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
 update_status SceneLevel1::PostUpdate()
 {	
-	SDL_Rect bgSize = { 518, 1, 240, 340 };
+	LOG( "%d, %d", App->render->camera.y, App->player->position.y);
 
-	LOG("(%d, %d", App->render->camera.y + App->render->camera.h, bgPos);
+	if (App->render->camera.y < -5000 && App->render->camera.y > -7500){
+		if (bgSize.x != 775) bgSize.x = 775;
+	}
+
+	else if (App->render->camera.y < -7500 && App->render->camera.y > -11000){
+		if (bgSize.x != 1031) bgSize.x = 1031;
+		bgSpeed = 2;
+	}
 
 	//Infinite Background (Hem penso que amb App->render->camera.y / 2 es pot fer)
 	if (bgPos < 340) {
 		App->render->Blit(bgTexture, 0, bgPos, &bgSize, 0);
 		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize, 0);
-		bgPos += 2;
+		bgPos += bgSpeed;
 	}
 	else {
 		bgPos = 0;
 		App->render->Blit(bgTexture, 0, bgPos, &bgSize, 0);
 		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize, 0);
 	}
-
 	
 	return update_status::UPDATE_CONTINUE;
 }

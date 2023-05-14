@@ -12,6 +12,7 @@
 #include "Enemy_RedBall.h"
 #include "Enemy_BlueDragon.h"
 #include "Enemy_RedBallStraight.h"
+#include "Enemy_CastleTurtle.h"
 
 
 #define SPAWN_MARGIN 50
@@ -169,6 +170,9 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 					break;
 				case ENEMY_TYPE::REDBALL:
 					enemies[i] = new Enemy_RedBall(info.x, info.y);
+					break;
+				case ENEMY_TYPE::CASTLETURTLE:
+					enemies[i] = new Enemy_CastleTurtle(info.x, info.y);
 					break;
 			}
 			enemies[i]->texture = texture;

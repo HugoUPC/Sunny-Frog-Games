@@ -55,3 +55,4 @@ void Enemy::SetToDelete()
 	if (collider != nullptr)
 		collider->pendingToDelete = true;
 }
+
