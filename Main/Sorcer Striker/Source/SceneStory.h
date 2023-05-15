@@ -35,10 +35,18 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	//SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* texture = nullptr;
+	SDL_Texture* dragonstexture = nullptr;
+
+	Uint32 timeout; 
 
 	Animation goblins;
+	Animation letras;
+	Animation cielo;
+	Animation dragones; 
+	Animation dragon;
 
 	Path path;
+	Path path1;
 
 
 };

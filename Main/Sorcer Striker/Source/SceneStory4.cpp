@@ -10,11 +10,17 @@
 
 #include <stdio.h>
 
+#include "SDL/include/SDL.h"
+#pragma comment( lib, "SDL/libx86/SDL2.lib")
+#pragma comment( lib, "SDL/libx86/SDL2main.lib")
+
 SceneStory4::SceneStory4(bool startEnabled) : Module(startEnabled)
 {
 	//1172 638 719 1252
-	characters.PushBack({ 1172, 639, 80, 80 });
-
+	character1.PushBack({ 1172, 639, 80, 80 });
+	character2.PushBack({ 1255, 639, 80, 80 });
+	character3.PushBack({ 1338, 639, 80, 80 });
+	character4.PushBack({ 1421, 639, 80, 80 });
 }
 
 SceneStory4::~SceneStory4()
@@ -30,12 +36,11 @@ bool SceneStory4::Start()
 	bool ret = true;
 
 	texture = App->textures->Load("Assets/Intro/prueba.png");
-	App->audio->PlayMusic("Assets/Music/Intro.ogg", 1.0f);
-
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
+	timeout = SDL_GetTicks() + 1000;
 
 	return ret;
 }
@@ -48,7 +53,10 @@ update_status SceneStory4::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
 	}
 
-	characters.Update();
+	character1.Update();
+	character2.Update();
+	character3.Update();
+	character4.Update();
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -57,9 +65,25 @@ update_status SceneStory4::Update()
 update_status SceneStory4::PostUpdate()
 {
 	App->render->Blit(texture, 0, -694, NULL);
+	
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {
+		SDL_Rect rect = character1.GetCurrentFrame();
+			App->render->Blit(texture, 15, 10, &rect);
+	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 900)) {
+		SDL_Rect rect = character2.GetCurrentFrame();
+		App->render->Blit(texture, 145, 10, &rect);
+	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 600)) {
+		SDL_Rect rect = character3.GetCurrentFrame();
+		App->render->Blit(texture, 15, 241, &rect);
+	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 300)) {
+		SDL_Rect rect = character4.GetCurrentFrame();
+		App->render->Blit(texture, 145, 241, &rect);
+	}
 
-	SDL_Rect rect = characters.GetCurrentFrame();
-	App->render->Blit(texture, 15, 10, &rect);
+	
 
 	return update_status::UPDATE_CONTINUE;
 }

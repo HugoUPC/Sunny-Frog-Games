@@ -36,7 +36,11 @@ public:
 	//SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* texture = nullptr;
 
-	Animation characters; 
+	Uint32 timeout;
+	Animation character1; 
+	Animation character2; 
+	Animation character3; 
+	Animation character4; 
 
 	Path path;
 

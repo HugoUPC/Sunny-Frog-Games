@@ -39,11 +39,6 @@ update_status Intro2::Update()
 {
 	App->fade->FadeToBlack(this, (Module*)App->scenestory, 90);
 
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
-	{
-		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
-	}
-
 	return update_status::UPDATE_CONTINUE;
 }
 

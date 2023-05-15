@@ -28,8 +28,6 @@ bool SceneStory3::Start()
 	bool ret = true;
 
 	texture = App->textures->Load("Assets/Intro/prueba.png");
-	App->audio->PlayMusic("Assets/Music/Intro.ogg", 1.0f);
-
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
