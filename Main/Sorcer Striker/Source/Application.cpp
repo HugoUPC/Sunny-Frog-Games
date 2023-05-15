@@ -27,6 +27,8 @@
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
 
+#include "SDL/include/SDL.h"
+
 Application::Application()
 {
 	// The order in which the modules are added is very important.
@@ -99,6 +101,9 @@ update_status Application::Update()
 
 	for (int i = 0; i < NUM_MODULES && ret == update_status::UPDATE_CONTINUE; ++i)
 		ret = modules[i]->IsEnabled() ? modules[i]->PostUpdate() : update_status::UPDATE_CONTINUE;
+
+	//Sync
+	SDL_Delay(16.66666);
 
 	return ret;
 }

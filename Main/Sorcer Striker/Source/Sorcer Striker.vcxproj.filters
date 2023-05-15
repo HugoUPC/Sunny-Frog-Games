@@ -145,7 +145,7 @@
     <ClCompile Include="Enemy_RedBallStraight.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_CastleTurtle.cpp">
+    <ClCompile Include="Enemy_Boss.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
@@ -267,7 +267,7 @@
     <ClInclude Include="Enemy_RedBallStraight.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_CastleTurtle.h">
+    <ClInclude Include="Enemy_Boss.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
