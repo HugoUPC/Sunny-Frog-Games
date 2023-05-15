@@ -47,6 +47,7 @@ public:
 
 	Path path;
 	Path path1;
+	Path path2;
 
 
 };

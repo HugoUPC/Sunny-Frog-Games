@@ -42,7 +42,10 @@ public:
 	Animation character3; 
 	Animation character4; 
 
-	Path path;
+	Path path1;
+	Path path2;
+	Path path3;
+	Path path4;
 
 
 };
