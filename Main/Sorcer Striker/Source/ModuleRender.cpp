@@ -77,7 +77,6 @@ update_status ModuleRender::PostUpdate()
 {
 	//Update the screen
 	SDL_RenderPresent(renderer);
-	SDL_Delay(16.66666);
 
 	return update_status::UPDATE_CONTINUE;
 }

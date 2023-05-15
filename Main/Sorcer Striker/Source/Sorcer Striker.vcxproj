@@ -30,7 +30,7 @@
     <ClCompile Include="Intro1.cpp" />
     <ClCompile Include="Intro2.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Enemy_CastleTurtle.cpp" />
+    <ClCompile Include="Enemy_Boss.cpp" />
     <ClCompile Include="Module.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCollisions.cpp" />
@@ -61,7 +61,7 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
-    <ClInclude Include="Enemy_CastleTurtle.h" />
+    <ClInclude Include="Enemy_Boss.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_BlueDragon.h" />

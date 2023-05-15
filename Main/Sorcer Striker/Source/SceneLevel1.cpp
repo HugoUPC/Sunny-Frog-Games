@@ -72,7 +72,7 @@ bool SceneLevel1::Start()
 
 	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP, 110 / 2, -400 / 2);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::CASTLETURTLE, 5, -200);
+	App->enemies->AddEnemy(ENEMY_TYPE::BOSS, 0, -5000);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -91,7 +91,7 @@ bool SceneLevel1::Start()
 
 update_status SceneLevel1::Update()
 {
-	App->render->camera.y -= 2;
+	App->render->camera.y -= 1;
 	screenBoundingBox->SetPos(0, App->render->camera.y / 2);
 
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN) {
