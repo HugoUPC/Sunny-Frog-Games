@@ -43,12 +43,12 @@ bool SceneLevel1::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 100, -320);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -880);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -920);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -960);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1000);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1040);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1080);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -400);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -410);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -420);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -430);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -440);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -450);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -900);
 

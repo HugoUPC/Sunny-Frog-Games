@@ -4,6 +4,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
+#include "ModuleRender.h"
 
 Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 {
@@ -13,10 +14,14 @@ Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 	fly.PushBack({ 314,45,87,100 });
 	
 	fly.speed = 0.09f;
-	
-	path.PushBack({ 0.3f, 0.0f }, 50);
-	path.PushBack({ -0.3f, -0.0f }, 50);
-	path.loop;
+
+	path.PushBack({ 0.0f, 2.0f }, 40);
+	path.PushBack({ 0.3f, -0.4f }, 120);
+	path.PushBack({ -0.3f, -0.4f }, 120);
+	path.PushBack({ 0.0f, 1.5f }, 30);
+	path.PushBack({ 0.3f, -0.4f }, 100);
+	path.PushBack({ -0.3f, -0.4f }, 100);
+	path.PushBack({ 5.0f, -0.0f }, 100);
 
 	currentAnim = &fly;
 
@@ -30,7 +35,10 @@ Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 
 void Enemy_BlueDragon::Update()
 {
-	path.Update();
+	if (position.y > App->render->camera.y / 2 - 100) {
+		path.Update();
+	}
+	
 	position.y = +1;
 
 	position = spawnPos + path.GetRelativePosition();

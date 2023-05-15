@@ -13,9 +13,10 @@ Enemy_RedBall::Enemy_RedBall(int x, int y) : Enemy(x, y)
 
 	currentAnim = &fly;
 
-	path.PushBack({3.0f, 1.5f}, 70);
-	
-	path.PushBack({-3.0f, 1.5f}, 70);
+	path.PushBack({3.3f, 0.2f}, 65);
+	path.PushBack({ 0.3f, 1.3f }, 20);
+	path.PushBack({-3.3f, 0.2f}, 65);
+	path.PushBack({ -0.3f, 1.3f }, 20);
 	path.loop;
 
 	collider = App->collisions->AddCollider({ 0, 0, 24, 24 }, Collider::Type::ENEMY, (Module*)App->enemies);
