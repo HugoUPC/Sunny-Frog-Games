@@ -58,6 +58,10 @@ update_status SceneStory4::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
 	}
 
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 5000)) {
+		App->fade->FadeToBlack(this, (Module*)App->scenestory5, 90);
+	}
+
 	character1.Update();
 	character2.Update();
 	character3.Update();

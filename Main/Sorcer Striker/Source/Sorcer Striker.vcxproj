@@ -57,6 +57,7 @@
     <ClCompile Include="SceneStory.cpp" />
     <ClCompile Include="SceneStory3.cpp" />
     <ClCompile Include="SceneStory4.cpp" />
+    <ClCompile Include="SceneStory5.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -99,6 +100,7 @@
     <ClInclude Include="SceneStory.h" />
     <ClInclude Include="SceneStory3.h" />
     <ClInclude Include="SceneStory4.h" />
+    <ClInclude Include="SceneStory5.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

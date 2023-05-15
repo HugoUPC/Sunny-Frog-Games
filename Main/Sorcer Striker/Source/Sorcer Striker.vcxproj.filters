@@ -148,6 +148,9 @@
     <ClCompile Include="Enemy_Boss.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="SceneStory5.cpp">
+      <Filter>Source Files\Modules\Game Intro</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -269,6 +272,9 @@
     </ClInclude>
     <ClInclude Include="Enemy_Boss.h">
       <Filter>Source Files\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneStory5.h">
+      <Filter>Source Files\Modules\Game Intro</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

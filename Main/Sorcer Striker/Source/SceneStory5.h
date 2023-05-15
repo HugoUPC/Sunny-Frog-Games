@@ -1,5 +1,5 @@
-#ifndef __SCENE_STORY_H__
-#define __SCENE_STORY_H__
+#ifndef __SCENE_STORY5_H__
+#define __SCENE_STORY5_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -7,14 +7,14 @@
 
 struct SDL_Texture;
 
-class SceneStory : public Module
+class SceneStory5 : public Module
 {
 public:
 	//Constructor
-	SceneStory(bool startEnabled);
+	SceneStory5(bool startEnabled);
 
 	//Destructor
-	~SceneStory();
+	~SceneStory5();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
@@ -35,20 +35,13 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	//SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* texture = nullptr;
-	SDL_Texture* dragonstexture = nullptr;
+	SDL_Texture* texture2 = nullptr;
 
-	Uint32 timeout; 
-
-	Animation goblins;
-	Animation letras;
-	Animation cielo;
-	Animation dragones; 
-	Animation dragon;
+	Uint32 timeout;
+	Animation algo;
 
 	Path path;
-	Path path1;
-	Path path2;
-	Path path3;
+
 
 };
 
