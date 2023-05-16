@@ -26,7 +26,7 @@ bool Intro2::Start()
 
 	textura = App->textures->Load("Assets/Intro/Intro1.png");
 	//NO HA DE SONAR MUSICA EN AQUESTA PANTALLA TAMPOC
-	//App->audio->PlayMusic("Assets/Music/Intro.ogg", 1.0f);
+	//App->audio->PlayMusic("Assets/Music/a.ogg", 1.0f);
 	//App->audio->Disable();
 
 	App->render->camera.x = 0;

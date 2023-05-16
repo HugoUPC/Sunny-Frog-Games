@@ -36,6 +36,8 @@ public:
 	//SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* texture = nullptr;
 
+	Uint32 timeout;
+
 	Path path;
 
 

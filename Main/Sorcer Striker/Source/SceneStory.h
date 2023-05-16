@@ -45,6 +45,8 @@ public:
 	Animation dragones; 
 	Animation dragon;
 
+	Animation black;
+
 	Path path;
 	Path path1;
 	Path path2;

@@ -27,7 +27,9 @@ SceneStory::SceneStory(bool startEnabled) : Module(startEnabled)
 	dragones.PushBack({ 36, 150, 242, 102 });
 	dragon.PushBack({ 289, 41, 39,  28});
 
-	path.PushBack({ 0.15f, 0.0f }, 200);
+	black.PushBack({0, 0, 240, 117});
+
+	path.PushBack({ 0.10f, 0.0f }, 200);
 	path1.PushBack({ 0.05f, 0.0f }, 200);
 	path2.PushBack({ 1.25f, 0.15f }, 200);
 	path3.PushBack({ 1.25f, 0.25f }, 200);
@@ -47,10 +49,6 @@ bool SceneStory::Start()
 
 	texture = App->textures->Load("Assets/Intro/prueba.png");
 	dragonstexture = App->textures->Load("Assets/Intro/dragons.png");
-
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2500)) {
-		App->audio->PlayMusic("Assets/Music/Intro.ogg", 1.0f);
-	}
 	
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -68,7 +66,7 @@ update_status SceneStory::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
 	}
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 10000)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 8000)) {
 		App->fade->FadeToBlack(this, (Module*)App->scenestory3, 90);
 	}
 
@@ -78,6 +76,7 @@ update_status SceneStory::Update()
 	dragones.Update();
 	dragon.Update();
 	
+	black.Update();
 
 	path.Update();
 	path1.Update();
@@ -93,43 +92,54 @@ update_status SceneStory::PostUpdate()
 	App->render->Blit(texture, 0, 0, NULL);
 
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 1000)) {
 		SDL_Rect rect = goblins.GetCurrentFrame();
 		//App->fade->FadeToBlack(this, (Module*)App->render->Blit(texture, -path.GetRelativePosition().x, 16, &rect), 90);
 		App->render->Blit(texture, -path.GetRelativePosition().x, 16, &rect);
 	}
 	
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2500)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4350)) {
 		SDL_Rect rect = letras.GetCurrentFrame();
 		App->render->Blit(texture, 0, 115, &rect);
 	}
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 5300)) {
 		SDL_Rect rect = cielo.GetCurrentFrame();
 		App->render->Blit(texture, 0, 218, &rect);
 	}
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 5300)) {
 		SDL_Rect rect = dragones.GetCurrentFrame();
-		App->render->Blit(dragonstexture, -path1.GetRelativePosition().x, 220, &rect);
+		App->render->Blit(dragonstexture, 10 - path1.GetRelativePosition().x, 220, &rect);
 	}
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 5300)) {
 		SDL_Rect rect = dragon.GetCurrentFrame();
-		App->render->Blit(dragonstexture, 450 - path2.GetRelativePosition().x, 300 - path2.GetRelativePosition().y, &rect);
+		App->render->Blit(dragonstexture, 800 - path2.GetRelativePosition().x, 310 - path2.GetRelativePosition().y, &rect);
 	}
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 5300)) {
 		SDL_Rect rect = dragon.GetCurrentFrame();
-		App->render->Blit(dragonstexture, 350 - path2.GetRelativePosition().x, 320 - path2.GetRelativePosition().y, &rect);
+		App->render->Blit(dragonstexture, 650 - path2.GetRelativePosition().x, 330 - path2.GetRelativePosition().y, &rect);
 	}
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 5300)) {
 		SDL_Rect rect = dragon.GetCurrentFrame();
-		App->render->Blit(dragonstexture, 300 - path3.GetRelativePosition().x, 320 - path3.GetRelativePosition().y, &rect);
+		App->render->Blit(dragonstexture, 550 - path3.GetRelativePosition().x, 370 - path3.GetRelativePosition().y, &rect);
 	}
 
-
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 7500)) {
+		SDL_Rect rect = black.GetCurrentFrame();
+		App->render->Blit(texture, 0, 0, &rect);
+	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 7700)) {
+		SDL_Rect rect = black.GetCurrentFrame();
+		App->render->Blit(texture, 0, 115, &rect);
+	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 7900)) {
+		SDL_Rect rect = black.GetCurrentFrame();
+		App->render->Blit(texture, 0, 218, &rect);
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -137,6 +147,6 @@ bool SceneStory::CleanUp()
 {
 	//App->textures->Unload(bgTexture);
 	App->textures->Unload(texture);
-
+	
 	return true;
 }

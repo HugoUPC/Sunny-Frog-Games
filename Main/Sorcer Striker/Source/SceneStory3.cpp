@@ -10,6 +10,11 @@
 
 #include <stdio.h>
 
+
+#include "SDL/include/SDL.h"
+#pragma comment( lib, "SDL/libx86/SDL2.lib")
+#pragma comment( lib, "SDL/libx86/SDL2main.lib")
+
 SceneStory3::SceneStory3(bool startEnabled) : Module(startEnabled)
 {
 
@@ -32,13 +37,17 @@ bool SceneStory3::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
+	timeout = SDL_GetTicks() + 1000;
 
 	return ret;
 }
 
 update_status SceneStory3::Update()
 {
-	App->fade->FadeToBlack(this, (Module*)App->scenestory4, 90);
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 1300)) {
+		App->fade->FadeToBlack(this, (Module*)App->scenestory4, 90);
+	}
+
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);

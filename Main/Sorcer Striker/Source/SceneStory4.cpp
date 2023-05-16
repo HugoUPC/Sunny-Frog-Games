@@ -83,15 +83,15 @@ update_status SceneStory4::PostUpdate()
 		SDL_Rect rect = character1.GetCurrentFrame();
 			App->render->Blit(texture, 15, 10, &rect);
 	}
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 900)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 350)) {
 		SDL_Rect rect = character2.GetCurrentFrame();
 		App->render->Blit(texture, 145, 10, &rect);
 	}
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 600)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 300)) {
 		SDL_Rect rect = character3.GetCurrentFrame();
 		App->render->Blit(texture, 15, 241, &rect);
 	}
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 300)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 150)) {
 		SDL_Rect rect = character4.GetCurrentFrame();
 		App->render->Blit(texture, 145, 241, &rect);
 	}

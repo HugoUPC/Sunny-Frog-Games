@@ -26,7 +26,7 @@ bool Intro1::Start()
 
 	textura = App->textures->Load("Assets/Intro/Intro1.png");
 	//NO HA DE SONAR MUSICA EN AQUESTA PANTALLA
-	//App->audio->PlayMusic("Assets/Music/Intro.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/Music/Intro.ogg", 1.0f);
 	//App->audio->Disable();
 
 	App->render->camera.x = 0;
@@ -37,7 +37,7 @@ bool Intro1::Start()
 
 update_status Intro1::Update()
 {
-	App->fade->FadeToBlack(this, (Module*)App->intro2, 90);
+	App->fade->FadeToBlack(this, (Module*)App->intro2, 20);
 
 	return update_status::UPDATE_CONTINUE;
 }

@@ -71,7 +71,7 @@ update_status SceneStory5::Update()
 // Update: draw background
 update_status SceneStory5::PostUpdate()
 {
-	//App->render->Blit(texture, 0, 0, NULL);
+	App->render->Blit(texture, 0, 0, NULL);
 	App->render->Blit(texture2, 0, 0, NULL);
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {
@@ -79,15 +79,16 @@ update_status SceneStory5::PostUpdate()
 		App->render->Blit(texture, 15, 10, &rect);
 	}
 
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 300)) {
+		App->textures->Unload(texture2);
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }
 
 bool SceneStory5::CleanUp()
 {
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 300)) {
-		App->textures->Unload(texture2);
-	}
+
 	App->textures->Unload(texture);
 
 	return true;
