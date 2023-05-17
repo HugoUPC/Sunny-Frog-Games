@@ -2,6 +2,9 @@
 #define __ANIMATION_H__
 
 #include "SDL/include/SDL_rect.h"
+
+#include "Application.h"
+#include "ModuleRender.h"
 #define MAX_FRAMES 25
 
 class Animation
@@ -12,6 +15,7 @@ public:
 	bool loop = true;
 	// Allows the animation to keep going back and forth
 	bool pingpong = false;
+	bool fadeinActivated = false;
 
 private:
 	float currentFrame = 0.0f;
@@ -46,6 +50,18 @@ public:
 
 			if (pingpong)
 				pingpongDirection = -pingpongDirection;
+		}
+	}
+
+	void fadein(int frames) {
+		SDL_Rect rect = GetCurrentFrame();
+		int counter = 0;
+		while (counter <= 255) {
+			App->render->DrawQuad(rect, 0, 0, 0, counter, 0);
+			counter++;
+		}
+		if (counter == 256) {
+			App->render->DrawQuad(rect, 0, 0, 0, 255, 0);
 		}
 	}
 

@@ -67,7 +67,7 @@ update_status SceneStory::Update()
 	}
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 8000)) {
-		App->fade->FadeToBlack(this, (Module*)App->scenestory3, 90);
+		//App->fade->FadeToBlack(this, (Module*)App->scenestory3, 90);
 	}
 
 	goblins.Update();
@@ -94,7 +94,6 @@ update_status SceneStory::PostUpdate()
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 1000)) {
 		SDL_Rect rect = goblins.GetCurrentFrame();
-		//App->fade->FadeToBlack(this, (Module*)App->render->Blit(texture, -path.GetRelativePosition().x, 16, &rect), 90);
 		App->render->Blit(texture, -path.GetRelativePosition().x, 16, &rect);
 	}
 	
@@ -129,8 +128,7 @@ update_status SceneStory::PostUpdate()
 	}
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 7500)) {
-		SDL_Rect rect = black.GetCurrentFrame();
-		App->render->Blit(texture, 0, 0, &rect);
+		goblins.fadein(56455);
 	}
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 7700)) {
 		SDL_Rect rect = black.GetCurrentFrame();
