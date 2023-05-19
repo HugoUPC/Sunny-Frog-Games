@@ -37,6 +37,8 @@ bool ModuleRender::Init()
 		ret = false;
 	}
 
+	if(WIN_FULLSCREEN_DESKTOP) SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+
 	return ret;
 }
 
@@ -101,8 +103,10 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* sect
 
 	if (useCamera)
 	{
-		dstRect.x -= (camera.x * speed);
-		dstRect.y -= (camera.y * speed);
+		dstRect = {
+		(int)((-camera.x * speed) + x) * SCREEN_SIZE,
+		(int)((-camera.y * speed) + y) * SCREEN_SIZE,
+		0, 0 };
 	}
 
 	if (section != nullptr)
