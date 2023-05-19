@@ -97,7 +97,7 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
-		if (position.y <= (App->render->camera.y / 2) + 300) {
+		if (position.y <= (App->render->camera.y) + 300) {
 			position.y += speed;
 			backupPosition.y += speed;
 		}
@@ -114,7 +114,7 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
-		if (position.y >= App->render->camera.y / 2) {
+		if (position.y >= App->render->camera.y) {
 			position.y -= speed;
 			backupPosition.y -= speed;
 		}

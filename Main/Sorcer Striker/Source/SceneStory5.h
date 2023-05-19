@@ -46,6 +46,7 @@ public:
 	Uint32 timeout;
 	Animation algo;
 	Animation fondo;
+	Animation explosion;
 
 	Path path;
 

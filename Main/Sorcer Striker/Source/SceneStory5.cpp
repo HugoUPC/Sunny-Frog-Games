@@ -16,10 +16,10 @@
 
 SceneStory5::SceneStory5(bool startEnabled) : Module(startEnabled)
 {
-	algo.PushBack({ 0,0,0,0 });
-
-	fondo.PushBack({});
+	fondo.PushBack({0, 0, 240, 340});
 	path.PushBack({ 0.0f, 0.0f }, 200);
+
+	explosion.PushBack({ 280,16,95,101 });
 }
 
 SceneStory5::~SceneStory5()
@@ -55,17 +55,21 @@ update_status SceneStory5::Update()
 	if (App->render->camera.y >= 680) {
 		App->fade->FadeToBlack(this, (Module*)App->intro1, 90);
 	}*/
+	if (App->input->keys[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+	}
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
 	}
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 5000)) {
+	/*if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 5000)) {
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
-	}
+	}*/
 
-	algo.Update();
+	explosion.Update();
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -74,16 +78,16 @@ update_status SceneStory5::Update()
 update_status SceneStory5::PostUpdate()
 {
 	//App->render->Blit(texture, 0, 0, NULL);
-	//App->render->Blit(texture2, 0, 0, NULL);
+	App->render->Blit(texture2, 0, 0, NULL);
 
 	/*if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {
 		SDL_Rect rect = algo.GetCurrentFrame();
 		App->render->Blit(texture, 15, 10, &rect);
 	}*/
 
-	/*if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 300)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 300)) {
 		App->textures->Unload(texture2);
-	}*/
+	}
 
 
 	if (bgPos < 340) {
@@ -97,12 +101,21 @@ update_status SceneStory5::PostUpdate()
 		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize, 0);
 	}
 
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
+		SDL_Rect rect = explosion.GetCurrentFrame();
+		App->render->Blit(texture, -10, 350, &rect);
+	}
+
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
+		SDL_Rect rect = explosion.GetCurrentFrame();
+		App->render->Blit(texture, 15, 10, &rect);
+	}
+
 	return update_status::UPDATE_CONTINUE;
 }
 
 bool SceneStory5::CleanUp()
 {
-
 	App->textures->Unload(texture);
 
 	return true;

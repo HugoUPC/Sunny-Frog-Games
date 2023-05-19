@@ -37,8 +37,11 @@ bool Intro1::Start()
 
 update_status Intro1::Update()
 {
-	App->fade->FadeToBlack(this, (Module*)App->intro2, 20);
-
+	if (App->input->keys[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+	}
+	else{ App->fade->FadeToBlack(this, (Module*)App->intro2, 20); }
 	return update_status::UPDATE_CONTINUE;
 }
 

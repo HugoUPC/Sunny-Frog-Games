@@ -52,7 +52,10 @@ bool SceneStory4::Start()
 
 update_status SceneStory4::Update()
 {
-	//App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+	if (App->input->keys[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+	}
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
@@ -86,7 +89,7 @@ update_status SceneStory4::PostUpdate()
 	}
 	else if(SDL_TICKS_PASSED(SDL_GetTicks(), timeout)){
 		SDL_Rect rect = character1.GetCurrentFrame();
-		App->render->Blit(texture, path1.GetRelativePosition().x, path1.GetRelativePosition().y, &rect);
+		App->render->Blit(texture, 15 - path1.GetRelativePosition().x, 10 - path1.GetRelativePosition().y, &rect);
 	}
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 400 ) != SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2850)) {
@@ -95,7 +98,7 @@ update_status SceneStory4::PostUpdate()
 	}
 	else if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 400)) {
 		SDL_Rect rect = character2.GetCurrentFrame();
-		App->render->Blit(texture, path2.GetRelativePosition().x, path2.GetRelativePosition().y, &rect);
+		App->render->Blit(texture, 145 - path2.GetRelativePosition().x, 10 - path2.GetRelativePosition().y, &rect);
 	}
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 300) != SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2850)) {
@@ -104,7 +107,7 @@ update_status SceneStory4::PostUpdate()
 	}
 	else if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 300)) {
 		SDL_Rect rect = character3.GetCurrentFrame();
-		App->render->Blit(texture, path3.GetRelativePosition().x, path3.GetRelativePosition().y, &rect);
+		App->render->Blit(texture, 15 - path3.GetRelativePosition().x, 241 - path3.GetRelativePosition().y, &rect);
 	}
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 200) != SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2850)) {
@@ -113,7 +116,7 @@ update_status SceneStory4::PostUpdate()
 	}
 	else if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 200)) {
 		SDL_Rect rect = character4.GetCurrentFrame();
-		App->render->Blit(texture, path4.GetRelativePosition().x, path4.GetRelativePosition().y, &rect);
+		App->render->Blit(texture, 145 - path4.GetRelativePosition().x, 241 - path4.GetRelativePosition().y, &rect);
 	}
 
 	return update_status::UPDATE_CONTINUE;

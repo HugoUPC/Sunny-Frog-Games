@@ -44,6 +44,11 @@ bool SceneStory3::Start()
 
 update_status SceneStory3::Update()
 {
+	if (App->input->keys[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+	}
+
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 1300)) {
 		App->fade->FadeToBlack(this, (Module*)App->scenestory4, 90);
 	}
