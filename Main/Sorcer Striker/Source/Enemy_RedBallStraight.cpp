@@ -24,7 +24,7 @@ Enemy_RedBallStraight::Enemy_RedBallStraight(int x, int y) : Enemy(x, y)
 
 void Enemy_RedBallStraight::Update()
 {
-	if (position.y > App->render->camera.y / 2 - 24) {
+	if (position.y > App->render->camera.y - 24) {
 		path.Update();
 	}
 

@@ -70,9 +70,9 @@ bool SceneLevel1::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -2100);
 
-	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP, 110 / 2, -400 / 2);
+	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP, 110, -400);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::BOSS, 0, -5000);
+	App->enemies->AddEnemy(ENEMY_TYPE::BOSS, 0, -10000);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -92,11 +92,11 @@ bool SceneLevel1::Start()
 update_status SceneLevel1::Update()
 {
 	App->render->camera.y -= 1;
-	screenBoundingBox->SetPos(0, App->render->camera.y / 2);
+	screenBoundingBox->SetPos(0, App->render->camera.y);
 
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN) {
-		App->render->camera.y = -10000;
-		App->player->position.y = -5000;
+		App->render->camera.y = -9000;
+		App->player->position.y = -8900;
 	}
 
 	return update_status::UPDATE_CONTINUE;
@@ -116,7 +116,7 @@ update_status SceneLevel1::PostUpdate()
 		bgSpeed = 2;
 	}
 
-	//Infinite Background (Hem penso que amb App->render->camera.y / 2 es pot fer)
+	//Infinite Background (Hem penso que amb App->render->camera.y es pot fer)
 	if (bgPos < 340) {
 		App->render->Blit(bgTexture, 0, bgPos, &bgSize, 0);
 		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize, 0);
