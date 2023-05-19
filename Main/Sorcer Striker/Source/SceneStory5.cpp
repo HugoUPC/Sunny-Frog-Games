@@ -18,6 +18,7 @@ SceneStory5::SceneStory5(bool startEnabled) : Module(startEnabled)
 {
 	algo.PushBack({ 0,0,0,0 });
 
+	fondo.PushBack({});
 	path.PushBack({ 0.0f, 0.0f }, 200);
 }
 
@@ -35,6 +36,7 @@ bool SceneStory5::Start()
 
 	texture = App->textures->Load("Assets/Intro/SceneStory5.png");
 	texture2 = App->textures->Load("Assets/Intro/por probar.png");
+	bgTexture = App->textures->Load("Assets/Intro/background.png");
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -71,16 +73,28 @@ update_status SceneStory5::Update()
 // Update: draw background
 update_status SceneStory5::PostUpdate()
 {
-	App->render->Blit(texture, 0, 0, NULL);
-	App->render->Blit(texture2, 0, 0, NULL);
+	//App->render->Blit(texture, 0, 0, NULL);
+	//App->render->Blit(texture2, 0, 0, NULL);
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {
+	/*if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {
 		SDL_Rect rect = algo.GetCurrentFrame();
 		App->render->Blit(texture, 15, 10, &rect);
-	}
+	}*/
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 300)) {
+	/*if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 300)) {
 		App->textures->Unload(texture2);
+	}*/
+
+
+	if (bgPos < 340) {
+		App->render->Blit(bgTexture, 0, bgPos, &bgSize, 0);
+		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize, 0);
+		bgPos += bgSpeed;
+	}
+	else {
+		bgPos = 0;
+		App->render->Blit(bgTexture, 0, bgPos, &bgSize, 0);
+		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize, 0);
 	}
 
 	return update_status::UPDATE_CONTINUE;

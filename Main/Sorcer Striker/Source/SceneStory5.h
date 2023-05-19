@@ -36,9 +36,16 @@ public:
 	//SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* texture = nullptr;
 	SDL_Texture* texture2 = nullptr;
+	SDL_Texture* bgTexture = nullptr;
+
+	int bgPos = 0;
+	int bgSpeed = 5;
+
+	SDL_Rect bgSize;
 
 	Uint32 timeout;
 	Animation algo;
+	Animation fondo;
 
 	Path path;
 
