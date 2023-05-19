@@ -21,7 +21,16 @@ SceneStory::SceneStory(bool startEnabled) : Module(startEnabled)
 	goblins.PushBack({ 877, 290, 431, 85 });
 	goblins.speed = 0.1f;
 
-	letras.PushBack({ 1172, 513, 240, 104 });
+	letras1.PushBack({ 878, 12, 240, 98 });
+	letras1.PushBack({ 1147, 13, 240, 94 });
+	letras1.speed = 1.0f;
+	//letras1.loop = false;
+
+	letras2.PushBack({ 1172, 513, 240, 104 });
+	letras2.PushBack({ 1425, 515, 240, 104 });
+	letras2.PushBack({ 1424, 396, 240, 104 });
+	letras2.speed = 0.5f;
+	//letras2.loop = false;
 
 	cielo.PushBack({ 877, 387, 240, 102 });
 	dragones.PushBack({ 36, 150, 242, 102 });
@@ -67,11 +76,12 @@ update_status SceneStory::Update()
 	}
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 8000)) {
-		//App->fade->FadeToBlack(this, (Module*)App->scenestory3, 90);
+		App->fade->FadeToBlack(this, (Module*)App->scenestory3, 90);
 	}
 
 	goblins.Update();
-	letras.Update();
+	letras1.Update();
+	letras2.Update();
 	cielo.Update();
 	dragones.Update();
 	dragon.Update();
@@ -89,8 +99,9 @@ update_status SceneStory::Update()
 // Update: draw background
 update_status SceneStory::PostUpdate()
 {
-	App->render->Blit(texture, 0, 0, NULL);
-
+	//App->render->Blit(texture, 0, 0, NULL);
+	SDL_Rect rect = letras1.GetCurrentFrame();
+	App->render->Blit(texture, 0, 115, &rect);
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 1000)) {
 		SDL_Rect rect = goblins.GetCurrentFrame();
@@ -98,7 +109,7 @@ update_status SceneStory::PostUpdate()
 	}
 	
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4350)) {
-		SDL_Rect rect = letras.GetCurrentFrame();
+		SDL_Rect rect = letras2.GetCurrentFrame();
 		App->render->Blit(texture, 0, 115, &rect);
 	}
 

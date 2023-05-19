@@ -39,8 +39,9 @@ public:
 
 	Uint32 timeout; 
 
+	Animation letras1;
 	Animation goblins;
-	Animation letras;
+	Animation letras2;
 	Animation cielo;
 	Animation dragones; 
 	Animation dragon;
