@@ -25,9 +25,6 @@ bool Intro2::Start()
 	bool ret = true;
 
 	textura = App->textures->Load("Assets/Intro/Intro1.png");
-	//NO HA DE SONAR MUSICA EN AQUESTA PANTALLA TAMPOC
-	//App->audio->PlayMusic("Assets/Music/a.ogg", 1.0f);
-	//App->audio->Disable();
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -37,8 +34,11 @@ bool Intro2::Start()
 
 update_status Intro2::Update()
 {
-	App->fade->FadeToBlack(this, (Module*)App->scenestory, 90);
-
+	if (App->input->keys[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+	}
+	else{App->fade->FadeToBlack(this, (Module*)App->scenestory, 90);}
 	return update_status::UPDATE_CONTINUE;
 }
 
