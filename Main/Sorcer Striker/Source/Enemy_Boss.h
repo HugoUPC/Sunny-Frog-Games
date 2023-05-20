@@ -14,7 +14,9 @@ public:
 	// The enemy is going to follow the different steps in the path
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
+	void Draw() override;
 	void OnCollision(Collider* collider) override;
+	void OnCollision(Collider* c1, Collider* c2) override;
 
 	int lives = 5;
 
@@ -23,9 +25,22 @@ private:
 	// And an animation for each step
 	Path path;
 
+	SDL_Rect fullBody;
+	SDL_Rect leftBodyPart;
+	SDL_Rect rightBodypart;
+	SDL_Rect middleBodyPart;
+
+
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
-	Animation walk;
+	Animation head;
+	Animation headDamaged;
+
+	Animation propeller;
+
+	Collider* head1 = nullptr;
+	Collider* head2 = nullptr;
+	Collider* head3 = nullptr;
 };
 
 #endif // __ENEMY_BOSS_H__

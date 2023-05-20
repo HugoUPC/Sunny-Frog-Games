@@ -49,6 +49,9 @@ void Enemy::OnCollision(Collider* collider)
 	}
 }
 
+void  Enemy::OnCollision(Collider* c1, Collider* c2) {}
+
+
 void Enemy::SetToDelete()
 {
 	pendingToDelete = true;

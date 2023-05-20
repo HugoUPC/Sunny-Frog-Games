@@ -56,7 +56,7 @@ update_status SceneDescription::Update()
 	//pa ir directo al gameplay xd
 	if (App->input->keys[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
+		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 0);
 	}
 
 	return update_status::UPDATE_CONTINUE;

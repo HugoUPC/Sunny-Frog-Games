@@ -29,6 +29,7 @@ public:
 
 	// Collision response
 	virtual void OnCollision(Collider* collider);
+	virtual void OnCollision(Collider* c1, Collider* c2);
 
 	// Sets flag for deletion and for the collider aswell
 	virtual void SetToDelete();

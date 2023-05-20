@@ -72,7 +72,7 @@ bool SceneLevel1::Start()
 
 	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP, 110, -400);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::BOSS, 0, -10000);
+	
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -99,13 +99,15 @@ update_status SceneLevel1::Update()
 		App->player->position.y = -8900;
 	}
 
+	if(App->render->camera.y == -9100) App->enemies->AddEnemy(ENEMY_TYPE::BOSS, 0, -9050);
+
 	return update_status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
 update_status SceneLevel1::PostUpdate()
 {	
-	LOG( "%d, %d", App->render->camera.y, App->player->position.y);
+	//LOG( "%d, %d", App->render->camera.y, App->player->position.y);
 
 	if (App->render->camera.y < -5000 && App->render->camera.y > -7500){
 		if (bgSize.x != 775) bgSize.x = 775;
