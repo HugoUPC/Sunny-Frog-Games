@@ -63,6 +63,8 @@ public:
 	Particle bat_shotsR;
 	Particle bat_shotsL;
 
+	Particle fireBall;
+
 private:
 	// Particles spritesheet loaded into an SDL Texture
 	SDL_Texture* lasertexture = nullptr;

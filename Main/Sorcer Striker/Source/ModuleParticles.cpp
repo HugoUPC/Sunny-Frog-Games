@@ -44,29 +44,37 @@ bool ModuleParticles::Start()
 	laser.anim.speed = 0.3f;
 	laser.speed.y = -6;
 	
+	laserR.lifetime = 180;
 	laserR.anim.PushBack({ 0, 0, 16, 33 });
 	laserR.anim.loop = true;
 	laserR.anim.speed = 0.3f;
 	laserR.speed.y = -6;
 	laserR.speed.x = 1;
 
+	laserL.lifetime = 180;
 	laserL.anim.PushBack({ 0, 0, 16, 33 });
 	laserL.anim.loop = true;
 	laserL.anim.speed = 0.3f;
 	laserL.speed.y = -6;
 	laserL.speed.x = -1;
 
+	bat_shotsR.lifetime = 180;
 	bat_shotsR.anim.PushBack({ 10, 0, 24, 16 });
 	bat_shotsR.anim.loop = true;
 	bat_shotsR.anim.speed = 0.3f;
 	bat_shotsR.speed.y = -6;
 	bat_shotsR.speed.x = 2;
 
+	bat_shotsL.lifetime = 180;
 	bat_shotsL.anim.PushBack({ 10, 0, 24, 16 });
 	bat_shotsL.anim.loop = true;
 	bat_shotsL.anim.speed = 0.3f;
 	bat_shotsL.speed.y = -6;
 	bat_shotsL.speed.x = -2;
+
+	fireBall.lifetime = 60;
+	fireBall.anim.PushBack({ 34, 1, 9, 9 });
+	fireBall.speed.y = 6;
 	
 	return true;
 }

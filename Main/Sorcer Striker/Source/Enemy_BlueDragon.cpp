@@ -5,6 +5,7 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
+#include "ModulePlayer.h"
 
 Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 {
@@ -42,6 +43,39 @@ void Enemy_BlueDragon::Update()
 	position.y = +1;
 
 	position = spawnPos + path.GetRelativePosition();
+
+	if (tempTimer >= 30) {
+
+		/*iPoint speedDirection = { App->player->position.x - (position.x + 33), App->player->position.y - (position.y + 55) };
+		iPoint speedDirectionNormalized = speedDirection.
+		App->particles->fireBall.speed = */
+
+		iPoint d = App->player->position;
+		iPoint o = { position.x + 33, position.y + 55 };
+		float mag = d.DistanceTo(o);
+
+		iPoint dir = d - o;
+		fPoint dirN = {dir.x / mag, dir.y / mag};
+
+		App->particles->fireBall.speed = {dirN.x * 2, dirN.y * 2};
+
+		LOG("(%f, %f)", App->particles->fireBall.speed.x, App->particles->fireBall.speed.y);
+
+		Particle* fireBall1 = App->particles->AddParticle(App->particles->fireBall, position.x + 33, position.y + 55, Collider::Type::ENEMY_SHOT);
+		//fireBall1->collider->AddListener((Module*)App->enemies);
+
+		//Particle* fireBall2 = App->particles->AddParticle(App->particles->fireBall, position.x + 58, position.y + 55, Collider::Type::ENEMY_SHOT);
+		//fireBall2->collider->AddListener((Module*)App->enemies);
+
+		//Particle* fireBall3 = App->particles->AddParticle(App->particles->fireBall, position.x + 33, position.y + 65, Collider::Type::ENEMY_SHOT);
+		//fireBall3->collider->AddListener((Module*)App->enemies);
+
+		//Particle* fireBall4 = App->particles->AddParticle(App->particles->fireBall, position.x + 58, position.y + 65, Collider::Type::ENEMY_SHOT);
+		//fireBall4->collider->AddListener((Module*)App->enemies);
+		tempTimer = 0;
+	}
+	else tempTimer++;
+	//App->audio->PlayFx(laserFx);
 
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
