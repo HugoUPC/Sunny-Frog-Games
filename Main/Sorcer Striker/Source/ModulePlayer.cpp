@@ -213,8 +213,8 @@ update_status ModulePlayer::PostUpdate()
 		}
 	}
 
-	if (kills >= 20 && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
-	else if (kills >= 20 && transitionTimer > 0) transitionTimer--;
+	if (kills >= 100 && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+	else if (kills >= 100 && transitionTimer > 0) transitionTimer--;
 
 	if (lives < 0 && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
 	else if (lives < 0 && transitionTimer > 0) transitionTimer--;
