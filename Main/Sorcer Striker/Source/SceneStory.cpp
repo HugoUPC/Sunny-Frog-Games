@@ -143,7 +143,9 @@ update_status SceneStory::PostUpdate()
 	}
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 7500)) {
-		goblins.fadein(56455);
+		SDL_Rect rect = black.GetCurrentFrame();
+		App->render->Blit(texture, 0, 16, &rect);
+		//goblins.fadein(56455);
 	}
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 7700)) {
 		SDL_Rect rect = black.GetCurrentFrame();
