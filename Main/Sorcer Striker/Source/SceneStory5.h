@@ -44,11 +44,15 @@ public:
 	SDL_Rect bgSize;
 
 	Uint32 timeout;
-	Animation algo;
-	Animation fondo;
+
+	Animation letras;
+	Animation man;
 	Animation explosion;
 
 	Path path;
+	Path pathscroll;
+
+	Collider* screenBoundingBox = nullptr;
 
 
 };

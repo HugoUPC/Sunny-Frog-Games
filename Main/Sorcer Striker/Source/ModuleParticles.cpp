@@ -63,14 +63,14 @@ bool ModuleParticles::Start()
 	bat_shotsR.anim.loop = true;
 	bat_shotsR.anim.speed = 0.3f;
 	bat_shotsR.speed.y = -6;
-	bat_shotsR.speed.x = 2;
+	bat_shotsR.speed.x = 0;
 
 	bat_shotsL.lifetime = 180;
 	bat_shotsL.anim.PushBack({ 10, 0, 24, 16 });
 	bat_shotsL.anim.loop = true;
 	bat_shotsL.anim.speed = 0.3f;
 	bat_shotsL.speed.y = -6;
-	bat_shotsL.speed.x = -2;
+	bat_shotsL.speed.x = 0;
 
 	fireBall.lifetime = 60;
 	fireBall.anim.PushBack({ 34, 1, 9, 9 });
