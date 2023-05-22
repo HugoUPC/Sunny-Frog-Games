@@ -76,6 +76,7 @@ void Enemy_Boss::Draw()
 	App->render->Blit(texture, position.x, position.y, &fullBody);
 
 	App->render->Blit(texture, position.x + 60, position.y + 84, &(currentHead->GetCurrentFrame()));
+	if (currentHead == &headDamaged) currentHead = &head;
 	App->render->Blit(texture, position.x + 127, position.y + 84, &(head.GetCurrentFrame()));
 	App->render->Blit(texture, position.x + 198, position.y + 84, &(head.GetCurrentFrame()));
 
@@ -91,7 +92,6 @@ void Enemy_Boss::OnCollision(Collider* collider) {}
 
 void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 
-	//LOG("holi2");
 
 	if (c1 == head1 && c2->type == Collider::Type::PLAYER_SHOT)
 	{
