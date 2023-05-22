@@ -132,7 +132,10 @@ update_status ModulePlayer::Update()
 		if (!burst && burstCounter == 2) {
 			burst = true;
 			Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 11, position.y - 20, Collider::Type::PLAYER_SHOT);
-			laser->collider->AddListener(this);
+			if (laser != nullptr)
+			{
+				laser->collider->AddListener((Module*)App->enemies);
+			}
 			App->audio->PlayFx(laserFx);
 		}
 
@@ -144,7 +147,10 @@ update_status ModulePlayer::Update()
 			
 		if (burstCountdown <= 0) {
 			Particle* laser = App->particles->AddParticle(App->particles->laser, position.x + 11, position.y - 20, Collider::Type::PLAYER_SHOT);
-			laser->collider->AddListener(this);
+			if (laser != nullptr)
+			{
+				laser->collider->AddListener((Module*)App->enemies);
+			}
 			App->audio->PlayFx(laserFx);
 			burstCountdown = 5;
 			burstCounter--;
@@ -224,7 +230,7 @@ update_status ModulePlayer::PostUpdate()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY && lives <= 0)
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::ENEMY_SHOT && lives <= 0)
 	{
 		lives--;
 		App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE, 9);
@@ -237,7 +243,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		destroyed = true;
 	}
-	else if(c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY && destroyed == false && !godMode){
+	else if(c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::ENEMY_SHOT && destroyed == false && !godMode){
 		destroyed = true;
 		PowerUpActivated = false;
 		lives--;
@@ -262,8 +268,14 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 void ModulePlayer::PowerUp() {
 	Particle* batShotL = App->particles->AddParticle(App->particles->bat_shotsR, position.x , position.y + 20, Collider::Type::PLAYER_SHOT);
 	Particle* batShotR = App->particles->AddParticle(App->particles->bat_shotsL, position.x, position.y + 20, Collider::Type::PLAYER_SHOT);
-	batShotL->collider->AddListener(this);
-	batShotR->collider->AddListener(this);
+	if (batShotL != nullptr)
+	{
+		batShotL->collider->AddListener(this);
+	}
+	if (batShotR != nullptr)
+	{
+		batShotR->collider->AddListener(this);
+	}
 
 	App->audio->PlayFx(laserFx);
 }

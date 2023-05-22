@@ -177,6 +177,12 @@ Particle* ModuleParticles::AddParticle(const Particle& particle, int x, int y, C
 			if (colliderType != Collider::Type::NONE)
 				newParticle->collider = App->collisions->AddCollider(newParticle->anim.GetCurrentFrame(), colliderType, this);
 
+			if (newParticle->collider == nullptr)
+			{
+				delete newParticle;
+				return nullptr;
+			}
+
 			particles[i] = newParticle;
 			break;
 		}

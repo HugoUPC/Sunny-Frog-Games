@@ -5,6 +5,7 @@
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
+#include "Collider.h"
 
 #include "Enemy.h"
 #include "Enemy_RedBird.h"
@@ -13,6 +14,8 @@
 #include "Enemy_BlueDragon.h"
 #include "Enemy_RedBallStraight.h"
 #include "Enemy_Boss.h"
+
+#include <iostream>
 
 
 #define SPAWN_MARGIN 50
@@ -185,10 +188,12 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 
 void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
+	
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+		if(enemies[i] != nullptr && enemies[i]->ContainsCollider(c1))
 		{
+			
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 			enemies[i]->OnCollision(c1, c2);
 			break;

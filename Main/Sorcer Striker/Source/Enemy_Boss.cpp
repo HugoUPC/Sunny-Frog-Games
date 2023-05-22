@@ -15,6 +15,8 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	head.PushBack({ 476,164,44,58 });
 	head.speed = 0.09f;
 
+	currentHead = &head;
+
 	headDamaged.PushBack({ 645,164,44,58 });
 	headDamaged.PushBack({ 539,164,44,58 });
 	headDamaged.PushBack({ 433,164,44,58 });
@@ -57,8 +59,6 @@ void Enemy_Boss::Update()
 	head2->SetPos(position.x + 127, position.y + 84);
 	head3->SetPos(position.x + 198, position.y + 84);
 
-
-
 	//path.Update();
 	position.y -= 1;
 
@@ -75,7 +75,7 @@ void Enemy_Boss::Draw()
 {
 	App->render->Blit(texture, position.x, position.y, &fullBody);
 
-	App->render->Blit(texture, position.x + 60, position.y + 84, &(head.GetCurrentFrame()));
+	App->render->Blit(texture, position.x + 60, position.y + 84, &(currentHead->GetCurrentFrame()));
 	App->render->Blit(texture, position.x + 127, position.y + 84, &(head.GetCurrentFrame()));
 	App->render->Blit(texture, position.x + 198, position.y + 84, &(head.GetCurrentFrame()));
 
@@ -91,11 +91,21 @@ void Enemy_Boss::OnCollision(Collider* collider) {}
 
 void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 
-	LOG("holi2");
+	//LOG("holi2");
 
-	if(c1 == head1 && c2->type == Collider::Type::ENEMY_SHOT) LOG("head1 HIT!");
-	if (c1 == head2 && c2->type == Collider::Type::ENEMY_SHOT) LOG("head2 HIT!");
-	if (c1 == head3 && c2->type == Collider::Type::ENEMY_SHOT) LOG("head3 HIT!");
+	if (c1 == head1 && c2->type == Collider::Type::PLAYER_SHOT)
+	{
+		LOG("head1 HIT!");
+		currentHead = &headDamaged;
+	}
+	if (c1 == head2 && c2->type == Collider::Type::PLAYER_SHOT)
+	{
+		LOG("head2 HIT!");
+	}
+	if (c1 == head3 && c2->type == Collider::Type::PLAYER_SHOT)
+	{
+		LOG("head3 HIT!");
+	}
 
 
 	/*if (collider->type != Collider::Type::SCREENBOUNDINGBOX && lives <= 0) {
@@ -109,4 +119,27 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 		App->audio->PlayFx(destroyedFx);
 		lives--;
 	}*/
+}
+
+bool Enemy_Boss::ContainsCollider(Collider* c1)
+{
+	bool ret = false;
+	ret = Enemy::ContainsCollider(c1);
+
+	if (head1 == c1)
+	{
+		c1 = head1;
+		ret = true;
+	}
+	else if (head2 == c1)
+	{
+		c1 = head2;
+		ret = true;
+	}
+	else if (head3 == c1)
+	{
+		c1 = head3;
+		ret = true;
+	}
+	return ret;
 }
