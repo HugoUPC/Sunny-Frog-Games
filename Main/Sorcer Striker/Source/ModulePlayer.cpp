@@ -16,7 +16,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 
 	// idle animation - just one sprite
-	idleAnim.PushBack({ 0, 0, 29, 38 });
+	idleAnim.PushBack({ 0, 0, 30, 38 });
 
 	// move upwards
 	upAnim.PushBack({ 100, 1, 32, 14 });
@@ -29,6 +29,11 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	downAnim.PushBack({ 0, 1, 32, 14 });
 	downAnim.loop = false;
 	downAnim.speed = 0.1f;
+
+	powerUp1.PushBack({ 50, 0, 21, 13 });
+	powerUp1.PushBack({ 50, 14, 21, 9 });
+	powerUp1.PushBack({ 50, 24, 21, 12 });
+	powerUp1.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -211,6 +216,13 @@ update_status ModulePlayer::PostUpdate()
 			position.y = -50000;
 			destroyedCountdown--;
 		}
+	}
+
+	if (PowerUpActivated)
+	{
+		powerUp1.Update();
+		App->render->Blit(texture, position.x - 25, position.y + 12, &(powerUp1.GetCurrentFrame()));
+		App->render->Blit(texture, position.x + 33, position.y + 12, &(powerUp1.GetCurrentFrame()));
 	}
 
 	if (kills >= 100 && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);

@@ -65,6 +65,7 @@ public:
 	Animation idleAnim;
 	Animation upAnim;
 	Animation downAnim;
+	Animation powerUp1;
 
 	Collider* collider = nullptr;
 
