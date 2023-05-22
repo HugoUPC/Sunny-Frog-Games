@@ -88,9 +88,6 @@ update_status SceneStory5::Update()
 // Update: draw background
 update_status SceneStory5::PostUpdate()
 {
-	//App->render->Blit(texture, 0, 0, NULL);
-	
-
 	if (App->render->camera.y < -5000 && App->render->camera.y > -7500) {
 		if (bgSize.x != 775) bgSize.x = 775;
 	}
@@ -114,30 +111,29 @@ update_status SceneStory5::PostUpdate()
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout - 1000)) {
 		App->render->Blit(texture2, 0, pathscroll.GetRelativePosition().y, NULL);
 	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2000)) {
+		App->textures->Unload(texture2);
+	}
+
+
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 1500)) {
 		SDL_Rect rect = letras.GetCurrentFrame();
 		App->render->Blit(texture, 2, pathscroll.GetRelativePosition().y, &rect);
 	}
-	//EXPLOSIONS
-	/*if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
-		SDL_Rect rect = explosion.GetCurrentFrame();
-		App->render->Blit(texture, -10, 350 + pathscroll.GetRelativePosition().y, &rect);
-	}*/
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2050)) {
 		SDL_Rect rect = man.GetCurrentFrame();
 		App->render->Blit(texture, 0, 60 + pathscroll.GetRelativePosition().y, &rect);
 	}
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2000)) {
-		App->textures->Unload(texture2);
-	}
-
+	//EXPLOSIONS
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
 		SDL_Rect rect = explosion.GetCurrentFrame();
 		App->render->Blit(texture, 15, 10 + pathscroll.GetRelativePosition().y, &rect); 
 	}
+	//END EXPLOSIONS (unload letras, man and explosions. Load ships)
+	
 
 	return update_status::UPDATE_CONTINUE;
 }
