@@ -18,6 +18,8 @@ public:
 	void OnCollision(Collider* collider) override;
 	void OnCollision(Collider* c1, Collider* c2) override;
 
+	bool ContainsCollider(Collider* c1) override;
+
 	int lives = 5;
 
 private:
@@ -35,6 +37,8 @@ private:
 	// We are keeping it an animation for consistency with other enemies
 	Animation head;
 	Animation headDamaged;
+
+	Animation* currentHead = nullptr;
 
 	Animation propeller;
 

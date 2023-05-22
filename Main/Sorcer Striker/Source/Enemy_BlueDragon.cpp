@@ -59,19 +59,31 @@ void Enemy_BlueDragon::Update()
 
 		App->particles->fireBall.speed = {dirN.x * 2, dirN.y * 2};
 
-		LOG("(%f, %f)", App->particles->fireBall.speed.x, App->particles->fireBall.speed.y);
+		//LOG("(%f, %f)", App->particles->fireBall.speed.x, App->particles->fireBall.speed.y);
 
 		Particle* fireBall1 = App->particles->AddParticle(App->particles->fireBall, position.x + 33, position.y + 55, Collider::Type::ENEMY_SHOT);
-		//fireBall1->collider->AddListener((Module*)App->enemies);
+		if (fireBall1 != nullptr)
+		{
+			fireBall1->collider->AddListener((Module*)App->player);
+		}
 
-		//Particle* fireBall2 = App->particles->AddParticle(App->particles->fireBall, position.x + 58, position.y + 55, Collider::Type::ENEMY_SHOT);
-		//fireBall2->collider->AddListener((Module*)App->enemies);
+		Particle* fireBall2 = App->particles->AddParticle(App->particles->fireBall, position.x + 58, position.y + 55, Collider::Type::ENEMY_SHOT);
+		if (fireBall2 != nullptr)
+		{
+			fireBall2->collider->AddListener((Module*)App->player);
+		}
 
-		//Particle* fireBall3 = App->particles->AddParticle(App->particles->fireBall, position.x + 33, position.y + 65, Collider::Type::ENEMY_SHOT);
-		//fireBall3->collider->AddListener((Module*)App->enemies);
+		Particle* fireBall3 = App->particles->AddParticle(App->particles->fireBall, position.x + 33, position.y + 65, Collider::Type::ENEMY_SHOT);
+		if (fireBall3 != nullptr)
+		{
+			fireBall3->collider->AddListener((Module*)App->player);
+		}
 
-		//Particle* fireBall4 = App->particles->AddParticle(App->particles->fireBall, position.x + 58, position.y + 65, Collider::Type::ENEMY_SHOT);
-		//fireBall4->collider->AddListener((Module*)App->enemies);
+		Particle* fireBall4 = App->particles->AddParticle(App->particles->fireBall, position.x + 58, position.y + 65, Collider::Type::ENEMY_SHOT);
+		if (fireBall4 != nullptr)
+		{
+			fireBall4->collider->AddListener((Module*)App->player);
+		}
 		tempTimer = 0;
 	}
 	else tempTimer++;

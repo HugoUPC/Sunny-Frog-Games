@@ -34,6 +34,8 @@ public:
 	// Sets flag for deletion and for the collider aswell
 	virtual void SetToDelete();
 
+	virtual bool ContainsCollider(Collider* c1);
+
 public:
 	// The current position in the world
 	iPoint position;

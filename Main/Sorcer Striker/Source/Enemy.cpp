@@ -59,3 +59,8 @@ void Enemy::SetToDelete()
 		collider->pendingToDelete = true;
 }
 
+bool Enemy::ContainsCollider(Collider* c1)
+{
+	return collider == c1;
+}
+
