@@ -15,7 +15,10 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	head.PushBack({ 476,164,44,58 });
 	head.speed = 0.09f;
 
-	currentHead = &head;
+	for (int i = 0; i < 3; i++)
+	{
+		currentHead[i] = &head;
+	}
 
 	headDamaged.PushBack({ 645,164,44,58 });
 	headDamaged.PushBack({ 539,164,44,58 });
@@ -75,10 +78,14 @@ void Enemy_Boss::Draw()
 {
 	App->render->Blit(texture, position.x, position.y, &fullBody);
 
-	App->render->Blit(texture, position.x + 60, position.y + 84, &(currentHead->GetCurrentFrame()));
-	if (currentHead == &headDamaged) currentHead = &head;
-	App->render->Blit(texture, position.x + 127, position.y + 84, &(head.GetCurrentFrame()));
-	App->render->Blit(texture, position.x + 198, position.y + 84, &(head.GetCurrentFrame()));
+	App->render->Blit(texture, position.x + 60, position.y + 84, &(currentHead[0]->GetCurrentFrame()));
+	App->render->Blit(texture, position.x + 127, position.y + 84, &(currentHead[1]->GetCurrentFrame()));
+	App->render->Blit(texture, position.x + 198, position.y + 84, &(currentHead[2]->GetCurrentFrame()));
+
+	for (int i = 0; i < 3; i++)
+	{
+		if (currentHead[i] == &headDamaged) currentHead[i] = &head;
+	}
 
 	App->render->Blit(texture, position.x + 17, position.y + 83, &(propeller.GetCurrentFrame()));
 	App->render->Blit(texture, position.x + 96, position.y + 84, &(propeller.GetCurrentFrame()));
@@ -96,15 +103,17 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 	if (c1 == head1 && c2->type == Collider::Type::PLAYER_SHOT)
 	{
 		LOG("head1 HIT!");
-		currentHead = &headDamaged;
+		currentHead[0] = &headDamaged;
 	}
 	if (c1 == head2 && c2->type == Collider::Type::PLAYER_SHOT)
 	{
 		LOG("head2 HIT!");
+		currentHead[1] = &headDamaged;
 	}
 	if (c1 == head3 && c2->type == Collider::Type::PLAYER_SHOT)
 	{
 		LOG("head3 HIT!");
+		currentHead[2] = &headDamaged;
 	}
 
 

@@ -38,7 +38,7 @@ private:
 	Animation head;
 	Animation headDamaged;
 
-	Animation* currentHead = nullptr;
+	Animation* currentHead[3] = { nullptr };
 
 	Animation propeller;
 
