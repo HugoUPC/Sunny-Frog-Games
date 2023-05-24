@@ -49,10 +49,19 @@ public:
 	Animation man;
 	Animation explosion;
 
+	Animation ship1;
+	//Animation ship2;
+	//Animation ship3;
+	//Animation ship4;
+
 	Path path;
 	Path pathscroll;
+	Path pathship1;
+	//Path ship2;
+	//Path ship3;
+	//Path path4;
 
-	Collider* screenBoundingBox = nullptr;
+	//Collider* screenBoundingBox = nullptr;
 
 
 };
