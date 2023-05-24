@@ -20,22 +20,26 @@ SceneStory5::SceneStory5(bool startEnabled) : Module(startEnabled)
 	letras.PushBack({ 0, 483, 240, 340 });
 	man.PushBack({ 0, 35, 240, 175 });
 
-	explosion.PushBack({ 280,16,95,101 });
-	explosion.PushBack({ 620, 22, 96, 101 });
-	explosion.PushBack({ 412, 7, 137, 140 });
-	explosion.PushBack({ 620, 22, 96, 101 });
-	explosion.PushBack({ 280,16,95,101 });
-	explosion.PushBack({ 412, 7, 137, 140 });
-	explosion.PushBack({ 620, 22, 96, 101 });
+	explosion.PushBack({ 413, 9, 134, 137 });
+	explosion.PushBack({ 552, 9, 134, 137 });
+	explosion.PushBack({ 691, 9, 134, 137 });
+	explosion.PushBack({ 413, 151, 134, 137 });
+	explosion.PushBack({ 691, 151, 134, 137 });
+	explosion.PushBack({ 413, 151, 134, 137 });
+	explosion.PushBack({ 691, 9, 134, 137 });
+	explosion.PushBack({ 691, 151, 134, 137 });
+	explosion.PushBack({ 413, 151, 134, 137 });
+	explosion.PushBack({ 830, 151, 134, 137 });
+	explosion.PushBack({ 552, 151, 134, 137 });
 	explosion.PushBack({ 0, 0, 0, 0 });
-	explosion.speed = 0.13f;
+	explosion.speed = 0.1f;
 	explosion.loop = false;
 
-	ship1.PushBack({ 512, 405, 22, 42 });
+	ship1.PushBack({ 59, 75, 22, 42 });
 
 	pathscroll.PushBack({ 0.0f, -1.0f }, 200);
 
-	pathship1.PushBack({ 0.0f, -2.0f }, 200);
+	pathship1.PushBack({ 0.0f, -1.0f }, 200);
 	
 }
 
@@ -54,6 +58,7 @@ bool SceneStory5::Start()
 	texture = App->textures->Load("Assets/Intro/SceneStory5.png");
 	texture2 = App->textures->Load("Assets/Intro/por probar.png");
 	bgTexture = App->textures->Load("Assets/Intro/backgroundd.png");
+	shiptexture = App->textures->Load("Assets/Intro/ships.png");
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -85,13 +90,11 @@ update_status SceneStory5::Update()
 	App->render->camera.y -= 1;
 
 	letras.Update(); 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) explosion.Update();
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2200)) explosion.Update();
 	man.Update();
 	ship1.Update();
 	pathscroll.Update();
 	pathship1.Update();
-
-//	App->collisions->Enable();
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -119,48 +122,73 @@ update_status SceneStory5::PostUpdate()
 		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize, 0);
 	}
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout - 1000)) {
-		App->render->Blit(texture2, 0, pathscroll.GetRelativePosition().y, NULL);
-	}
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2000)) {
+	App->render->Blit(texture2, 0, pathscroll.GetRelativePosition().y, NULL);
+	
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {
 		App->textures->Unload(texture2);
 	}
 
 
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 1500)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout-1000)) {
 		SDL_Rect rect = letras.GetCurrentFrame();
 		App->render->Blit(texture, 2, pathscroll.GetRelativePosition().y, &rect);
 	}
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2100)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {
 		SDL_Rect rect = man.GetCurrentFrame();
 		App->render->Blit(texture, 0, 60 + pathscroll.GetRelativePosition().y, &rect);
 	}
 
 	//EXPLOSIONS
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000) && !(SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3001))) explosion.Reset();
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2200)) {
+		SDL_Rect rect = explosion.GetCurrentFrame();
+		App->render->Blit(texture, -30, 252 + pathscroll.GetRelativePosition().y, &rect);
+	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2300)) {
+		SDL_Rect rect = explosion.GetCurrentFrame();
+		App->render->Blit(texture, 150, 235 + pathscroll.GetRelativePosition().y, &rect);
+	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2400)) {
 		SDL_Rect rect = explosion.GetCurrentFrame();
 		App->render->Blit(texture, 70, 205 + pathscroll.GetRelativePosition().y, &rect);
 	}
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2500)) {
 		SDL_Rect rect = explosion.GetCurrentFrame();
-		App->render->Blit(texture, -20, 140 + pathscroll.GetRelativePosition().y, &rect);
+		App->render->Blit(texture, 135, 112 + pathscroll.GetRelativePosition().y, &rect);
+	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2600)) {
+		SDL_Rect rect = explosion.GetCurrentFrame();
+		App->render->Blit(texture, -10, 140 + pathscroll.GetRelativePosition().y, &rect);
+	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2700)) {
+		SDL_Rect rect = explosion.GetCurrentFrame();
+		App->render->Blit(texture, 54, 76 + pathscroll.GetRelativePosition().y, &rect);
+	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2800)) {
+		SDL_Rect rect = explosion.GetCurrentFrame();
+		App->render->Blit(texture, -60, 27 + pathscroll.GetRelativePosition().y, &rect);
+	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2900)) {
+		SDL_Rect rect = explosion.GetCurrentFrame();
+		App->render->Blit(texture, 105, -5 + pathscroll.GetRelativePosition().y, &rect);
 	}
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
 		SDL_Rect rect = explosion.GetCurrentFrame();
-		App->render->Blit(texture, 140, 113 + pathscroll.GetRelativePosition().y, &rect);
+		App->render->Blit(texture, 165, 8 + pathscroll.GetRelativePosition().y, &rect);
 	}
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3100)) {
 		SDL_Rect rect = explosion.GetCurrentFrame();
-		App->render->Blit(texture, 50, 10 + pathscroll.GetRelativePosition().y, &rect);
+		App->render->Blit(texture, 20, -40 + pathscroll.GetRelativePosition().y, &rect);
+	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3600)) {
+		App->textures->Unload(texture);
 	}
 	//END EXPLOSIONS (unload letras, man and explosions. Load ships)
-	
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
+
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4000)) {
 		SDL_Rect rect = ship1.GetCurrentFrame();
-		App->render->Blit(texture, 15, 400 + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
+		App->render->Blit(shiptexture, 63, 500  + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
 	}
 
 	return update_status::UPDATE_CONTINUE;

@@ -39,7 +39,7 @@ update_status SceneDescription::Update()
 	//App->fade->FadeToBlack(this, (Module*)App->scenestory4, 90);
 	if (App->input->keys[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->scenestory5, 90);
+		App->fade->FadeToBlack(this, (Module*)App->scenestory4, 90);
 	}
 
 	if (App->render->camera.y < 340) {

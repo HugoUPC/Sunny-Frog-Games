@@ -37,9 +37,10 @@ public:
 	SDL_Texture* texture = nullptr;
 	SDL_Texture* texture2 = nullptr;
 	SDL_Texture* bgTexture = nullptr;
+	SDL_Texture* shiptexture = nullptr;
 
 	int bgPos = 0;
-	int bgSpeed = 5;
+	int bgSpeed = 10;
 
 	SDL_Rect bgSize;
 
