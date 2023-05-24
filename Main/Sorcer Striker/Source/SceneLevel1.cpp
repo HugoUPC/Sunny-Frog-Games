@@ -99,7 +99,7 @@ update_status SceneLevel1::Update()
 		App->player->position.y = -8900;
 	}
 
-	if(App->render->camera.y == -9100) App->enemies->AddEnemy(ENEMY_TYPE::BOSS, 0, -9050);
+	if(App->render->camera.y == -9100) App->enemies->AddEnemy(ENEMY_TYPE::BOSS, -15, -9050);
 
 	return update_status::UPDATE_CONTINUE;
 }

@@ -29,8 +29,10 @@ private:
 
 	SDL_Rect fullBody;
 	SDL_Rect leftBodyPart;
-	SDL_Rect rightBodypart;
+	SDL_Rect rightBodyPart;
 	SDL_Rect middleBodyPart;
+
+	SDL_Rect* currentBody;
 
 
 	// This enemy has one sprite and one frame
@@ -45,6 +47,10 @@ private:
 	Collider* head1 = nullptr;
 	Collider* head2 = nullptr;
 	Collider* head3 = nullptr;
+
+	uint head1Health;
+	uint head2Health;
+	uint head3Health;
 };
 
 #endif // __ENEMY_BOSS_H__
