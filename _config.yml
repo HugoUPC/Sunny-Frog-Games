@@ -1,7 +1,31 @@
-remote_theme: pages-themes/cayman@v0.2.0
+# Build settings
+theme: minima
 plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
+  - jekyll-feed
 
-title: [The title of your site]
-description: [A short description of your site's purpose]
+# Site settings
+title: Your Site Title
+description: A description of your site
+url: https://username.github.io
+baseurl: ""
 
+# Navigation links
+nav:
+  - text: Home
+    url: /
+  - text: About
+    url: /about/
+  - text: Contact Us
+    url: /contact/
+
+# Author information
+author:
+  name: Your Name
+  email: your-email@example.com
+  bio: "A short description of yourself"
+  twitter: your-twitter-handle
+  github: your-github-handle
+
+# Build options
+markdown: kramdown
+permalink: pretty
