@@ -59,6 +59,10 @@ update_status SceneDescription::Update()
 		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 0);
 	}
 
+	if (App->input->keys[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN) 
+	{
+		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 0);
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 

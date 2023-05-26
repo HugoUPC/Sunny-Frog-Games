@@ -51,18 +51,16 @@ public:
 	Animation explosion;
 
 	Animation ship1;
-	//Animation ship2;
-	//Animation ship3;
-	//Animation ship4;
+	Animation ship2;
+	Animation ship3;
+	Animation ship4;
 
 	Path path;
 	Path pathscroll;
 	Path pathship1;
-	//Path ship2;
-	//Path ship3;
-	//Path path4;
-
-	//Collider* screenBoundingBox = nullptr;
+	Path pathship2;
+	Path pathship3;
+	Path pathship4;
 
 
 };
