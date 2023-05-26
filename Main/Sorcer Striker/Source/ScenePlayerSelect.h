@@ -36,6 +36,9 @@ public:
 	SDL_Texture* texture = nullptr;
 	int PowerUpCollectFx = 0;
 
+	Animation selected;
+	
+
 	int arrayselection[0][4];
 };
 
