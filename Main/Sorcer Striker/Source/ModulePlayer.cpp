@@ -34,6 +34,16 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	powerUp1.PushBack({ 50, 14, 21, 9 });
 	powerUp1.PushBack({ 50, 24, 21, 12 });
 	powerUp1.speed = 0.1f;
+
+	shipleft.PushBack({ 2, 46, 31, 38});
+	shipleft.PushBack({ 7, 93, 24, 38 });
+	shipleft.loop = false;
+	shipleft.speed = 0.05f;
+
+	shipright.PushBack({ 43, 46, 31, 38 });
+	shipright.PushBack({ 45, 93, 24, 38 });
+	shipright.loop = false;
+	shipright.speed = 0.05f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -86,11 +96,15 @@ update_status ModulePlayer::Update()
 	position.y -= 1;
 	backupPosition.y -= 1;
 
+	shipleft.Update();
+	shipright.Update();
+
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		if (position.x >= 0) {
 			position.x -= speed;
 		}
+		
 	}
 
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
@@ -236,6 +250,15 @@ update_status ModulePlayer::PostUpdate()
 
 	if (lives < 0 && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
 	else if (lives < 0 && transitionTimer > 0) transitionTimer--;
+
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT) {
+		SDL_Rect rect = shipleft.GetCurrentFrame();
+		App->render->Blit(texture, position.x, position.y, &rect);
+	}
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+		SDL_Rect rect = shipright.GetCurrentFrame();
+		App->render->Blit(texture, position.x, position.y, &rect);
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }

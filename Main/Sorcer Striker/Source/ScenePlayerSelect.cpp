@@ -85,12 +85,22 @@ update_status ScenePlayerSelect::Update()
 
     if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_DOWN)
     {
-       position.x += 246; 
+       if (position.x == 0) {
+        position.x == 0;
+       }
+       else {
+           position.x += 246;
+       }
     }
 
     if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_DOWN)
     {
-        position.x -= 246;     
+        if (position.x == -738) {
+            position.x == 0;
+        }
+        else {
+            position.x -= 246;
+        }
     }
 
     if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 20000)) {
@@ -112,15 +122,6 @@ update_status ScenePlayerSelect::PostUpdate()
     //App->render->Blit(Texture1, -246, 2, NULL); Para saber las coordenadas de los sprites
     //App->render->Blit(Texture1, -492, 0, NULL);
     //App->render->Blit(Texture1, -738, 0, NULL);
-
-    if (position.x == 738) {
-        position.x == 738;
-        //App->render->Blit(Texture1, 738, 0, NULL);
-    }
-    else if (position.x == 0) {
-        position.x == 0;
-        //App->render->Blit(Texture1, 0, 0, NULL);
-    }
 
     App->render->Blit(Texture1, position.x, 0, NULL); 
    
