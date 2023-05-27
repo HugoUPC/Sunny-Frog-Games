@@ -38,7 +38,7 @@ SceneStory5::SceneStory5(bool startEnabled) : Module(startEnabled)
 
 	ship1.PushBack({ 32, 33, 22, 32 });
 	ship2.PushBack({ 119, 19, 21, 51-19 });
-	ship3.PushBack({ 142, 63, 167-142, 98-75 });
+	ship3.PushBack({ 142, 63, 167-142, 98-63 });
 	ship4.PushBack({ 59, 75, 22, 45 });
 
 	pathship1.PushBack({ 0.0f, -1.0f }, 65);
@@ -214,19 +214,19 @@ update_status SceneStory5::PostUpdate()
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4000)) {
 		SDL_Rect rect = ship1.GetCurrentFrame();
-		App->render->Blit(shiptexture, 63, 300  + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
+		App->render->Blit(shiptexture, 52, 194  + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
 	}
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4000)) {
 		SDL_Rect rect = ship2.GetCurrentFrame();
-		App->render->Blit(shiptexture, 100, 250 + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
+		App->render->Blit(shiptexture, 140, 179 + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
 	}
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4000)) {
 		SDL_Rect rect = ship3.GetCurrentFrame();
-		App->render->Blit(shiptexture, 83, 300 + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
+		App->render->Blit(shiptexture, 163, 226 + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
 	}
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4000)) {
 		SDL_Rect rect = ship4.GetCurrentFrame();
-		App->render->Blit(shiptexture, 93, 300 + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
+		App->render->Blit(shiptexture, 79, 236 + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
 	}
 
 	return update_status::UPDATE_CONTINUE;

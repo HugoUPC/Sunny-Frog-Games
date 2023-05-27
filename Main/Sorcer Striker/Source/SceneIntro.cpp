@@ -9,7 +9,19 @@
 
 SceneIntro::SceneIntro(bool startEnabled) : Module(startEnabled)
 {
+	letras.PushBack({ 0,0,0,0 });
+	letras.PushBack({ 256,14,146,8 });
+	letras.speed = 0.1f;
 
+	ships.PushBack({ 0,0,0,0 });
+	ships.PushBack({ 304,49,156,44 });
+	ships.speed = 0.3f;
+
+	piedras.PushBack({ 0, 0, 0, 0 });
+	piedras.PushBack({ 0, 344, 240, 340 });
+	piedras.PushBack({ 252, 142, 240, 340});
+	piedras.PushBack({ 502, 34, 240, 340});
+	piedras.speed = 0.1f;
 }
 
 SceneIntro::~SceneIntro()
@@ -24,7 +36,7 @@ bool SceneIntro::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Intro/initial.png");
+	bgTexture = App->textures->Load("Assets/Intro/initial1.png");
 	App->audio->Enable();
 	App->audio->PlayMusic("Assets/Music/Intro.ogg", 1.0f);
 
@@ -46,10 +58,9 @@ update_status SceneIntro::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
 	}
 
-	/*if (App->input->keys[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN)
-	{
-		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
-	}*/
+	letras.Update();
+	ships.Update();
+	piedras.Update();
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -59,6 +70,15 @@ update_status SceneIntro::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
+
+	SDL_Rect rect = letras.GetCurrentFrame();
+	App->render->Blit(bgTexture, 49, 190, &rect);
+
+	SDL_Rect rect1 = ships.GetCurrentFrame();
+	App->render->Blit(bgTexture, 52, 204, &rect1);
+
+	SDL_Rect rect2 = piedras.GetCurrentFrame();
+	App->render->Blit(bgTexture, 0, 0, &rect2);
 
 	return update_status::UPDATE_CONTINUE;
 }
