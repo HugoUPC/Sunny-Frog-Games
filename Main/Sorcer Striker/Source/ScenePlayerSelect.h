@@ -34,10 +34,14 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* Texture1 = nullptr;
 	SDL_Texture* texture = nullptr;
+	SDL_Texture* numberstexture = nullptr;
+
+	Uint32 timeout;
+
 	int PowerUpCollectFx = 0;
 
 	Animation selected;
-	
+	Animation numbers; 
 
 	int arrayselection[0][4];
 };
