@@ -44,41 +44,45 @@ void Enemy_BlueDragon::Update()
 
 	position = spawnPos + path.GetRelativePosition();
 
-	if (tempTimer >= 30) {
+	iPoint d = App->player->position;
+	iPoint o = { position.x + 33, position.y + 55 };
+	float mag = d.DistanceTo(o);
 
-		/*iPoint speedDirection = { App->player->position.x - (position.x + 33), App->player->position.y - (position.y + 55) };
-		iPoint speedDirectionNormalized = speedDirection.
-		App->particles->fireBall.speed = */
+	iPoint dir = d - o;
+	fPoint dirN = { dir.x / mag, dir.y / mag };
 
-		iPoint d = App->player->position;
-		iPoint o = { position.x + 33, position.y + 55 };
-		float mag = d.DistanceTo(o);
+	App->particles->fireBall.speed = { dirN.x * 2, dirN.y * 2 };
 
-		iPoint dir = d - o;
-		fPoint dirN = {dir.x / mag, dir.y / mag};
-
-		App->particles->fireBall.speed = {dirN.x * 2, dirN.y * 2};
-
-		//LOG("(%f, %f)", App->particles->fireBall.speed.x, App->particles->fireBall.speed.y);
-
+	if (tempTimer == 30)
+	{
 		Particle* fireBall1 = App->particles->AddParticle(App->particles->fireBall, position.x + 33, position.y + 55, Collider::Type::ENEMY_SHOT);
 		if (fireBall1 != nullptr)
 		{
 			fireBall1->collider->AddListener((Module*)App->player);
 		}
+	}
 
+	if (tempTimer == 35)
+	{
 		Particle* fireBall2 = App->particles->AddParticle(App->particles->fireBall, position.x + 58, position.y + 55, Collider::Type::ENEMY_SHOT);
 		if (fireBall2 != nullptr)
 		{
 			fireBall2->collider->AddListener((Module*)App->player);
 		}
+	}
+		
 
+	if (tempTimer == 40)
+	{
 		Particle* fireBall3 = App->particles->AddParticle(App->particles->fireBall, position.x + 33, position.y + 65, Collider::Type::ENEMY_SHOT);
 		if (fireBall3 != nullptr)
 		{
 			fireBall3->collider->AddListener((Module*)App->player);
 		}
+	}
 
+	if (tempTimer == 45)
+	{
 		Particle* fireBall4 = App->particles->AddParticle(App->particles->fireBall, position.x + 58, position.y + 65, Collider::Type::ENEMY_SHOT);
 		if (fireBall4 != nullptr)
 		{
@@ -86,6 +90,7 @@ void Enemy_BlueDragon::Update()
 		}
 		tempTimer = 0;
 	}
+	
 	else tempTimer++;
 	//App->audio->PlayFx(laserFx);
 

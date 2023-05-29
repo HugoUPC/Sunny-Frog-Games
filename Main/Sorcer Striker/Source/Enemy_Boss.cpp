@@ -36,12 +36,14 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 
 	currentBody = &fullBody;
 
-	idle.PushBack({ 0.0f, 1.0f }, 30);
-	idle.PushBack({ 0.0f, -2.0f }, 30);
+	idle.PushBack({ -1.0f, 0.0f }, 30);
+	idle.PushBack({ 1.0f, -2.0f }, 30);
 
 	boss_state = IDLE;
+	currentPath = &idle;
 
-	throwingfire.PushBack({ 0.0f, -2.0f }, 60);
+	throwingfire.PushBack({ 0.0f, -2.0f }, 45);
+	throwingfire.PushBack({ 0.0f, 0.0f }, 45);
 
 	collider = App->collisions->AddCollider({ 0, 0, 281,124 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
@@ -88,15 +90,19 @@ void Enemy_Boss::Update()
 
 	if (stateChangerTimer >= 240)
 	{
-		if (boss_state = IDLE)
+		if (boss_state == IDLE)
 		{
 			boss_state = THROWINGFIRE;
+			currentPath = &throwingfire;
 			stateChangerTimer = 0;
+			spawnPos = position;
 		}
-		else if (boss_state = THROWINGFIRE)
+		else if (boss_state == THROWINGFIRE)
 		{
 			boss_state = IDLE;
+			currentPath = &idle;
 			stateChangerTimer = 0;
+			spawnPos = position;
 		}
 	}
 
@@ -104,7 +110,9 @@ void Enemy_Boss::Update()
 
 	//position.x = spawnPos.x + sin(SDL_GetTicks() / 3) * 5;
 
-	//position = { , }
+	position = { spawnPos.x + currentPath->GetRelativePosition().x, spawnPos.y + currentPath->GetRelativePosition().y };
+
+	LOG("(%d,%d)", position.x, position.y);
 
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position

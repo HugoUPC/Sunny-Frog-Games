@@ -68,6 +68,7 @@ public:
 	bool bombStarted = false;
 	Collider* bombCollider = nullptr;
 	iPoint bombPosition;
+	int bombAmount = 3;
 
 	// A set of animations
 	Animation idleAnim;

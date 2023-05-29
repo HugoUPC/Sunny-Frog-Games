@@ -37,6 +37,8 @@ private:
 	// And an animation for each step
 	Path idle;
 	Path throwingfire;
+	
+	Path* currentPath = nullptr;
 
 	int stateChangerTimer = 0;
 

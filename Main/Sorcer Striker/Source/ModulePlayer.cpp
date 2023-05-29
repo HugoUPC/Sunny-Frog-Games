@@ -172,9 +172,10 @@ update_status ModulePlayer::Update()
 		PowerUp();
 	}
 
-	if (App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN || pad.b == true) {
+	if ((App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN || pad.b == true) && bombAmount > 0 && bombActivated == false && bombStarted == false) {
 		bombStarted = true;
 		bombPosition = position;
+		bombAmount--;
 	}
 	bomb();
 
@@ -198,9 +199,11 @@ update_status ModulePlayer::Update()
 	}
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN && !godMode) {
 		godMode = true;
+		LOG("godmode on");
 	}
 	else if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN && godMode){
 		godMode = false;
+		LOG("godmode off");
 	}
 
 
