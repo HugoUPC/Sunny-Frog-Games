@@ -1,6 +1,7 @@
 #include "Enemy.h"
 
 #include "Application.h"
+#include "ModulePlayer.h"
 #include "ModuleCollisions.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
@@ -54,6 +55,8 @@ void  Enemy::OnCollision(Collider* c1, Collider* c2) {}
 
 void Enemy::SetToDelete()
 {
+	App->player->score += 23;
+	App->player->kills++;
 	pendingToDelete = true;
 	if (collider != nullptr)
 		collider->pendingToDelete = true;

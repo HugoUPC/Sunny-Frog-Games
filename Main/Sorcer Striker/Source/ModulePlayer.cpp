@@ -174,6 +174,7 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN || pad.b == true) {
 		bombStarted = true;
+		bombPosition = position;
 	}
 	bomb();
 
@@ -239,8 +240,9 @@ update_status ModulePlayer::PostUpdate()
 	{
 		if (bombStartedTimer < 120)
 		{
-			App->render->Blit(texture, position.x, position.y - bombStartedTimer, &(powerUp1.GetCurrentFrame())); //textura provisional, cambiar por la de la bomba
+			App->render->Blit(texture, bombPosition.x, bombPosition.y - bombStartedTimer, &(powerUp1.GetCurrentFrame())); //textura provisional, cambiar por la de la bomba
 			bombStartedTimer++;
+			bombPosition.y--;
 		}
 		else
 		{
@@ -252,7 +254,7 @@ update_status ModulePlayer::PostUpdate()
 
 	if (bombActivatedTimer < 240 && bombActivatedTimer != 0)
 	{
-		App->render->Blit(texture, position.x, position.y - 150, &(powerUp1.GetCurrentFrame()));
+		App->render->Blit(texture, bombPosition.x, bombPosition.y - 150, &(powerUp1.GetCurrentFrame()));
 	}
 
 	if (kills >= 100 && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
@@ -294,11 +296,11 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		lives--;
 	}
 
-	if (c1->type == Collider::Type::PLAYER_SHOT && c2->type == Collider::Type::ENEMY)
+	/*if (c1->type == Collider::Type::PLAYER_SHOT && c2->type == Collider::Type::ENEMY)
 	{
 		score += 23;
 		kills++;
-	}
+	}*/
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::POWERUP) {
 		if (PowerUpActivated) {
@@ -332,15 +334,16 @@ void ModulePlayer::bomb() {
 	{
 		if (bombActivatedTimer == 0)
 		{
-			bombCollider = App->collisions->AddCollider({ position.x - 35, position.y - 200, 100, 100 }, Collider::Type::PLAYER_SHOT, (Module*)App->enemies);
-			App->render->Blit(texture, position.x - 35, position.y - 200, &(powerUp1.GetCurrentFrame()));
+			bombCollider = App->collisions->AddCollider({ bombPosition.x - 35, bombPosition.y - 200, 100, 100 }, Collider::Type::PLAYER_SHOT, (Module*)App->enemies);
+			App->render->Blit(texture, bombPosition.x - 35, bombPosition.y - 200, &(powerUp1.GetCurrentFrame()));
 		}
 
 		if (bombActivatedTimer < 240)
 		{
 			bombActivatedTimer++;
-			bombCollider->SetPos(position.x - 35, position.y - 200);
-			App->render->Blit(texture, position.x - 35, position.y - 200, &(powerUp1.GetCurrentFrame()));
+			bombPosition.y--;
+			bombCollider->SetPos(bombPosition.x - 35, bombPosition.y - 200);
+			App->render->Blit(texture, bombPosition.x - 35, bombPosition.y - 200, &(powerUp1.GetCurrentFrame()));
 		}
 		else
 		{
