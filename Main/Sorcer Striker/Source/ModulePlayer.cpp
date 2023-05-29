@@ -92,6 +92,8 @@ bool ModulePlayer::Start()
 
 update_status ModulePlayer::Update()
 {
+	GamePad& pad = App->input->pads[0];
+
 	// Moving the player with the camera scroll
 	position.y -= 1;
 	backupPosition.y -= 1;
@@ -99,7 +101,7 @@ update_status ModulePlayer::Update()
 	shipleft.Update();
 	shipright.Update();
 
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || pad.l_x < 0.0f)
 	{
 		if (position.x >= 0) {
 			position.x -= speed;
@@ -107,14 +109,14 @@ update_status ModulePlayer::Update()
 		
 	}
 
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || pad.l_x > 0.0f)
 	{
 		if (position.x <= 208) {
 			position.x += speed;
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT || pad.l_y > 0.0f)
 	{
 		if (position.y <= (App->render->camera.y) + 300) {
 			position.y += speed;
@@ -131,7 +133,7 @@ update_status ModulePlayer::Update()
 		}*/
 	}
 
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || pad.l_y < 0.0f)
 	{
 		if (position.y >= App->render->camera.y) {
 			position.y -= speed;
@@ -146,7 +148,7 @@ update_status ModulePlayer::Update()
 	}
 
 
-	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || burst) && shootCooldown <= 0)
+	if (((App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || pad.a == true) || burst) && shootCooldown <= 0)
 	{
 		if (!burst && burstCounter == 2) {
 			burst = true;
@@ -183,11 +185,11 @@ update_status ModulePlayer::Update()
 
 	if(shootCooldown > 0) shootCooldown--;
 
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN && PowerUpActivated && shootCooldown <= 0) {
+	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || pad.a == true) && PowerUpActivated && shootCooldown <= 0) {
 		PowerUp();
 	}
 
-	if (App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN) {
+	if (App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN || pad.b == true) {
 		bombStarted = true;
 	}
 	bomb();
