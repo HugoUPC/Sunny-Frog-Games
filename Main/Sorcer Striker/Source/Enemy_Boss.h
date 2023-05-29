@@ -23,9 +23,22 @@ public:
 	int lives = 5;
 
 private:
+
+	enum State
+	{
+		NONE = -1,
+		IDLE,
+		THROWINGFIRE,
+
+		MAX
+	}boss_state;
+
 	// A set of steps that define the position in the screen
 	// And an animation for each step
-	Path path;
+	Path idle;
+	Path throwingfire;
+
+	int stateChangerTimer = 0;
 
 	SDL_Rect fullBody;
 	SDL_Rect leftBodyPart;

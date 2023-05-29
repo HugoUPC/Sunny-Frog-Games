@@ -31,6 +31,7 @@ public:
 
 	void OnCollision(Collider* c1, Collider* c2) override;
 	void PowerUp();
+	void bomb();
 
 public:
 
@@ -60,6 +61,12 @@ public:
 	bool PowerUpActivated = false;
 
 	int transitionTimer = 50;
+
+	uint bombActivatedTimer = 0;
+	uint bombStartedTimer = 0;
+	bool bombActivated = false;
+	bool bombStarted = false;
+	Collider* bombCollider = nullptr;
 
 	// A set of animations
 	Animation idleAnim;

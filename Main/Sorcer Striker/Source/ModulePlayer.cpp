@@ -187,6 +187,11 @@ update_status ModulePlayer::Update()
 		PowerUp();
 	}
 
+	if (App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN) {
+		bombStarted = true;
+	}
+	bomb();
+
 	// If no up/down movement detected, set the current animation back to idle
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
 		&& App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE)
@@ -243,6 +248,26 @@ update_status ModulePlayer::PostUpdate()
 		powerUp1.Update();
 		App->render->Blit(texture, position.x - 25, position.y + 12, &(powerUp1.GetCurrentFrame()));
 		App->render->Blit(texture, position.x + 33, position.y + 12, &(powerUp1.GetCurrentFrame()));
+	}
+
+	if (bombStarted)
+	{
+		if (bombStartedTimer < 120)
+		{
+			App->render->Blit(texture, position.x, position.y - bombStartedTimer, &(powerUp1.GetCurrentFrame())); //textura provisional, cambiar por la de la bomba
+			bombStartedTimer++;
+		}
+		else
+		{
+			bombStarted = false;
+			bombActivated = true;
+			bombStartedTimer = 0;
+		}
+	}
+
+	if (bombActivatedTimer < 240 && bombActivatedTimer != 0)
+	{
+		App->render->Blit(texture, position.x, position.y - 150, &(powerUp1.GetCurrentFrame()));
 	}
 
 	if (kills >= 100 && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
@@ -313,4 +338,30 @@ void ModulePlayer::PowerUp() {
 	}
 
 	App->audio->PlayFx(laserFx);
+}
+
+void ModulePlayer::bomb() {
+	//Primero tiene un delay inicial en el cual la bomba avanza, luego explota el radio del sprite, dura unos segundos y luego acaba.
+
+	if (bombActivated == true)
+	{
+		if (bombActivatedTimer == 0)
+		{
+			bombCollider = App->collisions->AddCollider({ position.x - 35, position.y - 200, 100, 100 }, Collider::Type::PLAYER_SHOT, (Module*)App->enemies);
+			App->render->Blit(texture, position.x - 35, position.y - 200, &(powerUp1.GetCurrentFrame()));
+		}
+
+		if (bombActivatedTimer < 240)
+		{
+			bombActivatedTimer++;
+			bombCollider->SetPos(position.x - 35, position.y - 200);
+			App->render->Blit(texture, position.x - 35, position.y - 200, &(powerUp1.GetCurrentFrame()));
+		}
+		else
+		{
+			bombActivatedTimer = 0;
+			bombActivated = false;
+			bombCollider->pendingToDelete = true;
+		}
+	}
 }

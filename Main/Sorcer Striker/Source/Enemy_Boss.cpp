@@ -36,16 +36,12 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 
 	currentBody = &fullBody;
 
-	
+	idle.PushBack({ 0.0f, 1.0f }, 30);
+	idle.PushBack({ 0.0f, -2.0f }, 30);
 
-	//path.PushBack({ 0.0f, 1.0f }, 120);
-	//path.PushBack({ 0.0f, -2.0f }, 120);
-	//path.loop;
+	boss_state = IDLE;
 
-	//currentAnim = &walk;
-
-	path.PushBack({0.0f, 0.5f}, 60);
-	path.loop = false;
+	throwingfire.PushBack({ 0.0f, -2.0f }, 60);
 
 	collider = App->collisions->AddCollider({ 0, 0, 281,124 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
@@ -54,7 +50,7 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	head3 = App->collisions->AddCollider({ 198, 84, 44,58 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
 	head1Health = 100;
-	head2Health = 100;
+	head2Health = 1000;
 	head3Health = 100;
 
 }
@@ -71,10 +67,44 @@ void Enemy_Boss::Update()
 	head2->SetPos(position.x + 127, position.y + 84);
 	head3->SetPos(position.x + 198, position.y + 84);
 
-	//path.Update();
-	position.y = (App->render->camera.y + 49) + (cos((SDL_GetTicks() / 3)) * 5);
 
-	position.x = spawnPos.x + sin(SDL_GetTicks() / 3) * 5;
+	switch (boss_state)
+	{
+	case NONE:
+		break;
+	case IDLE:
+		idle.Update();
+		stateChangerTimer++;
+		break;
+	case THROWINGFIRE:
+		throwingfire.Update();
+		stateChangerTimer++;
+		break;
+	case MAX:
+		break;
+	default:
+		break;
+	}
+
+	if (stateChangerTimer >= 240)
+	{
+		if (boss_state = IDLE)
+		{
+			boss_state = THROWINGFIRE;
+			stateChangerTimer = 0;
+		}
+		else if (boss_state = THROWINGFIRE)
+		{
+			boss_state = IDLE;
+			stateChangerTimer = 0;
+		}
+	}
+
+	//position.y = (App->render->camera.y + 49) + (cos((SDL_GetTicks() / 3)) * 5);
+
+	//position.x = spawnPos.x + sin(SDL_GetTicks() / 3) * 5;
+
+	//position = { , }
 
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
