@@ -62,7 +62,7 @@ update_status SceneStory4::Update()
 	}
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2900)) {
-		App->fade->FadeToBlack(this, (Module*)App->scenestory5, 20);
+		//App->fade->FadeToBlack(this, (Module*)App->scenestory5, 20);
 	}
 
 	character1.Update();

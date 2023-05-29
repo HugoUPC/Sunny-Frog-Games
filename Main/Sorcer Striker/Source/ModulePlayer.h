@@ -70,11 +70,12 @@ public:
 
 	// A set of animations
 	Animation idleAnim;
-	Animation upAnim;
-	Animation downAnim;
+	Animation leftAnim;
+	Animation rightAnim;
 	Animation powerUp1;
 	Animation shipleft;
 	Animation shipright;
+
 
 	Collider* collider = nullptr;
 

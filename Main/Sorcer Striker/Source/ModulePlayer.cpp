@@ -14,36 +14,24 @@
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
-
 	// idle animation - just one sprite
 	idleAnim.PushBack({ 0, 0, 30, 38 });
 
-	// move upwards
-	upAnim.PushBack({ 100, 1, 32, 14 });
-	upAnim.PushBack({ 132, 0, 32, 14 });
-	upAnim.loop = false;
-	upAnim.speed = 0.1f;
+	leftAnim.PushBack({ 2, 46, 31, 38 });
+	leftAnim.PushBack({ 7, 93, 24, 38 });
+	leftAnim.loop = false;
+	leftAnim.speed = 0.1f;
 
-	// Move down
-	downAnim.PushBack({ 33, 1, 32, 14 });
-	downAnim.PushBack({ 0, 1, 32, 14 });
-	downAnim.loop = false;
-	downAnim.speed = 0.1f;
+	rightAnim.PushBack({ 43, 46, 31, 38 });
+	rightAnim.PushBack({ 45, 93, 24, 38 });
+	rightAnim.loop = false;
+	rightAnim.speed = 1.0f;
 
 	powerUp1.PushBack({ 50, 0, 21, 13 });
 	powerUp1.PushBack({ 50, 14, 21, 9 });
 	powerUp1.PushBack({ 50, 24, 21, 12 });
 	powerUp1.speed = 0.1f;
 
-	shipleft.PushBack({ 2, 46, 31, 38});
-	shipleft.PushBack({ 7, 93, 24, 38 });
-	shipleft.loop = false;
-	shipleft.speed = 0.05f;
-
-	shipright.PushBack({ 43, 46, 31, 38 });
-	shipright.PushBack({ 45, 93, 24, 38 });
-	shipright.loop = false;
-	shipright.speed = 0.05f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -106,6 +94,11 @@ update_status ModulePlayer::Update()
 		if (position.x >= 0) {
 			position.x -= speed;
 		}
+		if (currentAnimation != &leftAnim)
+		{
+			leftAnim.Reset();
+			currentAnimation = &leftAnim;
+		}
 		
 	}
 
@@ -113,6 +106,11 @@ update_status ModulePlayer::Update()
 	{
 		if (position.x <= 208) {
 			position.x += speed;
+		}
+		if (currentAnimation != &rightAnim)
+		{
+			rightAnim.Reset();
+			currentAnimation = &rightAnim;
 		}
 	}
 
@@ -122,15 +120,6 @@ update_status ModulePlayer::Update()
 			position.y += speed;
 			backupPosition.y += speed;
 		}
-
-		/*if (position.y <= App->render->camera.y) {
-			position.y += speed;
-		}*/
-		/*if (currentAnimation != &downAnim)
-		{
-			downAnim.Reset();
-			currentAnimation = &downAnim;
-		}*/
 	}
 
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT || pad.l_y < 0.0f)
@@ -139,12 +128,6 @@ update_status ModulePlayer::Update()
 			position.y -= speed;
 			backupPosition.y -= speed;
 		}
-		
-		/*if (currentAnimation != &upAnim)
-		{
-			upAnim.Reset();
-			currentAnimation = &upAnim;
-		}*/
 	}
 
 
@@ -195,8 +178,8 @@ update_status ModulePlayer::Update()
 	bomb();
 
 	// If no up/down movement detected, set the current animation back to idle
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE)
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
+		&& App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
 		currentAnimation = &idleAnim;
 
 	// TODO 4: Update collider position to player position
@@ -328,8 +311,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 }
 
 void ModulePlayer::PowerUp() {
-	Particle* batShotL = App->particles->AddParticle(App->particles->bat_shotsR, position.x , position.y + 20, Collider::Type::PLAYER_SHOT);
-	Particle* batShotR = App->particles->AddParticle(App->particles->bat_shotsL, position.x, position.y + 20, Collider::Type::PLAYER_SHOT);
+	Particle* batShotL = App->particles->AddParticle(App->particles->bat_shotsR, position.x +20, position.y + 20, Collider::Type::PLAYER_SHOT);
+	Particle* batShotR = App->particles->AddParticle(App->particles->bat_shotsL, position.x +20, position.y + 20, Collider::Type::PLAYER_SHOT);
 	if (batShotL != nullptr)
 	{
 		batShotL->collider->AddListener(this);
