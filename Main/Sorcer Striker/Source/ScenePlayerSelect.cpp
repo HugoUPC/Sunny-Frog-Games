@@ -70,7 +70,7 @@ bool ScenePlayerSelect::Start()
     position.x = 0;
     position.y = 0;
 
-    timeout = SDL_GetTicks() + 500;
+    timeout = SDL_GetTicks();
 
     return ret;
 }
@@ -103,7 +103,7 @@ update_status ScenePlayerSelect::Update()
         }
     }
 
-    if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 20000)) {
+    if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 19000)) {
         App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
     }
 

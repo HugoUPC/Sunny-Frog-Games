@@ -115,13 +115,31 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		// Always destroy particles that collide
-		if (particles[i] != nullptr && particles[i]->collider == c1 && particles[i]->collider->type != Collider::Type::SCREENBOUNDINGBOX)
+		if (particles[i] != nullptr && particles[i]->collider == c1)
 		{
-			particles[i]->pendingToDelete = true;
-			particles[i]->collider->pendingToDelete = true;
+			// TODO 6: Make so every time a particle hits a wall it triggers an explosion particle
+			AddParticle(explosion, particles[i]->position.x, particles[i]->position.y);
+
+			delete particles[i];
+			particles[i] = nullptr;
 			break;
 		}
 	}
+	//for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	//{
+	//	// Always destroy particles that collide
+	//	if (particles[i] != nullptr && particles[i]->collider == c1 && particles[i]->collider->type != Collider::Type::SCREENBOUNDINGBOX)
+	//	{
+	//		AddParticle(explosion, particles[i]->position.x, particles[i]->position.y);
+
+	//		//delete particles[i];
+	//		//particles[i] = nullptr;
+
+ //			particles[i]->pendingToDelete = true;
+	//		particles[i]->collider->pendingToDelete = true;
+	//		break;
+	//	}
+	//}
 }
 
 update_status ModuleParticles::Update()

@@ -8,10 +8,47 @@
 
 #include <stdio.h>
 
+#include "SDL/include/SDL.h"
+#pragma comment( lib, "SDL/libx86/SDL2.lib")
+#pragma comment( lib, "SDL/libx86/SDL2main.lib")
 
 ModuleUI::ModuleUI(bool startEnabled) : Module(startEnabled)
 {
+	stage1.PushBack({ 0,40,240,40 });
+	stage1.PushBack({ 0,40,240,40 });
+	stage1.PushBack({ 0,40,240,40 });
+	stage1.PushBack({ 0,40,240,40 });
+	stage1.speed = 0.1f;
+	stage1.loop = false;
 
+	type.PushBack({ 4,8,91,132 });
+	type.PushBack({ 102,8,91,132 });
+	type.PushBack({ 201,8,91,132 });
+	type.PushBack({ 298,8,91,132 });
+	type.PushBack({ 396,8,91,132 });
+	type.PushBack({ 495,8,91,132 });
+	type.PushBack({ 592,8,91,132 });
+	type.PushBack({ 690,8,91,132 });
+
+	type.PushBack({ 5,149,91,132 });
+	type.PushBack({ 101,149,91,132 });
+	type.PushBack({ 200,149,91,132 });
+	type.PushBack({ 297,149,91,132 });
+	type.PushBack({ 395,149,91,132 });
+	type.PushBack({ 494,149,91,132 });
+	type.PushBack({ 591,149,91,132 });
+	type.PushBack({ 689,149,91,132 });
+
+	type.PushBack({ 4,287,91,132 });
+	type.PushBack({ 102,287,91,132 });
+	type.PushBack({ 201,287,91,132 });
+	type.PushBack({ 298,287,91,132 });
+	type.PushBack({ 396,287,91,132 });
+	type.PushBack({ 495,287,91,132 });
+	type.PushBack({ 592,287,91,132 });
+	type.PushBack({ 690,287,91,132 });
+	type.speed = 0.1f;
+	type.loop = false;
 }
 
 ModuleUI::~ModuleUI()
@@ -23,7 +60,9 @@ bool ModuleUI::Start()
 {
 
 	UIElements = App->textures->Load("Assets/UI/gp-ui.png");
-	wintexture = App->textures->Load("Assets/Sprites/stageclear.png");
+	wintexture = App->textures->Load("Assets/Sprites/stageclear1.png");
+	stage1texture = App->textures->Load("Assets/Sprites/stage1.png");
+	typingtexture = App->textures->Load("Assets/Sprites/typing.png");
 
 	// TODO 0: Notice how a font is loaded and the meaning of all its arguments 
 	//char lookupTable[] = { "!  ,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz" };
@@ -34,6 +73,13 @@ bool ModuleUI::Start()
 	scoreFont = App->fonts->Load("Assets/Fonts/yb-numbers.png", lookupTable, 1);
 
 	return true;
+}
+
+update_status ModuleUI::Update() {
+	stage1.Update();
+	type.Update();
+
+	return update_status::UPDATE_CONTINUE;
 }
 
 update_status ModuleUI::PostUpdate()
@@ -79,5 +125,13 @@ update_status ModuleUI::PostUpdate()
 		App->render->Blit(UIElements, 50, 150, &GameOver, 0);
 	}
 
+	if (App->render->camera.y < -100 && App->render->camera.y > -300) {
+		SDL_Rect rect = stage1.GetCurrentFrame();
+		App->render->Blit(stage1texture, 0, App->render->camera.y, &rect);
+	}
+	if (App->render->camera.y > -200) {
+		SDL_Rect rect = type.GetCurrentFrame();
+		App->render->Blit(typingtexture, 10, 104 + App->render->camera.y, &rect);
+	}
 	return update_status::UPDATE_CONTINUE;
 }

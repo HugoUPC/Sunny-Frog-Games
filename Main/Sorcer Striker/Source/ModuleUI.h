@@ -23,6 +23,7 @@ public:
 
 	// Called at the end of the application loop
 	// Performs the render call of the player sprite
+	update_status Update() override; 
 	update_status PostUpdate() override;
 
 public:
@@ -32,6 +33,11 @@ public:
 
 	SDL_Texture* UIElements = nullptr;
 	SDL_Texture* wintexture = nullptr;
+	SDL_Texture* stage1texture = nullptr;
+	SDL_Texture* typingtexture = nullptr;
+
+	Animation stage1;
+	Animation type;
 };
 
 #endif //!__MODULE_PLAYER_H__
