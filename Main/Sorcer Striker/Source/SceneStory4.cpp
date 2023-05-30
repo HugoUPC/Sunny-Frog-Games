@@ -62,7 +62,7 @@ update_status SceneStory4::Update()
 	}
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2900)) {
-		//App->fade->FadeToBlack(this, (Module*)App->scenestory5, 20);
+		App->fade->FadeToBlack(this, (Module*)App->scenestory5, 20);
 	}
 
 	character1.Update();
@@ -120,7 +120,7 @@ update_status SceneStory4::PostUpdate()
 	else if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2850)) {
 		character4.Update();
 		//SDL_Rect rect = character4.GetCurrentFrame();
-		App->render->Blit(texture, 145 + path4.GetRelativePosition().x, path4.GetRelativePosition().y, &rect4);
+		App->render->Blit(texture, path4.GetRelativePosition().x + 40, path4.GetRelativePosition().y, &rect4);
 	}
 
 	return update_status::UPDATE_CONTINUE;

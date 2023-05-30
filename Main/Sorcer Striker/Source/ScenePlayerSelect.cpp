@@ -108,7 +108,7 @@ update_status ScenePlayerSelect::Update()
     }
 
     selected.Update();
-    numbers.Update();
+    if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) numbers.Update();
 
     return update_status::UPDATE_CONTINUE;
 }
@@ -118,13 +118,7 @@ update_status ScenePlayerSelect::Update()
 update_status ScenePlayerSelect::PostUpdate()
 {
     // Draw everything --------------------------------------
-
-    //App->render->Blit(Texture1, -246, 2, NULL); Para saber las coordenadas de los sprites
-    //App->render->Blit(Texture1, -492, 0, NULL);
-    //App->render->Blit(Texture1, -738, 0, NULL);
-
     App->render->Blit(Texture1, position.x, 0, NULL); 
-   
 
     if (position.x == 0) {
         SDL_Rect rect = selected.GetCurrentFrame(); 
@@ -142,7 +136,7 @@ update_status ScenePlayerSelect::PostUpdate()
         SDL_Rect rect = selected.GetCurrentFrame();
         App->render->Blit(Texture1, 173, 78, &rect);
     }
-   
+
     if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) {
         SDL_Rect rect = numbers.GetCurrentFrame();
         App->render->Blit(numberstexture, 106, 52, &rect);

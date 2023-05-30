@@ -316,8 +316,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 }
 
 void ModulePlayer::PowerUp() {
-	Particle* batShotL = App->particles->AddParticle(App->particles->bat_shotsR, position.x +20, position.y + 20, Collider::Type::PLAYER_SHOT);
-	Particle* batShotR = App->particles->AddParticle(App->particles->bat_shotsL, position.x +20, position.y + 20, Collider::Type::PLAYER_SHOT);
+	Particle* batShotL = App->particles->AddParticle(App->particles->bat_shotsR, position.x -20, position.y + 20, Collider::Type::PLAYER_SHOT);
+	Particle* batShotR = App->particles->AddParticle(App->particles->bat_shotsL, position.x +30, position.y + 20, Collider::Type::PLAYER_SHOT);
 	if (batShotL != nullptr)
 	{
 		batShotL->collider->AddListener(this);
