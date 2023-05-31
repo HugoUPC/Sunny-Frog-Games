@@ -113,7 +113,7 @@ void Enemy_BlueDragon::Update()
 
 void Enemy_BlueDragon::OnCollision(Collider* collider) {
 
-
+	
 	if (collider->type != Collider::Type::SCREENBOUNDINGBOX && lives <= 0) {
 		App->particles->AddParticle(App->particles->explosion, position.x, position.y);
 		App->audio->PlayFx(destroyedFx);
@@ -129,12 +129,12 @@ void Enemy_BlueDragon::OnCollision(Collider* collider) {
 
 void Enemy_BlueDragon::OnCollision(Collider* c1, Collider* c2) {
 
-	if (c1 == collider && c2->type != Collider::Type::PLAYER_SHOT)
+	if (collider->type != Collider::Type::PLAYER_SHOT)
 		currentAnim = &fly;
 
 	if (c1 == collider && c2->type == Collider::Type::PLAYER_SHOT)
 	{
-		LOG("head1 HIT!");
+		LOG("dragon HIT!");
 		LOG("%d", Health);
 		if (Health > 0)
 		{
@@ -147,7 +147,4 @@ void Enemy_BlueDragon::OnCollision(Collider* c1, Collider* c2) {
 			collider->pendingToDelete = true;
 		}
 	}
-
-
-
 }

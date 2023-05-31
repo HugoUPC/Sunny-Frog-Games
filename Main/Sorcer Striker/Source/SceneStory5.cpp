@@ -109,7 +109,7 @@ update_status SceneStory5::Update()
 		App->fade->FadeToBlack(this, (Module*)App->scenePlayerSelect, 90);
 	}
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 10000)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 9500)) {
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
 
