@@ -117,9 +117,9 @@ void ModulePowerUp::HandlePowerUpSpawn()
 		if (spawnQueue[i].type != POWERUP_TYPE::NO_TYPE)
 		{
 			// Spawn a new powerup if the screen has reached a spawn position
-			if (spawnQueue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN)
+			if (spawnQueue[i].y * SCREEN_SIZE > (App->render->camera.y * SCREEN_SIZE) - SPAWN_MARGIN)
 			{
-				LOG("Spawning powerup at %d", spawnQueue[i].x * SCREEN_SIZE);
+				LOG("Spawning powerup at %d", spawnQueue[i].y * SCREEN_SIZE);
 
 				SpawnPowerUp(spawnQueue[i]);
 				spawnQueue[i].type = POWERUP_TYPE::NO_TYPE; // Removing the newly spawned powerup from the queue
@@ -136,9 +136,9 @@ void ModulePowerUp::HandlePowerUpDespawn()
 		if (powerups[i] != nullptr)
 		{
 			// Delete the powerup when it has reached the end of the screen
-			if (powerups[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN)
+			if (powerups[i]->position.y * SCREEN_SIZE > (App->render->camera.y * SCREEN_SIZE) + (App->render->camera.h * SCREEN_SIZE) + SPAWN_MARGIN)
 			{
-				LOG("DeSpawning powerup at %d", powerups[i]->position.x * SCREEN_SIZE);
+				LOG("DeSpawning powerup at %d", powerups[i]->position.y * SCREEN_SIZE);
 
 				powerups[i]->SetToDelete();
 			}
