@@ -41,6 +41,7 @@ private:
 	Path* currentPath = nullptr;
 
 	int stateChangerTimer = 0;
+	int STATEDURATION = 240;
 
 	SDL_Rect fullBody;
 	SDL_Rect leftBodyPart;
