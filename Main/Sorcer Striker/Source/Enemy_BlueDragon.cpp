@@ -37,8 +37,6 @@ Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 
 	dragonDamaged.speed = 0.09f;
 
-	Health = 60;
-
 	collider = App->collisions->AddCollider({ 0, 0, 88, 90 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
 }
@@ -104,47 +102,30 @@ void Enemy_BlueDragon::Update()
 	//App->audio->PlayFx(laserFx);
 
 
-
-
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();
 }
 
-void Enemy_BlueDragon::OnCollision(Collider* collider) {
+void Enemy_BlueDragon::Draw() {
 
-	
-	if (collider->type != Collider::Type::SCREENBOUNDINGBOX && lives <= 0) {
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-		App->audio->PlayFx(destroyedFx);
-
-		SetToDelete();
-	}
-	else if (collider->type != Collider::Type::SCREENBOUNDINGBOX && lives > 0) {
-		App->particles->AddParticle(App->particles->explosion, position.x + 44, position.y + 90);
-		App->audio->PlayFx(destroyedFx);
-		lives--;
-	}
+	Enemy::Draw();
+	if (currentAnim != &fly) currentAnim = &fly;
 }
 
-void Enemy_BlueDragon::OnCollision(Collider* c1, Collider* c2) {
+void Enemy_BlueDragon::OnCollision(Collider* collider) {
 
-	if (collider->type != Collider::Type::PLAYER_SHOT)
-		currentAnim = &fly;
-
-	if (c1 == collider && c2->type == Collider::Type::PLAYER_SHOT)
+	if (collider->type != Collider::Type::SCREENBOUNDINGBOX)
 	{
-		LOG("dragon HIT!");
-		LOG("%d", Health);
-		if (Health > 0)
-		{
-			Health -= 10;
-			currentAnim = &dragonDamaged;
+		if (lives <= 0) {
+			App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+			App->audio->PlayFx(destroyedFx);
+
+			SetToDelete();
 		}
-		else
-		{
-			currentAnim = nullptr;
-			collider->pendingToDelete = true;
+		else if (lives > 0) {
+			currentAnim = &dragonDamaged;
+			lives--;
 		}
 	}
 }
