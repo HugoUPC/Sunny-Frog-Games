@@ -294,7 +294,7 @@ update_status ModulePlayer::PostUpdate()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::ENEMY_SHOT && lives <= 0)
+	if (c1->type == Collider::Type::PLAYER && (c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::ENEMY_SHOT) && lives <= 0)
 	{
 		lives--;
 		App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE, 9);
@@ -307,7 +307,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		destroyed = true;
 	}
-	else if(c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::ENEMY_SHOT && destroyed == false && !godMode){
+	else if(c1->type == Collider::Type::PLAYER && (c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::ENEMY_SHOT) && destroyed == false && !godMode){
 		destroyed = true;
 		PowerUpActivated[0] = false;
 		PowerUpActivated[1] = false;
