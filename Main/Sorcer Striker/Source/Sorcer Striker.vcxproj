@@ -26,6 +26,7 @@
     <ClCompile Include="Enemy_BrownShip.cpp" />
     <ClCompile Include="Enemy_RedBallStraight.cpp" />
     <ClCompile Include="Enemy_RedBird.cpp" />
+    <ClCompile Include="Enemy_Wizzard.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Intro1.cpp" />
     <ClCompile Include="Intro2.cpp" />
@@ -71,6 +72,7 @@
     <ClInclude Include="Enemy_RedBall.h" />
     <ClInclude Include="Enemy_RedBallStraight.h" />
     <ClInclude Include="Enemy_RedBird.h" />
+    <ClInclude Include="Enemy_Wizzard.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Intro1.h" />
     <ClInclude Include="Intro2.h" />

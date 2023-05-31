@@ -154,6 +154,9 @@
     <ClCompile Include="PowerUp_2.cpp">
       <Filter>Source Files\Entities\PowerUps</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy_Wizzard.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -281,6 +284,9 @@
     </ClInclude>
     <ClInclude Include="PowerUp_2.h">
       <Filter>Source Files\Entities\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_Wizzard.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

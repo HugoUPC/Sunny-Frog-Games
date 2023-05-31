@@ -1,28 +1,31 @@
-#include "Enemy_RedBallStraight.h"
+#include "Enemy_Wizzard.h"
 
 #include "Application.h"
 #include "ModuleCollisions.h"
 #include "ModuleRender.h"
 
-Enemy_RedBallStraight::Enemy_RedBallStraight(int x, int y) : Enemy(x, y)
+Enemy_Wizzard::Enemy_Wizzard(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 0,0,29,39 });
-	fly.PushBack({ 38,0,29,39 });
-	fly.speed = 0.3f;
+	fly.PushBack({ 250,0,50,50 });
+	fly.PushBack({ 306,0,50,50 });
+	fly.PushBack({ 364,0,50,50 });
+	fly.speed = 0.02f;
 
 
 	currentAnim = &fly;
 
-	path.PushBack({ 0.0f, 4.0f }, 60);
-	path.PushBack({ 1.3f, -0.5f }, 10);
-	path.PushBack({ 4.0f, -5.0f }, 80);
+	path.PushBack({ 0.03f, 2.0f }, 30);
+	path.PushBack({ 0.03f, 0.0f }, 70);
+	path.PushBack({ 4.0f, -4.0f }, 100);
+	path.PushBack({ 10.0f, -10.0f }, 100);
 	
-	
+
+	path.loop;
 
 	collider = App->collisions->AddCollider({ 0, 0, 24, 24 }, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
-void Enemy_RedBallStraight::Update()
+void Enemy_Wizzard::Update()
 {
 	if (position.y > App->render->camera.y - 24) {
 		path.Update();

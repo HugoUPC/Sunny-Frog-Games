@@ -14,6 +14,7 @@
 #include "Enemy_BlueDragon.h"
 #include "Enemy_RedBallStraight.h"
 #include "Enemy_Boss.h"
+#include "Enemy_Wizzard.h"
 
 #include <iostream>
 
@@ -178,6 +179,9 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 					break;
 				case ENEMY_TYPE::BOSS:
 					enemies[i] = new Enemy_Boss(info.x, info.y);
+					break;
+				case ENEMY_TYPE::WIZZARD:
+					enemies[i] = new Enemy_Wizzard(info.x, info.y);
 					break;
 			}
 			enemies[i]->texture = texture;

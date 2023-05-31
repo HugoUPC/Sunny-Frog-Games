@@ -9,14 +9,14 @@
 
 Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 0,45,91,100 });
-	fly.PushBack({ 107,45,92,100 });
-	fly.PushBack({ 211,45,88,100 });
-	fly.PushBack({ 314,45,87,100 });
+	fly.PushBack({ 0,52,100,120 });
+	fly.PushBack({ 122,52,100,120 });
+	fly.PushBack({ 240,52,100,120 });
+	fly.PushBack({ 357,52,100,120 });
 	
-	fly.speed = 0.09f;
+	fly.speed = 0.07f;
 
-	path.PushBack({ 0.0f, 2.0f }, 40);
+	path.PushBack({ 0.0f, 2.0f }, 5);
 	path.PushBack({ 0.3f, -0.4f }, 120);
 	path.PushBack({ -0.3f, -0.4f }, 120);
 	path.PushBack({ 0.0f, 1.5f }, 30);
@@ -35,7 +35,7 @@ Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 	dragonDamaged.PushBack({ 752,228,88,100 });
 	dragonDamaged.PushBack({ 857,230,87,100 });
 
-	dragonDamaged.speed = 0.09f;
+	dragonDamaged.speed = 0.07f;
 
 	collider = App->collisions->AddCollider({ 0, 0, 88, 90 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
@@ -43,7 +43,7 @@ Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 
 void Enemy_BlueDragon::Update()
 {
-	if (position.y > App->render->camera.y - 100) {
+	if (position.y > App->render->camera.y - 120) {
 		path.Update();
 	}
 	

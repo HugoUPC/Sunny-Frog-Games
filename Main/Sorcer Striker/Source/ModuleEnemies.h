@@ -16,6 +16,7 @@ enum class ENEMY_TYPE
 	REDBALL,
 	REDBALLSTRAIGHT,
 	BOSS,
+	WIZZARD,
 };
 
 struct EnemySpawnpoint
