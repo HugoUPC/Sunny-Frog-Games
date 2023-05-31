@@ -39,6 +39,7 @@ public:
 	Uint32 timeout;
 
 	int PowerUpCollectFx = 0;
+	int selectedPlayerFx = 0;
 
 	Animation selected;
 	Animation numbers; 
