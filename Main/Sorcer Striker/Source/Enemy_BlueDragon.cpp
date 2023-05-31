@@ -30,6 +30,15 @@ Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 	path.PushBack({-1.0f, 0.5f}, 80);
 	path.PushBack({-1.0f, 1.0f}, 80);*/
 
+	dragonDamaged.PushBack({ 542,227,91,100 });
+	dragonDamaged.PushBack({ 650,233,92,100 });
+	dragonDamaged.PushBack({ 752,228,88,100 });
+	dragonDamaged.PushBack({ 857,230,87,100 });
+
+	dragonDamaged.speed = 0.09f;
+
+	Health = 60;
+
 	collider = App->collisions->AddCollider({ 0, 0, 88, 90 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
 }
@@ -94,12 +103,16 @@ void Enemy_BlueDragon::Update()
 	else tempTimer++;
 	//App->audio->PlayFx(laserFx);
 
+
+
+
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();
 }
 
 void Enemy_BlueDragon::OnCollision(Collider* collider) {
+
 
 	if (collider->type != Collider::Type::SCREENBOUNDINGBOX && lives <= 0) {
 		App->particles->AddParticle(App->particles->explosion, position.x, position.y);
@@ -112,4 +125,29 @@ void Enemy_BlueDragon::OnCollision(Collider* collider) {
 		App->audio->PlayFx(destroyedFx);
 		lives--;
 	}
+}
+
+void Enemy_BlueDragon::OnCollision(Collider* c1, Collider* c2) {
+
+	if (c1 == collider && c2->type != Collider::Type::PLAYER_SHOT)
+		currentAnim = &fly;
+
+	if (c1 == collider && c2->type == Collider::Type::PLAYER_SHOT)
+	{
+		LOG("head1 HIT!");
+		LOG("%d", Health);
+		if (Health > 0)
+		{
+			Health -= 10;
+			currentAnim = &dragonDamaged;
+		}
+		else
+		{
+			currentAnim = nullptr;
+			collider->pendingToDelete = true;
+		}
+	}
+
+
+
 }

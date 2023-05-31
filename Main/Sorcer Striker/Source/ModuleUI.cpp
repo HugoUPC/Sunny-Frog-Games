@@ -132,7 +132,7 @@ update_status ModuleUI::PostUpdate()
 	}
 	if (App->render->camera.y > -200) {
 		SDL_Rect rect = type.GetCurrentFrame();
-		App->render->Blit(typingtexture, 10, 104 + App->render->camera.y, &rect);
+		App->render->Blit(typingtexture, 10, 150 + App->render->camera.y, &rect);
 	}
 	return update_status::UPDATE_CONTINUE;
 }
