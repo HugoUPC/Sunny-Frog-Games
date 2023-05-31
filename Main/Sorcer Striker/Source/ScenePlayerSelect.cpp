@@ -63,6 +63,7 @@ bool ScenePlayerSelect::Start()
 
     App->audio->PlayMusic("Assets/Music/characterSelect.ogg", 1.0f);
     PowerUpCollectFx = App->audio->LoadFx("Assets/Fx/powerUp.wav");
+    selectedPlayerFx = App->audio->LoadFx("Assets/Fx/selectedplayer.wav");
 
     App->render->camera.x = 0;
     App->render->camera.y = 0;
@@ -71,6 +72,8 @@ bool ScenePlayerSelect::Start()
     position.y = 0;
 
     timeout = SDL_GetTicks();
+
+    numbers.Reset();
 
     return ret;
 }
@@ -85,6 +88,7 @@ update_status ScenePlayerSelect::Update()
 
     if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_DOWN)
     {
+        App->audio->PlayFx(selectedPlayerFx);
        if (position.x == 0) {
         position.x == 0;
        }
@@ -95,6 +99,7 @@ update_status ScenePlayerSelect::Update()
 
     if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_DOWN)
     {
+        App->audio->PlayFx(selectedPlayerFx);
         if (position.x == -738) {
             position.x == 0;
         }
@@ -108,7 +113,7 @@ update_status ScenePlayerSelect::Update()
     }
 
     selected.Update();
-    if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout)) numbers.Update();
+    numbers.Update();
 
     return update_status::UPDATE_CONTINUE;
 }
