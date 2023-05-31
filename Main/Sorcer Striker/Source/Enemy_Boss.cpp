@@ -88,7 +88,7 @@ void Enemy_Boss::Update()
 		break;
 	}
 
-	if (stateChangerTimer >= 240)
+	if (stateChangerTimer >= STATEDURATION)
 	{
 		if (boss_state == IDLE)
 		{
@@ -96,6 +96,7 @@ void Enemy_Boss::Update()
 			currentPath = &throwingfire;
 			stateChangerTimer = 0;
 			spawnPos = position;
+			STATEDURATION = 60;
 		}
 		else if (boss_state == THROWINGFIRE)
 		{
@@ -103,6 +104,8 @@ void Enemy_Boss::Update()
 			currentPath = &idle;
 			stateChangerTimer = 0;
 			spawnPos = position;
+			spawnPos.y += 200;
+			STATEDURATION = 240;
 		}
 	}
 
