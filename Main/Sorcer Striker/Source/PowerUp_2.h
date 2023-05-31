@@ -1,18 +1,19 @@
-#ifndef __POWERUP_TEST_H__
-#define __POWERUP_TEST_H__
+#ifndef __POWERUP_2_H__
+#define __POWERUP_2_H__
 
 #include "PowerUp.h"
 
-class PowerUp_Test : public PowerUp
+class PowerUp_2 : public PowerUp
 {
 public:
 
 	// Constructor (x y coordinates in the world)
 	// Creates animation data and the collider
-	PowerUp_Test(int x, int y);
+	PowerUp_2(int x, int y);
 
 	// The enemy is going to perform a sinusoidal movement
 	void Update() override;
+	void OnCollision(Collider* collider) override;
 
 private:
 	// The position (as ratio) in the wave at a specific moment
@@ -31,4 +32,4 @@ private:
 	Animation flyAnim;
 };
 
-#endif // __POWERUP_TEST_H__
+#endif // __POWERUP_2_H__

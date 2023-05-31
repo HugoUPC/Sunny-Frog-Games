@@ -61,7 +61,8 @@ bool ModulePlayer::Start()
 	score = 000;
 	lives = 3;
 	kills = 0;
-	PowerUpActivated = false;
+	PowerUpActivated[0] = false;
+	PowerUpActivated[1] = false;
 	transitionTimer = 50;
 
 
@@ -168,8 +169,12 @@ update_status ModulePlayer::Update()
 
 	if(shootCooldown > 0) shootCooldown--;
 
-	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || pad.a == true) && PowerUpActivated && shootCooldown <= 0) {
-		PowerUp();
+	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || pad.a == true) && PowerUpActivated[0] && shootCooldown <= 0) {
+		PowerUp_1();
+	}
+
+	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || pad.a == true) && PowerUpActivated[1] && shootCooldown <= 0) {
+		PowerUp_2();
 	}
 
 	if ((App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN || pad.b == true) && bombAmount > 0 && bombActivated == false && bombStarted == false) {
@@ -206,6 +211,8 @@ update_status ModulePlayer::Update()
 		LOG("godmode off");
 	}
 
+	if (App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN) PowerUpActivated[1] = true;
+
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -232,11 +239,18 @@ update_status ModulePlayer::PostUpdate()
 		}
 	}
 
-	if (PowerUpActivated)
+	if (PowerUpActivated[0])
 	{
 		powerUp1.Update();
 		App->render->Blit(texture, position.x - 25, position.y + 12, &(powerUp1.GetCurrentFrame()));
 		App->render->Blit(texture, position.x + 33, position.y + 12, &(powerUp1.GetCurrentFrame()));
+	}
+
+	if (PowerUpActivated[1])
+	{
+		SDL_Rect redBat = { 31, 0, 16, 19 };
+		App->render->Blit(texture, position.x - 25, position.y + 12, &redBat);
+		App->render->Blit(texture, position.x + 33, position.y + 12, &redBat);
 	}
 
 	if (bombStarted)
@@ -295,36 +309,30 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	}
 	else if(c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::ENEMY_SHOT && destroyed == false && !godMode){
 		destroyed = true;
-		PowerUpActivated = false;
+		PowerUpActivated[0] = false;
+		PowerUpActivated[1] = false;
 		lives--;
 	}
 
-	/*if (c1->type == Collider::Type::PLAYER_SHOT && c2->type == Collider::Type::ENEMY)
-	{
-		score += 23;
-		kills++;
-	}*/
-
-	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::POWERUP) {
-		if (PowerUpActivated) {
-			PowerUpActivated = false;
-		}
-		else {
-			PowerUpActivated = true;
-		}
-	}
 }
 
-void ModulePlayer::PowerUp() {
+void ModulePlayer::PowerUp_1() {
 	Particle* batShotL = App->particles->AddParticle(App->particles->bat_shotsR, position.x -20, position.y + 20, Collider::Type::PLAYER_SHOT);
-	Particle* batShotR = App->particles->AddParticle(App->particles->bat_shotsL, position.x +30, position.y + 20, Collider::Type::PLAYER_SHOT);
+	batShotL = App->particles->AddParticle(App->particles->bat_shotsL, position.x +30, position.y + 20, Collider::Type::PLAYER_SHOT);
 	if (batShotL != nullptr)
 	{
 		batShotL->collider->AddListener(this);
 	}
-	if (batShotR != nullptr)
+
+	App->audio->PlayFx(laserFx);
+}
+
+void ModulePlayer::PowerUp_2() {
+	Particle* redShot = App->particles->AddParticle(App->particles->redShot, position.x - 20, position.y + 20, Collider::Type::PLAYER_SHOT); //CHANGE THE PARTICLE!!!
+	redShot = App->particles->AddParticle(App->particles->redShot, position.x + 30, position.y + 20, Collider::Type::PLAYER_SHOT);
+	if (redShot != nullptr)
 	{
-		batShotR->collider->AddListener(this);
+		redShot->collider->AddListener(this);
 	}
 
 	App->audio->PlayFx(laserFx);

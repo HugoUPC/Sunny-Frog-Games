@@ -63,6 +63,8 @@ public:
 	Particle bat_shotsR;
 	Particle bat_shotsL;
 
+	Particle redShot;
+
 	Particle fireBall;
 
 private:

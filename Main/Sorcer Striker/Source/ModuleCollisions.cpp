@@ -154,6 +154,9 @@ void ModuleCollisions::DebugDraw()
 			case Collider::Type::SCREENBOUNDINGBOX: // Orange
 			App->render->DrawQuad(colliders[i]->rect, 255, 165, 0, alpha);
 			break;
+			case Collider::Type::POWERUP: // grey
+			App->render->DrawQuad(colliders[i]->rect, 255, 192, 203, alpha);
+			break;
 		}
 	}
 }

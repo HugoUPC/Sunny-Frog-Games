@@ -30,7 +30,8 @@ public:
 	update_status PostUpdate() override;
 
 	void OnCollision(Collider* c1, Collider* c2) override;
-	void PowerUp();
+	void PowerUp_1();
+	void PowerUp_2();
 	void bomb();
 
 public:
@@ -58,7 +59,7 @@ public:
 	uint burstCounter = 2;
 	uint shootCooldown = 0;
 
-	bool PowerUpActivated = false;
+	bool PowerUpActivated[2] = { false };
 
 	int transitionTimer = 50;
 

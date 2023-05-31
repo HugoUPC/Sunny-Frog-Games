@@ -7,7 +7,8 @@
 #include "ModuleAudio.h"
 
 #include "PowerUp.h"
-#include "PowerUp_Test.h"
+#include "PowerUp_1.h"
+#include "PowerUp_2.h"
 
 #define SPAWN_MARGIN 50
 
@@ -25,7 +26,7 @@ ModulePowerUp::~ModulePowerUp()
 
 bool ModulePowerUp::Start()
 {
-	texture = App->textures->Load("Assets/Sprites/book.png");
+	texture = App->textures->Load("Assets/Sprites/powerups.png");
 	PowerUpDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 	
 	return true;
@@ -155,8 +156,12 @@ void ModulePowerUp::SpawnPowerUp(const PowerUpSpawnpoint& info)
 		{
 			switch (info.type)
 			{
-			case POWERUP_TYPE::POWERUP:
-				powerups[i] = new PowerUp_Test(info.x, info.y);
+			case POWERUP_TYPE::POWERUP_1:
+				powerups[i] = new PowerUp_1(info.x, info.y);
+				break;
+
+			case POWERUP_TYPE::POWERUP_2:
+				powerups[i] = new PowerUp_2(info.x, info.y);
 				break;
 			}
 			powerups[i]->texture = texture;

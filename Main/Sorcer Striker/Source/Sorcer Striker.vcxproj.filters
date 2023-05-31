@@ -112,7 +112,7 @@
     <ClCompile Include="PowerUp.cpp">
       <Filter>Source Files\Entities\PowerUps</Filter>
     </ClCompile>
-    <ClCompile Include="PowerUp_Test.cpp">
+    <ClCompile Include="PowerUp_1.cpp">
       <Filter>Source Files\Entities\PowerUps</Filter>
     </ClCompile>
     <ClCompile Include="Enemy_RedBall.cpp">
@@ -150,6 +150,9 @@
     </ClCompile>
     <ClCompile Include="SceneStory5.cpp">
       <Filter>Source Files\Modules\Game Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUp_2.cpp">
+      <Filter>Source Files\Entities\PowerUps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -237,7 +240,7 @@
     <ClInclude Include="PowerUp.h">
       <Filter>Source Files\Entities\PowerUps</Filter>
     </ClInclude>
-    <ClInclude Include="PowerUp_Test.h">
+    <ClInclude Include="PowerUp_1.h">
       <Filter>Source Files\Entities\PowerUps</Filter>
     </ClInclude>
     <ClInclude Include="Enemy_RedBall.h">
@@ -275,6 +278,9 @@
     </ClInclude>
     <ClInclude Include="SceneStory5.h">
       <Filter>Source Files\Modules\Game Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUp_2.h">
+      <Filter>Source Files\Entities\PowerUps</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -70,7 +70,11 @@ bool SceneLevel1::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -2100);
 
-	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP, 110, -400);
+	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP_1, 110, -400);
+
+	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP_2, 110, -600);
+	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP_2, 130, -600);
+	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP_2, 150, -600);
 
 	
 

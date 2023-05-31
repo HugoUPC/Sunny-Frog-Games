@@ -75,6 +75,12 @@ bool ModuleParticles::Start()
 	fireBall.lifetime = 60;
 	fireBall.anim.PushBack({ 34, 1, 9, 9 });
 	fireBall.speed.y = 6;
+
+	redShot.lifetime = 180;
+	redShot.anim.PushBack({ 47, 0, 6, 17 });
+	redShot.anim.loop = true;
+	redShot.anim.speed = 0.3f;
+	redShot.speed.y = -6;
 	
 	return true;
 }
