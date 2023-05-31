@@ -72,7 +72,7 @@ bool ModuleParticles::Start()
 	bat_shotsL.speed.y = -6;
 	bat_shotsL.speed.x = 0;
 
-	fireBall.lifetime = 60;
+	fireBall.lifetime = 180;
 	fireBall.anim.PushBack({ 34, 1, 9, 9 });
 	fireBall.speed.y = 6;
 

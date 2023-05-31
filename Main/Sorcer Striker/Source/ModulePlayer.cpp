@@ -87,6 +87,8 @@ update_status ModulePlayer::Update()
 	position.y -= 1;
 	backupPosition.y -= 1;
 
+	if (spawnCountdown > 0) spawnCountdown--;
+
 	shipleft.Update();
 	shipright.Update();
 
@@ -230,6 +232,7 @@ update_status ModulePlayer::PostUpdate()
 			position.x = backupPosition.x;
 			position.y = backupPosition.y;
 			destroyedCountdown = 120;
+			spawnCountdown = SPAWNDELAY;
 			destroyed = false;
 		}
 		else {
@@ -307,7 +310,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		destroyed = true;
 	}
-	else if(c1->type == Collider::Type::PLAYER && (c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::ENEMY_SHOT) && destroyed == false && !godMode){
+	else if(c1->type == Collider::Type::PLAYER && (c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::ENEMY_SHOT) && destroyed == false && spawnCountdown <= 0 && !godMode){
 		destroyed = true;
 		PowerUpActivated[0] = false;
 		PowerUpActivated[1] = false;

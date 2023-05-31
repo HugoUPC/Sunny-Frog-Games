@@ -54,6 +54,9 @@ public:
 	// It will be switched depending on the player's movement direction
 	Animation* currentAnimation = nullptr;
 
+	const uint SPAWNDELAY = 180;
+	uint spawnCountdown = SPAWNDELAY;
+
 	bool burst = false;
 	uint burstCountdown = 5;
 	uint burstCounter = 2;
