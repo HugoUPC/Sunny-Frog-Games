@@ -1,0 +1,78 @@
+/* Reset de estilos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos generales */
+body {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+/* Estilos de encabezado */
+header {
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* Estilos de barra de navegación */
+nav {
+  background-color: #333333;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+nav ul li a:hover {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+/* Estilos de secciones */
+section {
+  margin-bottom: 30px;
+}
+
+/* Estilos de pie de página */
+footer {
+  background-color: #333333;
+  padding: 20px;
+  text-align: center;
+}
+
+footer p {
+  margin-bottom: 0;
+}
