@@ -32,6 +32,8 @@ public:
 	// Resets the path to the first step
 	void Reset();
 
+	void ResetRelativePosition();
+
 public:
 	// Defines wether the path should go back to the beginning when finished
 	bool loop = true;
