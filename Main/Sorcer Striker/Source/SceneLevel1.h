@@ -37,6 +37,8 @@ public:
 	int bgPos = 0;
 	int bgSpeed = 10;
 
+	bool spawnMode = false;
+
 	SDL_Rect bgSize;
 	Collider* screenBoundingBox = nullptr;
 

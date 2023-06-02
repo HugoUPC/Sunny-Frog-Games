@@ -22,15 +22,17 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	lasertexture = App->textures->Load("Assets/Sprites/particles.png");
-	explosiontexture = App->textures->Load("Assets/Sprites/enemies.png");
+	texture = App->textures->Load("Assets/Sprites/particles.png");
 
 	// Explosion particle
-	explosion.anim.PushBack({ 71, 2, 48, 44 });
-	explosion.anim.PushBack({118, 2,  48, 44 });
-	explosion.anim.PushBack({163, 2,  48, 44 });
+	explosion.anim.PushBack({ 0, 18, 33, 30 });
+	explosion.anim.PushBack({ 39, 18, 33, 30 });
+	explosion.anim.PushBack({ 65, 18, 33, 30 });
+	explosion.anim.PushBack({ 100, 18, 33, 30 });
+	explosion.anim.PushBack({ 137, 18, 33, 30 });
+	explosion.anim.PushBack({ 175, 18, 33, 30 });
 	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
+	explosion.anim.speed = 0.7f;
 
 	// TODO 2:	Create the template for a new particle "laser"
 	//			Remember: not all the code goes here!
@@ -172,8 +174,7 @@ update_status ModuleParticles::PostUpdate()
 
 		if (particle != nullptr && particle->isAlive)
 		{
-			App->render->Blit(lasertexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
-			App->render->Blit(explosiontexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			App->render->Blit(texture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 		}
 	}
 
@@ -195,7 +196,7 @@ Particle* ModuleParticles::AddParticle(const Particle& particle, int x, int y, C
 			newParticle->position.y = y;
 
 			//Adding the particle's collider
-			if (colliderType != Collider::Type::NONE)
+			//if (colliderType != Collider::Type::NONE)
 				newParticle->collider = App->collisions->AddCollider(newParticle->anim.GetCurrentFrame(), colliderType, this);
 
 			if (newParticle->collider == nullptr)

@@ -102,9 +102,26 @@ update_status SceneLevel1::Update()
 	//set mouseState and mouseCoords
 	mouseState = App->input->GetMouse(&mousePos.x, &mousePos.y);
 
-	if (mouseState == 1)
+	if (spawnMode)
 	{
-		App->particles->AddParticle(App->particles->explosion, mousePos.x, mousePos.y);
+		if (App->input->keys[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN)
+
+
+		if (mouseState == 1)
+		{
+			App->particles->AddParticle(App->particles->explosion, mousePos.x + App->render->camera.x, mousePos.y + App->render->camera.y);
+		}
+	}
+
+	if (App->input->keys[SDL_SCANCODE_F6] == KEY_STATE::KEY_DOWN && !spawnMode)
+	{
+		spawnMode = true;
+		LOG("Spawn Mode enabled");
+	}
+	else if (App->input->keys[SDL_SCANCODE_F6] == KEY_STATE::KEY_DOWN && spawnMode)
+	{
+		spawnMode = false;
+		LOG("Spawn Mode disabled");
 	}
 
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN) {
