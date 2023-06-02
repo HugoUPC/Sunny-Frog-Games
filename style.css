@@ -16,15 +16,24 @@ body {
   max-width: 960px;
   margin: 0 auto;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1, h2, h3 {
   color: #ffffff;
   margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
 }
 
 p {
   margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
 }
 
 /* Estilos de encabezado */
@@ -76,3 +85,4 @@ footer {
 footer p {
   margin-bottom: 0;
 }
+
