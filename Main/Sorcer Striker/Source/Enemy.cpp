@@ -46,6 +46,10 @@ void Enemy::OnCollision(Collider* collider)
 		App->particles->AddParticle(App->particles->explosion, position.x, position.y);
 		App->audio->PlayFx(destroyedFx);
 
+		if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER)
+		{
+			killedByPlayer = true;
+		}
 		SetToDelete();
 	}
 }
@@ -55,8 +59,12 @@ void  Enemy::OnCollision(Collider* c1, Collider* c2) {}
 
 void Enemy::SetToDelete()
 {
-	App->player->score += 23;
-	App->player->kills++;
+	if (killedByPlayer == true)
+	{
+		App->player->score += 23;
+		App->player->kills++;
+		killedByPlayer = false;
+	}
 	pendingToDelete = true;
 	if (collider != nullptr)
 		collider->pendingToDelete = true;
