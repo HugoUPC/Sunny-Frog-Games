@@ -33,7 +33,9 @@ bool SceneLevel1::Start()
 	bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 80, -200);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 40, -210);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 80, -220);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 120, -230);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -200);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -210);
@@ -58,9 +60,9 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -760);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -770);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 60, -840);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 40, -840);
 	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 80, -850);
-	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 100, -860);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 120, -860);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -900);
 
@@ -73,12 +75,16 @@ bool SceneLevel1::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 130, -1500);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -2000);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -2040);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -2080);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -2120);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -2160);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -2200);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1900);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1910);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1920);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1930);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1940);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1950);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 40, -2000);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 80, -2010);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 120, -2020);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -2100);
 
