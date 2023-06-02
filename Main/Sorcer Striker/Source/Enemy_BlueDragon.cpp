@@ -9,10 +9,10 @@
 
 Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 0,52,100,120 });
-	fly.PushBack({ 122,52,100,120 });
-	fly.PushBack({ 240,52,100,120 });
-	fly.PushBack({ 357,52,100,120 });
+	fly.PushBack({ 0,45,91,100 });
+	fly.PushBack({ 107,45,92,100 });
+	fly.PushBack({ 211,45,88,100 });
+	fly.PushBack({ 314,45,87,100 });
 	
 	fly.speed = 0.07f;
 
