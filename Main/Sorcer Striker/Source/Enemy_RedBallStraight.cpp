@@ -6,8 +6,8 @@
 
 Enemy_RedBallStraight::Enemy_RedBallStraight(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 0,0,29,39 });
-	fly.PushBack({ 38,0,29,39 });
+	fly.PushBack({ 0,0,26,38 });
+	fly.PushBack({ 36,0,26,38 });
 	fly.speed = 0.3f;
 
 

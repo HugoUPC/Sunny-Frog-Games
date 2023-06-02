@@ -6,9 +6,9 @@
 
 Enemy_Wizzard::Enemy_Wizzard(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({ 250,0,50,50 });
-	fly.PushBack({ 306,0,50,50 });
-	fly.PushBack({ 364,0,50,50 });
+	fly.PushBack({ 219,0,50,45 });
+	fly.PushBack({ 278,0,50,45 });
+	fly.PushBack({ 334,0,50,45 });
 	fly.speed = 0.02f;
 
 
