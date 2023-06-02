@@ -73,6 +73,21 @@ nav ul li a:hover {
 /* Estilos de secciones */
 section {
   margin-bottom: 30px;
+  text-align: center; /* Añadir estilo para centrar el contenido */
+}
+
+ul {
+  text-align: left; /* Cambiar la alineación del texto a izquierda */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+section a {
+  display: block;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Estilos de pie de página */
