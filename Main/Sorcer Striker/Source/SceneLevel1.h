@@ -2,6 +2,7 @@
 #define __SCENE_LEVEL1_H__
 
 #include "Module.h"
+#include "p2Point.h"
 #include "Animation.h"
 
 struct SDL_Texture;
@@ -38,6 +39,9 @@ public:
 
 	SDL_Rect bgSize;
 	Collider* screenBoundingBox = nullptr;
+
+	iPoint mousePos;
+	Uint32 mouseState;
 
 };
 

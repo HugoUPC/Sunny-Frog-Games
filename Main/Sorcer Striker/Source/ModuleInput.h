@@ -73,12 +73,18 @@ public:
 	bool ShakeController(int id, int duration, float strength = 0.5f);
 	const char* GetControllerName(int id) const;
 
+	Uint32 GetMouse(int* x, int* y);
+
 public:
 	// An array to fill in the state of all the keyboard keys
 	KEY_STATE keys[MAX_KEYS] = { KEY_IDLE };
 
 	// An array to fill in all detected gamepads
 	GamePad pads[MAX_PADS];
+
+private:
+
+	Uint32 previousMouseState = 0;
 };
 
 #endif // __ModuleInput_H__

@@ -233,3 +233,22 @@ const char* ModuleInput::GetControllerName(int id) const
 
 	return "unplugged";
 }
+
+Uint32 ModuleInput::GetMouse(int* x, int* y)
+{
+	Uint32 ret = SDL_GetMouseState(x, y);
+	*x /= SCREEN_SIZE;
+	*y /= SCREEN_SIZE;
+
+	if (ret == 1 && previousMouseState != 1)
+	{
+		previousMouseState = ret;
+		return ret;
+	}
+	else if (ret == 0)
+	{
+		previousMouseState = ret;
+	}
+
+	return 0;
+}
