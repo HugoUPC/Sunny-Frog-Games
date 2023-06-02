@@ -42,14 +42,15 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	boss_state = IDLE;
 	currentPath = &idle;
 
+	throwingfire.PushBack({ 0.0f, -1.0f }, 45);
 	throwingfire.PushBack({ 0.0f, -2.0f }, 45);
 	throwingfire.PushBack({ 0.0f, 0.0f }, 45);
 
 	collider = App->collisions->AddCollider({ 0, 0, 281,124 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
-	head1 = App->collisions->AddCollider({ 60, 84, 44,58 }, Collider::Type::ENEMY, (Module*)App->enemies);
-	head2 = App->collisions->AddCollider({ 127, 84, 44,58 }, Collider::Type::ENEMY, (Module*)App->enemies);
-	head3 = App->collisions->AddCollider({ 198, 84, 44,58 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	head1 = App->collisions->AddCollider({ 60, 84, 39,54 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	head2 = App->collisions->AddCollider({ 127, 84, 39,54 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	head3 = App->collisions->AddCollider({ 198, 84, 39,54 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
 	head1Health = 100;
 	head2Health = 1000;
@@ -65,9 +66,9 @@ void Enemy_Boss::Update()
 	propeller.Update();
 
 
-	head1->SetPos(position.x + 60, position.y + 84);
-	head2->SetPos(position.x + 127, position.y + 84);
-	head3->SetPos(position.x + 198, position.y + 84);
+	head1->SetPos(position.x + 50, position.y + 75);
+	head2->SetPos(position.x + 121, position.y + 75);
+	head3->SetPos(position.x + 193, position.y + 75);
 
 
 	switch (boss_state)
@@ -94,17 +95,20 @@ void Enemy_Boss::Update()
 		{
 			boss_state = THROWINGFIRE;
 			currentPath = &throwingfire;
+			throwingfire.Reset();
+			throwingfire.ResetRelativePosition();
 			stateChangerTimer = 0;
 			spawnPos = position;
-			STATEDURATION = 60;
+			STATEDURATION = 135;
 		}
 		else if (boss_state == THROWINGFIRE)
 		{
 			boss_state = IDLE;
 			currentPath = &idle;
+			idle.Reset();
+			idle.ResetRelativePosition();
 			stateChangerTimer = 0;
 			spawnPos = position;
-			spawnPos.y += 200;
 			STATEDURATION = 240;
 		}
 	}
@@ -126,9 +130,9 @@ void Enemy_Boss::Draw()
 {
 	App->render->Blit(texture, position.x, position.y, currentBody);
 
-	if(currentHead[0] != nullptr) App->render->Blit(texture, position.x + 60, position.y + 84, &(currentHead[0]->GetCurrentFrame()));
-	if(currentHead[1] != nullptr) App->render->Blit(texture, position.x + 127, position.y + 84, &(currentHead[1]->GetCurrentFrame()));
-	if(currentHead[2] != nullptr) App->render->Blit(texture, position.x + 198, position.y + 84, &(currentHead[2]->GetCurrentFrame()));
+	if(currentHead[0] != nullptr) App->render->Blit(texture, position.x + 50, position.y + 75, &(currentHead[0]->GetCurrentFrame()));
+	if(currentHead[1] != nullptr) App->render->Blit(texture, position.x + 121, position.y + 75, &(currentHead[1]->GetCurrentFrame()));
+	if(currentHead[2] != nullptr) App->render->Blit(texture, position.x + 193, position.y + 75, &(currentHead[2]->GetCurrentFrame()));
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -136,7 +140,7 @@ void Enemy_Boss::Draw()
 	}
 
 	if(currentHead[0] != nullptr) App->render->Blit(texture, position.x + 17, position.y + 83, &(propeller.GetCurrentFrame()));
-	App->render->Blit(texture, position.x + 96, position.y + 84, &(propeller.GetCurrentFrame()));
+	App->render->Blit(texture, position.x + 90, position.y + 82, &(propeller.GetCurrentFrame()));
 	App->render->Blit(texture, position.x + 156, position.y + 83, &(propeller.GetCurrentFrame()));
 	if (currentHead[2] != nullptr) App->render->Blit(texture, position.x + 240, position.y + 84, &(propeller.GetCurrentFrame()));
 
@@ -188,6 +192,10 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 		{
 			currentHead[2] = nullptr;
 			head3->pendingToDelete = true;
+
+			App->particles->AddParticle(App->particles->explosion, position.x + 198, position.y + 84);
+			App->audio->PlayFx(destroyedFx);
+
 			if (currentBody == &fullBody)
 			{
 				currentBody = &rightBodyPart;
