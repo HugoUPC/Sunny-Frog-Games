@@ -44,21 +44,32 @@ bool SceneLevel1::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 100, -320);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -400);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -410);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -420);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -430);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -440);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -450);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -500);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -510);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -520);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -530);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -540);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -550);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -720);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -730);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -740);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -750);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -760);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -770);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 60, -840);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 80, -850);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 100, -860);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -900);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1480);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1520);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1560);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1600);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1640);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1680);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1000);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1010);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1020);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1030);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1040);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -1050);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 130, -1500);
 

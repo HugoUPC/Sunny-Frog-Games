@@ -22,7 +22,7 @@ Enemy_Wizzard::Enemy_Wizzard(int x, int y) : Enemy(x, y)
 
 	path.loop;
 
-	collider = App->collisions->AddCollider({ 0, 0, 24, 24 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ 0, 0, 50, 40 }, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
 void Enemy_Wizzard::Update()
