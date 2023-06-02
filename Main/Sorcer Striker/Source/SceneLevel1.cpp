@@ -10,6 +10,7 @@
 #include "ModuleEnemies.h"
 #include "ModulePowerUp.h"
 #include "ModulePlayer.h"
+#include "ModuleParticles.h"
 #include <stdio.h>
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
@@ -98,6 +99,14 @@ update_status SceneLevel1::Update()
 	App->render->camera.y -= 1;
 	screenBoundingBox->SetPos(0, App->render->camera.y);
 
+	//set mouseState and mouseCoords
+	mouseState = App->input->GetMouse(&mousePos.x, &mousePos.y);
+
+	if (mouseState == 1)
+	{
+		App->particles->AddParticle(App->particles->explosion, mousePos.x, mousePos.y);
+	}
+
 	if (App->input->keys[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN) {
 		App->render->camera.y = -9000;
 		App->player->position.y = -8900;
@@ -133,7 +142,11 @@ update_status SceneLevel1::PostUpdate()
 		App->render->Blit(bgTexture, 0, bgPos, &bgSize, 0);
 		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize, 0);
 	}
-	
+
+	//debug mouse pos
+	/*SDL_Rect testRect = { mousePos.x, mousePos.y, 15, 15 };
+	App->render->DrawQuad(testRect, 255, 0, 0, 255, 0);*/
+
 	return update_status::UPDATE_CONTINUE;
 }
 
