@@ -196,24 +196,28 @@ update_status ModulePlayer::Update()
 
 	currentAnimation->Update();
 
-	if (App->input->keys[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) {
-		kills = 20;
-		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
-	}
-	if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN) {
-		lives = 0;
-		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
-	}
-	if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN && !godMode) {
-		godMode = true;
-		LOG("godmode on");
-	}
-	else if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN && godMode){
-		godMode = false;
-		LOG("godmode off");
-	}
 
-	if (App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN) PowerUpActivated[1] = true;
+	//DEBUG
+
+	if (App->DEBUG)
+	{
+		if (App->input->keys[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) {
+			kills = 20;
+			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+		}
+		if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN) {
+			lives = 0;
+			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+		}
+		if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN && !godMode) {
+			godMode = true;
+			LOG("godmode on");
+		}
+		else if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN && godMode) {
+			godMode = false;
+			LOG("godmode off");
+		}
+	}
 
 
 	return update_status::UPDATE_CONTINUE;

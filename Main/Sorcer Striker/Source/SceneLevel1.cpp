@@ -178,8 +178,8 @@ update_status SceneLevel1::PostUpdate()
 	}
 
 	//debug mouse pos
-	/*SDL_Rect testRect = { mousePos.x, mousePos.y, 15, 15 };
-	App->render->DrawQuad(testRect, 255, 0, 0, 255, 0);*/
+	SDL_Rect testRect = { mousePos.x, mousePos.y, 15, 15 };
+	App->render->DrawQuad(testRect, 255, 0, 0, 255, 0);
 
 	return update_status::UPDATE_CONTINUE;
 }

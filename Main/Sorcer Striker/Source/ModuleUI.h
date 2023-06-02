@@ -32,6 +32,9 @@ public:
 	char livesText[10] = { "\0" };
 	char bombsText[10] = { "\0" };
 
+	//DEBUG
+	int debugFont = -1;
+
 	SDL_Texture* UIElements = nullptr;
 	SDL_Texture* wintexture = nullptr;
 	SDL_Texture* stage1texture = nullptr;

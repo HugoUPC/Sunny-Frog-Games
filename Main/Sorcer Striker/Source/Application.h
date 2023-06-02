@@ -87,6 +87,9 @@ public:
 	ModuleFonts* fonts = nullptr;
 
 	ModuleRender* render = nullptr;
+
+	//DEBUG
+	bool DEBUG = false;
 };
 
 // Global var made extern for Application ---

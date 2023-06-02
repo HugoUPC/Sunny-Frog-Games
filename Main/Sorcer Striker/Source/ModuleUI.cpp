@@ -2,6 +2,8 @@
 
 #include "Application.h"
 #include "ModuleTextures.h"
+#include "ModuleInput.h"
+#include "ModuleCollisions.h"
 #include "ModulePlayer.h"
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
@@ -72,6 +74,9 @@ bool ModuleUI::Start()
 	char lookupTable[] = { " 01&........x23456789" };
 	scoreFont = App->fonts->Load("Assets/Fonts/yb-numbers.png", lookupTable, 1);
 
+	char lookupTable2[] = { "! #$%&'()*+,-./0123456789:;<=>? ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^- abcdefghijklmnopqrstuvwxyz | _" };
+	debugFont = App->fonts->Load("Assets/Fonts/ddrtiny.bmp", lookupTable2, 1);
+
 	return true;
 }
 
@@ -117,6 +122,23 @@ update_status ModuleUI::PostUpdate()
 	App->fonts->BlitText(220, 13, scoreFont, "0");
 
 	//App->fonts->BlitText(50, 300, scoreFont, "0123456789");
+
+	//DEBUG
+	if (App->DEBUG == true)
+	{
+		App->fonts->BlitText(0, 295, debugFont, "F2-COLLISIONS:");
+		App->fonts->BlitText(115, 295, debugFont, App->collisions->debug ? "SHOW" : "HIDE");
+
+		App->fonts->BlitText(0, 310, debugFont, "F1-GAMEMODE:");
+		App->fonts->BlitText(110, 310, debugFont, App->player->godMode ? "TRUE" : "FALSE");
+
+		App->fonts->BlitText(0, 325, debugFont, "Q-QUIT");
+
+		if (App->input->keys[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN) App->DEBUG = false;
+	}
+
+	if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN) App->DEBUG = true;
+
 
 	if (App->player->kills >= 200) {
 		App->render->Blit(wintexture, 0, 0, NULL, 0);
