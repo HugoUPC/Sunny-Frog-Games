@@ -180,20 +180,23 @@ update_status SceneLevel1::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_F6] == KEY_STATE::KEY_DOWN && !spawnMode)
+	if (App->DEBUG)
 	{
-		spawnMode = true;
-		LOG("Spawn Mode enabled");
-	}
-	else if (App->input->keys[SDL_SCANCODE_F6] == KEY_STATE::KEY_DOWN && spawnMode)
-	{
-		spawnMode = false;
-		LOG("Spawn Mode disabled");
-	}
+		if (App->input->keys[SDL_SCANCODE_F6] == KEY_STATE::KEY_DOWN && !spawnMode)
+		{
+			spawnMode = true;
+			LOG("Spawn Mode enabled");
+		}
+		else if (App->input->keys[SDL_SCANCODE_F6] == KEY_STATE::KEY_DOWN && spawnMode)
+		{
+			spawnMode = false;
+			LOG("Spawn Mode disabled");
+		}
 
-	if (App->input->keys[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN) {
-		App->render->camera.y = -9000;
-		App->player->position.y = -8900;
+		if (App->input->keys[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN) {
+			App->render->camera.y = -9000;
+			App->player->position.y = -8900;
+		}
 	}
 
 	if(App->render->camera.y == -9100) App->enemies->AddEnemy(ENEMY_TYPE::BOSS, -15, -9050);

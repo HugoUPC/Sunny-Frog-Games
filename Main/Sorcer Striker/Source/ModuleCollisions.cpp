@@ -116,7 +116,7 @@ update_status ModuleCollisions::PreUpdate()
 
 update_status ModuleCollisions::Update()
 {
-	if (App->input->keys[SDL_SCANCODE_F2] == KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_F2] == KEY_DOWN && App->DEBUG)
 		debug = !debug;
 
 	return update_status::UPDATE_CONTINUE;
@@ -158,9 +158,9 @@ void ModuleCollisions::DebugDraw()
 			case Collider::Type::ENEMY_SHOT: // magenta
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
 			break;
-			case Collider::Type::SCREENBOUNDINGBOX: // Orange
-			App->render->DrawQuad(colliders[i]->rect, 255, 165, 0, alpha);
-			break;
+			//case Collider::Type::SCREENBOUNDINGBOX: // Orange
+			//App->render->DrawQuad(colliders[i]->rect, 255, 165, 0, alpha);
+			//break;
 			case Collider::Type::POWERUP: // grey
 			App->render->DrawQuad(colliders[i]->rect, 255, 192, 203, alpha);
 			break;
