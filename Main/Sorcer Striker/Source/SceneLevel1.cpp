@@ -145,6 +145,10 @@ update_status SceneLevel1::Update()
 		{
 			selectedSpawnItem = 6;
 		}
+		else if (App->input->keys[SDL_SCANCODE_7] == KEY_STATE::KEY_DOWN)
+		{
+			selectedSpawnItem = 7;
+		}
 
 
 		if (mouseState == 1)
@@ -164,9 +168,12 @@ update_status SceneLevel1::Update()
 				App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, mousePos.x + App->render->camera.x, mousePos.y + App->render->camera.y);
 				break;
 			case 5:
-				App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP_1, mousePos.x + App->render->camera.x, mousePos.y + App->render->camera.y);
+				App->enemies->AddEnemy(ENEMY_TYPE::REDBAT, mousePos.x + App->render->camera.x, mousePos.y + App->render->camera.y);
 				break;
 			case 6:
+				App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP_1, mousePos.x + App->render->camera.x, mousePos.y + App->render->camera.y);
+				break;
+			case 7:
 				App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP_2, mousePos.x + App->render->camera.x, mousePos.y + App->render->camera.y);
 				break;
 			default:

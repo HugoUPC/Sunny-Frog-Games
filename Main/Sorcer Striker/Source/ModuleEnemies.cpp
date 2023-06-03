@@ -15,6 +15,7 @@
 #include "Enemy_RedBallStraight.h"
 #include "Enemy_Boss.h"
 #include "Enemy_Wizzard.h"
+#include "Enemy_RedBat.h"
 
 #include <iostream>
 
@@ -182,6 +183,9 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 					break;
 				case ENEMY_TYPE::WIZZARD:
 					enemies[i] = new Enemy_Wizzard(info.x, info.y);
+					break;
+				case ENEMY_TYPE::REDBAT:
+					enemies[i] = new Enemy_RedBat(info.x, info.y);
 					break;
 			}
 			enemies[i]->texture = texture;
