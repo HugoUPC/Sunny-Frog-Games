@@ -7,12 +7,11 @@
 #include "ModulePlayer.h"
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
+#include "SceneLevel1.h"
 
 #include <stdio.h>
 
 #include "SDL/include/SDL.h"
-#pragma comment( lib, "SDL/libx86/SDL2.lib")
-#pragma comment( lib, "SDL/libx86/SDL2main.lib")
 
 ModuleUI::ModuleUI(bool startEnabled) : Module(startEnabled)
 {
@@ -126,11 +125,24 @@ update_status ModuleUI::PostUpdate()
 	//DEBUG
 	if (App->DEBUG == true)
 	{
-		App->fonts->BlitText(0, 295, debugFont, "F2-COLLISIONS:");
-		App->fonts->BlitText(115, 295, debugFont, App->collisions->debug ? "SHOW" : "HIDE");
+		if (!App->sceneLevel_1->spawnMode)
+		{
+			App->fonts->BlitText(0, 280, debugFont, "F6-SPAWNMODE:");
+			App->fonts->BlitText(120, 280, debugFont, App->sceneLevel_1->spawnMode ? "ON" : "OFF");
+		}
+		else
+		{
+			sprintf_s(selectedObjectText, 10, "<%1d>", App->sceneLevel_1->selectedSpawnItem);
 
-		App->fonts->BlitText(0, 310, debugFont, "F1-GAMEMODE:");
-		App->fonts->BlitText(110, 310, debugFont, App->player->godMode ? "TRUE" : "FALSE");
+			App->fonts->BlitText(0, 280, debugFont, "SELECTED-OBJECT:");
+			App->fonts->BlitText(145, 280, debugFont, selectedObjectText);
+		}
+
+		App->fonts->BlitText(0, 295, debugFont, "F2-COLLISIONS:");
+		App->fonts->BlitText(130, 295, debugFont, App->collisions->debug ? "SHOW" : "HIDE");
+
+		App->fonts->BlitText(0, 310, debugFont, "F1-GODMODE:");
+		App->fonts->BlitText(110, 310, debugFont, App->player->godMode ? "ON" : "OFF");
 
 		App->fonts->BlitText(0, 325, debugFont, "Q-QUIT");
 

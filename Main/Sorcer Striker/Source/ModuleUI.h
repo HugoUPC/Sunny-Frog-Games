@@ -34,6 +34,7 @@ public:
 
 	//DEBUG
 	int debugFont = -1;
+	char selectedObjectText[10] = { "\0" };
 
 	SDL_Texture* UIElements = nullptr;
 	SDL_Texture* wintexture = nullptr;

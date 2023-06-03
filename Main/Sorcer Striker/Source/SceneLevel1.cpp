@@ -122,11 +122,56 @@ update_status SceneLevel1::Update()
 	if (spawnMode)
 	{
 		if (App->input->keys[SDL_SCANCODE_1] == KEY_STATE::KEY_DOWN)
+		{
+			selectedSpawnItem = 1;
+		}
+		else if (App->input->keys[SDL_SCANCODE_2] == KEY_STATE::KEY_DOWN)
+		{
+			selectedSpawnItem = 2;
+		}
+		else if (App->input->keys[SDL_SCANCODE_3] == KEY_STATE::KEY_DOWN)
+		{
+			selectedSpawnItem = 3;
+		}
+		else if (App->input->keys[SDL_SCANCODE_4] == KEY_STATE::KEY_DOWN)
+		{
+			selectedSpawnItem = 4;
+		}
+		else if (App->input->keys[SDL_SCANCODE_5] == KEY_STATE::KEY_DOWN)
+		{
+			selectedSpawnItem = 5;
+		}
+		else if (App->input->keys[SDL_SCANCODE_6] == KEY_STATE::KEY_DOWN)
+		{
+			selectedSpawnItem = 6;
+		}
 
 
 		if (mouseState == 1)
 		{
-			App->particles->AddParticle(App->particles->explosion, mousePos.x + App->render->camera.x, mousePos.y + App->render->camera.y);
+			switch (selectedSpawnItem)
+			{
+			case 1:
+				App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, mousePos.x + App->render->camera.x, mousePos.y + App->render->camera.y);
+				break;
+			case 2:
+				App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, mousePos.x + App->render->camera.x, mousePos.y + App->render->camera.y);
+				break;
+			case 3:
+				App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, mousePos.x + App->render->camera.x, mousePos.y + App->render->camera.y);				
+				break;
+			case 4:
+				App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, mousePos.x + App->render->camera.x, mousePos.y + App->render->camera.y);
+				break;
+			case 5:
+				App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP_1, mousePos.x + App->render->camera.x, mousePos.y + App->render->camera.y);
+				break;
+			case 6:
+				App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP_2, mousePos.x + App->render->camera.x, mousePos.y + App->render->camera.y);
+				break;
+			default:
+				break;
+			}
 		}
 	}
 
@@ -176,10 +221,6 @@ update_status SceneLevel1::PostUpdate()
 		App->render->Blit(bgTexture, 0, bgPos, &bgSize, 0);
 		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize, 0);
 	}
-
-	//debug mouse pos
-	SDL_Rect testRect = { mousePos.x, mousePos.y, 15, 15 };
-	App->render->DrawQuad(testRect, 255, 0, 0, 255, 0);
 
 	return update_status::UPDATE_CONTINUE;
 }

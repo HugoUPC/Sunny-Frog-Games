@@ -38,6 +38,7 @@ public:
 	int bgSpeed = 10;
 
 	bool spawnMode = false;
+	uint selectedSpawnItem = 1;
 
 	SDL_Rect bgSize;
 	Collider* screenBoundingBox = nullptr;
