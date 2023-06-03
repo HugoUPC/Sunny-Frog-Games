@@ -27,7 +27,7 @@ Enemy_RedBat::Enemy_RedBat(int x, int y) : Enemy(x, y)
 	currentAnim = &fly;
 
 	path.PushBack({ 0.0f, -2.0f }, 20);
-	path.PushBack({ 0.0f, 1.0f }, 200);
+	path.PushBack({ 0.0f, 2.0f }, 200);
 	path.loop = false;
 
 	collider = App->collisions->AddCollider({ 0, 0, 34, 40 }, Collider::Type::ENEMY, (Module*)App->enemies);
