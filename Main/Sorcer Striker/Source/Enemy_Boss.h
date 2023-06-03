@@ -20,8 +20,6 @@ public:
 
 	bool ContainsCollider(Collider* c1) override;
 
-	int lives = 5;
-
 private:
 
 	enum State
@@ -32,6 +30,8 @@ private:
 
 		MAX
 	}boss_state;
+
+	bool destroyed = false;
 
 	// A set of steps that define the position in the screen
 	// And an animation for each step
@@ -67,6 +67,8 @@ private:
 	uint head1Health;
 	uint head2Health;
 	uint head3Health;
+
+	int redBatSpawnTimer = 0;
 };
 
 #endif // __ENEMY_BOSS_H__

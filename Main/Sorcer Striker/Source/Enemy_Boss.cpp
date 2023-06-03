@@ -3,13 +3,22 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 #include "ModuleParticles.h"
+#include "ModuleEnemies.h"
 #include "ModuleAudio.h"
+#include "ModulePlayer.h"
 #include "ModuleRender.h"
 
 #include "SDL/include/SDL.h"
 
 Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 {
+	destroyed = false;
+	currentHead[0] = nullptr;
+	currentHead[1] = nullptr;
+	currentHead[2] = nullptr;
+	redBatSpawnTimer = 0;
+
+
 	head.PushBack({ 691,164,44,58 });
 	head.PushBack({ 583,164,44,58 });
 	head.PushBack({ 476,164,44,58 });
@@ -53,13 +62,30 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	head3 = App->collisions->AddCollider({ 198, 84, 39,54 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
 	head1Health = 100;
-	head2Health = 1000;
+	head2Health = 200;
 	head3Health = 100;
 
 }
 
 void Enemy_Boss::Update()
 {
+
+	if (!destroyed)
+	{
+		if (redBatSpawnTimer >= 30)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::REDBAT, position.x + 120 + sin(SDL_GetTicks()) * 80, position.y);
+			redBatSpawnTimer = 0;
+		}
+		else
+		{
+			redBatSpawnTimer++;
+		}
+	}
+	else
+	{
+		App->player->win = true;
+	}
 
 	head.Update();
 	headDamaged.Update();
@@ -82,6 +108,13 @@ void Enemy_Boss::Update()
 	case THROWINGFIRE:
 		throwingfire.Update();
 		stateChangerTimer++;
+
+		if (!(stateChangerTimer % 10) && stateChangerTimer > 45 && stateChangerTimer < 90) //spawn dragon fire
+		{
+			App->particles->AddParticle(App->particles->explosion, position.x + 50, position.y + 100);
+			App->particles->AddParticle(App->particles->explosion, position.x + 121, position.y + 100);
+			App->particles->AddParticle(App->particles->explosion, position.x + 193, position.y + 100);
+		}
 		break;
 	case MAX:
 		break;
@@ -128,7 +161,10 @@ void Enemy_Boss::Update()
 
 void Enemy_Boss::Draw()
 {
-	App->render->Blit(texture, position.x, position.y, currentBody);
+	if (currentBody != nullptr)
+	{
+		App->render->Blit(texture, position.x, position.y, currentBody);
+	}
 
 	if(currentHead[0] != nullptr) App->render->Blit(texture, position.x + 50, position.y + 75, &(currentHead[0]->GetCurrentFrame()));
 	if(currentHead[1] != nullptr) App->render->Blit(texture, position.x + 121, position.y + 75, &(currentHead[1]->GetCurrentFrame()));
@@ -139,10 +175,10 @@ void Enemy_Boss::Draw()
 		if (currentHead[i] == &headDamaged) currentHead[i] = &head;
 	}
 
-	if(currentHead[0] != nullptr) App->render->Blit(texture, position.x + 17, position.y + 83, &(propeller.GetCurrentFrame()));
-	App->render->Blit(texture, position.x + 90, position.y + 82, &(propeller.GetCurrentFrame()));
-	App->render->Blit(texture, position.x + 156, position.y + 83, &(propeller.GetCurrentFrame()));
-	if (currentHead[2] != nullptr) App->render->Blit(texture, position.x + 240, position.y + 84, &(propeller.GetCurrentFrame()));
+	if (currentHead[0] != nullptr) App->render->Blit(texture, position.x + 17, position.y + 83, &(propeller.GetCurrentFrame()));
+	if (currentHead[1] != nullptr) App->render->Blit(texture, position.x + 90, position.y + 82, &(propeller.GetCurrentFrame()));
+	if (currentHead[1] != nullptr) App->render->Blit(texture, position.x + 156, position.y + 83, &(propeller.GetCurrentFrame()));
+	if (currentHead[2] != nullptr)	App->render->Blit(texture, position.x + 240, position.y + 84, &(propeller.GetCurrentFrame()));
 
 
 }
@@ -165,6 +201,7 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 		{
 			currentHead[0] = nullptr;
 			head1->pendingToDelete = true;
+			App->particles->AddParticle(App->particles->bigExplosion, position.x + 100, position.y - 20); //no se no va jo
 			if (currentBody == &fullBody)
 			{
 				currentBody = &leftBodyPart;
@@ -178,7 +215,32 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 	if (c1 == head2 && c2->type == Collider::Type::PLAYER_SHOT)
 	{
 		LOG("head2 HIT!");
-		currentHead[1] = &headDamaged;
+		if (head2Health > 0)
+		{
+			head2Health -= 10;
+			currentHead[1] = &headDamaged;
+		}
+		else
+		{
+			currentHead[0] = nullptr;
+			head1->pendingToDelete = true;
+
+			currentHead[1] = nullptr;
+			head3->pendingToDelete = true;
+
+			currentHead[2] = nullptr;
+			head2->pendingToDelete = true;
+
+			head1Health = 0;
+			head3Health = 0;
+
+			destroyed = true;
+
+			App->particles->AddParticle(App->particles->bigExplosion, position.x + 100, position.y + 50);
+			App->audio->PlayFx(destroyedFx);
+
+			currentBody = nullptr;
+		}
 	}
 	if (c1 == head3 && c2->type == Collider::Type::PLAYER_SHOT)
 	{
