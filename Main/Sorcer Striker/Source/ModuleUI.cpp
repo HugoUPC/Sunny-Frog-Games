@@ -117,7 +117,7 @@ update_status ModuleUI::PostUpdate()
 	App->fonts->BlitText(0, 13, scoreFont, scoreText);
 	App->fonts->BlitText(20, 30, scoreFont, livesText);
 	App->fonts->BlitText(50, 30, scoreFont, bombsText);
-	App->fonts->BlitText(100, 13, scoreFont, "999999");
+	App->fonts->BlitText(100, 13, scoreFont, scoreText);
 	App->fonts->BlitText(220, 13, scoreFont, "0");
 
 	//App->fonts->BlitText(50, 300, scoreFont, "0123456789");
