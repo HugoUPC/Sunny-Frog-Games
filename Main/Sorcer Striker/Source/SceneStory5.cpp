@@ -36,37 +36,60 @@ SceneStory5::SceneStory5(bool startEnabled) : Module(startEnabled)
 	explosion.speed = 0.1f;
 	explosion.loop = false;
 
-	ship1.PushBack({ 32, 33, 22, 32 });
-	ship2.PushBack({ 119, 19, 21, 51-19 });
-	ship3.PushBack({ 142, 63, 167-142, 98-63 });
-	ship4.PushBack({ 59, 75, 22, 45 });
+	ships.PushBack({ 2, 262, 202, 123 });
+	ships.PushBack({ 205, 262, 202, 123 });
+	ships.PushBack({ 408, 262, 202, 123 });
+	ships.PushBack({ 618, 262, 202, 123 });
+	ships.PushBack({ 821, 262, 202, 123 });
+	ships.PushBack({ 2, 138, 202, 123 });
+	ships.PushBack({ 205, 138, 202, 123 });
+	ships.PushBack({ 408, 138, 202, 123 });
+	ships.PushBack({ 618, 14, 202, 123 });
+	ships.PushBack({ 821, 138, 202, 123 });
+	ships.PushBack({ 2, 386, 202, 123 });
+	ships.PushBack({ 205, 386, 202, 123 });
+	ships.PushBack({ 408, 386, 202, 123 });
+	ships.PushBack({ 618, 386, 202, 123 });
+	ships.PushBack({ 821, 386, 202, 123 });
+	ships.PushBack({ 2, 14, 202, 123 });
+	ships.PushBack({ 205, 14, 202, 123 });
+	ships.PushBack({ 408, 14, 202, 123 });
+	ships.PushBack({ 618, 138, 202, 123 });
+	ships.PushBack({ 821, 14, 202, 123 });
+	ships.speed = 0.4f;
+	ships.loop = true;
 
-	pathship1.PushBack({ 0.0f, -1.0f }, 65);
-	pathship1.PushBack({ 1.0f, 0.2f }, 20);
-	pathship1.PushBack({ 1.0f, 0.2f }, 65);
-	pathship1.PushBack({ -1.0f, 1.3f }, 20);
-	pathship1.loop;
+	ships2.PushBack({ 2, 262, 202, 123 });
+	ships2.PushBack({ 205, 262, 202, 123 });
+	ships2.PushBack({ 408, 262, 202, 123 });
+	ships2.PushBack({ 618, 262, 202, 123 });
+	ships2.PushBack({ 821, 262, 202, 123 });
+
+	ships2.PushBack({ 2, 519, 202, 123 });
+	ships2.PushBack({ 2, 643, 202, 123 });
+	ships2.PushBack({ 2, 767, 202, 123 });
+	ships2.PushBack({ 2, 891, 202, 123 });
+	ships2.PushBack({ 2, 519, 202, 123 });
+	ships2.PushBack({ 2, 643, 202, 123 });
+	ships2.PushBack({ 2, 767, 202, 123 });
+	ships2.PushBack({ 2, 891, 202, 123 });
+	ships2.PushBack({ 205, 519, 202, 123 });
+	ships2.PushBack({ 205, 643, 202, 123 });
+	ships2.PushBack({ 205, 767, 202, 123 });
+	ships2.PushBack({ 205, 891, 202, 123 });
+	ships2.PushBack({ 408, 519, 202, 123 });
+	ships2.PushBack({ 408, 643, 202, 123 });
+	ships2.PushBack({ 408, 643, 202, 123 });
+	ships2.PushBack({ 408, 643, 202, 123 });
+	ships2.PushBack({ 408, 643, 202, 123 });
+	ships2.PushBack({ 408, 643, 202, 123 });
+	ships2.PushBack({ 408, 643, 202, 123 });
+
+	ships2.speed = 0.25f;
+	//ships2.loop = false;
+
+	pathship.PushBack({ 0.0f,0.0f }, 200);
 	
-	pathship2.PushBack({ 0.0f, -1.0f }, 65);
-	pathship2.PushBack({ 1.0f, 0.2f }, 20);
-	pathship2.PushBack({ 1.0f, 0.2f }, 65);
-	pathship2.PushBack({ -1.0f, 1.3f }, 20);
-	pathship2.loop;
-
-	pathship3.PushBack({ 0.0f, -1.0f }, 65);
-	pathship3.PushBack({ 1.0f, 0.2f }, 20);
-	pathship3.PushBack({ 1.0f, 0.2f }, 65);
-	pathship3.PushBack({ -1.0f, 1.3f }, 20);
-	pathship3.loop;
-
-	pathship4.PushBack({ 0.0f, -1.0f }, 65); 
-	pathship4.PushBack({ 1.0f, 0.2f }, 20);
-	pathship4.PushBack({ 1.0f, 0.2f }, 65);
-	pathship4.PushBack({ -1.0f, 1.3f }, 20);
-	//pathship4.loop;
-	
-	//pathship1.PushBack({ 0.0f, -1.0f }, 200);
-	//pathship1.PushBack({ -1.0f, 0.0f }, 200);
 }
 
 SceneStory5::~SceneStory5()
@@ -85,6 +108,7 @@ bool SceneStory5::Start()
 	texture2 = App->textures->Load("Assets/Intro/por probar.png");
 	bgTexture = App->textures->Load("Assets/Intro/backgroundd.png");
 	shiptexture = App->textures->Load("Assets/Intro/ships.png");
+	shiptexture2 = App->textures->Load("Assets/Intro/ships.png");
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -118,9 +142,9 @@ update_status SceneStory5::Update()
 	letras.Update(); 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2200)) explosion.Update();
 	man.Update();
-	ship1.Update();
+	ships.Update();
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4000))ships2.Update();
 	pathscroll.Update();
-	pathship1.Update();
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -128,6 +152,7 @@ update_status SceneStory5::Update()
 // Update: draw background
 update_status SceneStory5::PostUpdate()
 {
+
 	if (App->render->camera.y < -5000 && App->render->camera.y > -7500) {
 		if (bgSize.x != 775) bgSize.x = 775;
 	}
@@ -213,20 +238,13 @@ update_status SceneStory5::PostUpdate()
 	//END EXPLOSIONS (unload letras, man and explosions. Load ships)
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4000)) {
-		SDL_Rect rect = ship1.GetCurrentFrame();
-		App->render->Blit(shiptexture, 52, 194  + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
+		SDL_Rect rect = ships.GetCurrentFrame();
+		App->render->Blit(shiptexture, 25, 194  + pathship.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
 	}
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4000)) {
-		SDL_Rect rect = ship2.GetCurrentFrame();
-		App->render->Blit(shiptexture, 140, 179 + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
-	}
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4000)) {
-		SDL_Rect rect = ship3.GetCurrentFrame();
-		App->render->Blit(shiptexture, 163, 226 + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
-	}
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4000)) {
-		SDL_Rect rect = ship4.GetCurrentFrame();
-		App->render->Blit(shiptexture, 79, 236 + pathship1.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 8500)) {
+		App->textures->Unload(shiptexture);
+		SDL_Rect rect = ships2.GetCurrentFrame(); 
+		App->render->Blit(shiptexture2, 25, 194 + pathscroll.GetRelativePosition().y, &rect);
 	}
 
 	return update_status::UPDATE_CONTINUE;
