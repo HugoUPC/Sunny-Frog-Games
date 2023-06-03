@@ -58,12 +58,21 @@ bool ModulePlayer::Start()
 
 	// TODO 4: Retrieve the player when playing a second time
 	destroyed = false;
+	destroyedCountdown = 120;
+	godMode = false;
+	spawnCountdown = SPAWNDELAY;
+	bombActivatedTimer = 0;
+	bombStartedTimer = 0;
+	bombAmount = 3;
+	bombActivated = false;
+	bombStarted = false;
+	win = false;
 	score = 000;
 	lives = 3;
 	kills = 0;
 	PowerUpActivated[0] = false;
 	PowerUpActivated[1] = false;
-	transitionTimer = 50;
+	transitionTimer = 240;
 
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 29, 38 }, Collider::Type::PLAYER, this);
@@ -200,8 +209,7 @@ update_status ModulePlayer::Update()
 	if (App->DEBUG)
 	{
 		if (App->input->keys[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN) {
-			kills = 20;
-			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+			win = true;
 		}
 		if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN) {
 			lives = 0;
@@ -279,8 +287,8 @@ update_status ModulePlayer::PostUpdate()
 		App->render->Blit(texture, bombPosition.x, bombPosition.y - 150, &(powerUp1.GetCurrentFrame()));
 	}
 
-	if (kills >= 100 && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
-	else if (kills >= 100 && transitionTimer > 0) transitionTimer--;
+	if (win && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+	else if (win && transitionTimer > 0) transitionTimer--;
 
 	if (lives < 0 && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
 	else if (lives < 0 && transitionTimer > 0) transitionTimer--;

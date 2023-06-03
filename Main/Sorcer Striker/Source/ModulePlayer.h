@@ -64,7 +64,7 @@ public:
 
 	bool PowerUpActivated[2] = { false };
 
-	int transitionTimer = 50;
+	int transitionTimer = 240;
 
 	uint bombActivatedTimer = 0;
 	uint bombStartedTimer = 0;
@@ -92,6 +92,7 @@ public:
 	uint explosionFx = 0;
 
 	uint kills = 0;
+	bool win = false;
 
 	uint score = 000;
 	int scoreFont = -1;
