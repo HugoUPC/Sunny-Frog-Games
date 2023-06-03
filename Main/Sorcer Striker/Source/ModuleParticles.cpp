@@ -128,8 +128,11 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && particles[i]->collider == c1)
 		{
-			// TODO 6: Make so every time a particle hits a wall it triggers an explosion particle
-			AddParticle(explosion, particles[i]->position.x, particles[i]->position.y);
+			//spawn a explosion particle if the collider is not the screenboundingbox
+			if (c2->type != Collider::Type::SCREENBOUNDINGBOX)
+			{
+				AddParticle(explosion, particles[i]->position.x, particles[i]->position.y);
+			}
 
 			delete particles[i];
 			particles[i] = nullptr;
