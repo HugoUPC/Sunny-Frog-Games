@@ -98,6 +98,11 @@ update_status ModulePlayer::Update()
 
 	if (spawnCountdown > 0) spawnCountdown--;
 
+	if (bombActivated || bombStarted)
+	{
+		spawnCountdown = 10;
+	}
+
 	shipleft.Update();
 	shipright.Update();
 
