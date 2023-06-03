@@ -34,6 +34,12 @@ bool ModuleParticles::Start()
 	explosion.anim.loop = false;
 	explosion.anim.speed = 0.7f;
 
+	bigExplosion.anim.PushBack({ 408, 65, 83, 85 });
+	bigExplosion.anim.PushBack({ 500, 52, 101, 93 });
+	bigExplosion.anim.PushBack({ 606, 34, 123, 111 });
+	explosion.anim.loop = false;
+	explosion.anim.speed = 0.7f;
+
 	// TODO 2:	Create the template for a new particle "laser"
 	//			Remember: not all the code goes here!
 	//			Follow the example with the "explosion" particle
