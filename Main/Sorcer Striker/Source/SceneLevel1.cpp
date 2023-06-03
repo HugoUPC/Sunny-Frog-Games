@@ -91,8 +91,6 @@ bool SceneLevel1::Start()
 	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP_1, 110, -400);
 
 	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP_2, 110, -600);
-	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP_2, 130, -600);
-	App->powerups->AddPowerUp(POWERUP_TYPE::POWERUP_2, 150, -600);
 
 	
 
