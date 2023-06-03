@@ -121,7 +121,6 @@ update_status ModulePlayer::Update()
 	{
 		if (position.y <= (App->render->camera.y) + 300) {
 			position.y += speed;
-			backupPosition.y += speed;
 		}
 	}
 
@@ -129,7 +128,6 @@ update_status ModulePlayer::Update()
 	{
 		if (position.y >= App->render->camera.y) {
 			position.y -= speed;
-			backupPosition.y -= speed;
 		}
 	}
 
@@ -316,6 +314,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	}
 	else if(c1->type == Collider::Type::PLAYER && (c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::ENEMY_SHOT) && destroyed == false && spawnCountdown <= 0 && !godMode){
 		destroyed = true;
+		backupPosition = position;
 		PowerUpActivated[0] = false;
 		PowerUpActivated[1] = false;
 		lives--;
