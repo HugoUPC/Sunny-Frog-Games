@@ -15,10 +15,10 @@
 
 ModuleUI::ModuleUI(bool startEnabled) : Module(startEnabled)
 {
-	stage1.PushBack({ 0,40,240,40 });
-	stage1.PushBack({ 0,40,240,40 });
-	stage1.PushBack({ 0,40,240,40 });
-	stage1.PushBack({ 0,40,240,40 });
+	stage1.PushBack({ 50,30,240,71 });
+	stage1.PushBack({ 50,30,240,71 });
+	stage1.PushBack({ 50,30,240,71 });
+	stage1.PushBack({ 50,30,240,71 });
 	stage1.speed = 0.1f;
 	stage1.loop = false;
 
@@ -162,7 +162,7 @@ update_status ModuleUI::PostUpdate()
 
 	if (App->render->camera.y < -100 && App->render->camera.y > -300) {
 		SDL_Rect rect = stage1.GetCurrentFrame();
-		App->render->Blit(stage1texture, 0, App->render->camera.y, &rect);
+		App->render->Blit(stage1texture, 50, App->render->camera.y + 50, &rect);
 	}
 	if (App->render->camera.y > -200) {
 		SDL_Rect rect = type.GetCurrentFrame();
