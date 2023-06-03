@@ -152,7 +152,7 @@ update_status ModuleUI::PostUpdate()
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN) App->DEBUG = true;
 
 
-	if (App->player->kills >= 200) {
+	if (App->player->win) {
 		App->render->Blit(wintexture, 0, 0, NULL, 0);
 	}
 
