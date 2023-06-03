@@ -169,6 +169,10 @@ update_status ModuleParticles::Update()
 		{
 			particles[i]->SetToDelete();
 		}
+		else if (particle->position.y < App->render->camera.y)
+		{
+			particles[i]->SetToDelete();
+		}
 	}
 
 	return update_status::UPDATE_CONTINUE;
