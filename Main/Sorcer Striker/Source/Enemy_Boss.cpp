@@ -52,8 +52,8 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	currentPath = &idle;
 
 	throwingfire.PushBack({ 0.0f, -1.0f }, 45);
-	throwingfire.PushBack({ 0.0f, -2.0f }, 45);
-	throwingfire.PushBack({ 0.0f, 0.0f }, 45);
+	throwingfire.PushBack({ 0.0f, -2.1f }, 45);
+	throwingfire.PushBack({ 0.2f, 0.0f }, 45); //cal acabar de tocar aixo perque ara s'enva una mica cap a la dreta amb el temps
 
 	collider = App->collisions->AddCollider({ 0, 0, 281,124 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
