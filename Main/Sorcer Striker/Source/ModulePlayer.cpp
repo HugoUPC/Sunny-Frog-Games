@@ -32,6 +32,32 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	powerUp1.PushBack({ 50, 24, 21, 12 });
 	powerUp1.speed = 0.1f;
 
+	bombState[0].PushBack({ 19, 291, 28, 28 });
+	bombState[0].PushBack({ 52, 291, 28, 28 });
+	bombState[0].PushBack({ 79, 291, 28, 28 });
+	bombState[0].loop = false;
+	bombState[0].speed = 0.16f;
+
+	bombState[1].PushBack({ 104, 285, 129, 38 });
+	bombState[1].PushBack({ 8, 326, 71, 71 });
+	bombState[1].PushBack({ 83, 326, 86, 86 });
+	bombState[1].PushBack({ 172, 326, 130, 130 });
+	bombState[1].PushBack({ 305, 324, 102, 102 });
+	bombState[1].PushBack({ 16, 453, 51, 49 });
+	bombState[1].PushBack({ 75, 467, 24, 24 });
+	bombState[1].PushBack({ 105, 472, 16, 16 });
+	bombState[1].PushBack({ 127, 470, 15, 15 });
+	bombState[1].PushBack({ 105, 472, 16, 16 });
+	bombState[1].PushBack({ 127, 470, 15, 15 });
+	bombState[1].PushBack({ 105, 472, 16, 16 });
+	bombState[1].PushBack({ 127, 470, 15, 15 });
+	bombState[1].PushBack({ 105, 472, 16, 16 });
+	bombState[1].PushBack({ 127, 470, 15, 15 });
+	bombState[1].PushBack({ 105, 472, 16, 16 });
+	bombState[1].PushBack({ 127, 470, 15, 15 });
+	bombState[1].loop = false;
+	bombState[1].speed = 0.16f;
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -45,7 +71,8 @@ bool ModulePlayer::Start()
 
 	bool ret = true;
 
-	texture = App->textures->Load("Assets/Sprites/ship.png"); // arcade version
+	texture = App->textures->Load("Assets/Sprites/ship.png");
+	bombTexture = App->textures->Load("Assets/Sprites/particles.png");
 	currentAnimation = &idleAnim;
 	
 	laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
@@ -271,9 +298,11 @@ update_status ModulePlayer::PostUpdate()
 
 	if (bombStarted)
 	{
-		if (bombStartedTimer < 150)
+		if (bombStartedTimer == 0) bombState[0].Reset();
+		if (bombStartedTimer < 50)
 		{
-			App->render->Blit(texture, bombPosition.x, bombPosition.y - bombStartedTimer, &(powerUp1.GetCurrentFrame())); //textura provisional, cambiar por la de la bomba
+			App->render->Blit(bombTexture, bombPosition.x, bombPosition.y - bombStartedTimer*3, &(bombState[0].GetCurrentFrame())); //textura provisional, cambiar por la de la bomba
+			bombState[0].Update();
 			bombStartedTimer++;
 			bombPosition.y--;
 		}
@@ -285,9 +314,11 @@ update_status ModulePlayer::PostUpdate()
 		}
 	}
 
-	if (bombActivatedTimer < 240 && bombActivatedTimer != 0)
+	if (bombActivatedTimer < 120 && bombActivatedTimer != 0)
 	{
-		App->render->Blit(texture, bombPosition.x, bombPosition.y - 150, &(powerUp1.GetCurrentFrame()));
+		if (bombActivatedTimer == 1) bombState[1].Reset();
+		App->render->Blit(bombTexture, bombPosition.x, bombPosition.y - 150, &(bombState[1].GetCurrentFrame()));
+		bombState[1].Update();
 	}
 
 	if (win && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
@@ -366,7 +397,7 @@ void ModulePlayer::bomb() {
 			App->render->Blit(texture, bombPosition.x - 35, bombPosition.y - 200, &(powerUp1.GetCurrentFrame()));
 		}
 
-		if (bombActivatedTimer < 240)
+		if (bombActivatedTimer < 120)
 		{
 			bombActivatedTimer++;
 			bombPosition.y--;
