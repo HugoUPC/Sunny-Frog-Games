@@ -2,7 +2,11 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "ModulePlayer.h"
+#include "ModuleParticles.h"
 #include "ModuleRender.h"
+
+#include "SDL/include/SDL.h"
 
 Enemy_RedBat::Enemy_RedBat(int x, int y) : Enemy(x, y)
 {
@@ -42,7 +46,23 @@ void Enemy_RedBat::Update()
 	position = spawnPos + path.GetRelativePosition();
 
 
+	iPoint d = App->player->position;
+	iPoint o = { position.x, position.y };
+	float mag = d.DistanceTo(o);
 
+	iPoint dir = d - o;
+	fPoint dirN = { dir.x / mag, dir.y / mag };
+
+	App->particles->fireBall.speed = { dirN.x * 2, dirN.y * 2 };
+
+	if ((SDL_GetTicks() + position.y + position.x) % 1355 == 0)
+	{
+		Particle* fireBall = App->particles->AddParticle(App->particles->fireBall, position.x, position.y, Collider::Type::ENEMY_SHOT);
+		if (fireBall != nullptr)
+		{
+			fireBall->collider->AddListener((Module*)App->player);
+		}
+	}
 
 
 	// Call to the base class. It must be called at the end
