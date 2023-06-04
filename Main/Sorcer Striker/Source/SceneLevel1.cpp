@@ -865,9 +865,14 @@ update_status SceneLevel1::PostUpdate()
 		if (bgSize.x != 775) bgSize.x = 775;
 	}
 
-	else if (App->render->camera.y < -7500 && App->render->camera.y > -11000){
+	else if (App->render->camera.y < -7500 && App->render->camera.y > -8800){
 		if (bgSize.x != 1031) bgSize.x = 1031;
 		bgSpeed = 2;
+	}
+
+	else if (App->render->camera.y < -8800) {
+		if (bgSize.x != 518) bgSize.x = 518;
+		bgSpeed = 8;
 	}
 
 	//Infinite Background (Hem penso que amb App->render->camera.y es pot fer)
