@@ -70,10 +70,10 @@ update_status SceneStory4::Update()
 	character3.Update();
 	character4.Update();
 
-	path1.Update();
-	path2.Update();
-	path3.Update();
-	path4.Update();
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2800))path1.Update();
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2800))path2.Update();
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2800))path3.Update();
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2800))path4.Update();
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -92,28 +92,32 @@ update_status SceneStory4::PostUpdate()
 		App->render->Blit(texture, 15, 10, &rect1);
 	}
 	else if(SDL_TICKS_PASSED(SDL_GetTicks(), timeout)){
-		App->render->Blit(texture, 245 + path1.GetRelativePosition().x,  path1.GetRelativePosition().y + 290, &rect1); 
+		//App->render->Blit(texture, 245 + path1.GetRelativePosition().x,  path1.GetRelativePosition().y + 290, &rect1); 
+		App->render->Blit(texture, 15 + path1.GetRelativePosition().x, path1.GetRelativePosition().y + 10, &rect1);
 	}
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 400 ) != SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2800)) {
 		App->render->Blit(texture, 145, 10, &rect2);
 	}
 	else if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 400)) {
-		App->render->Blit(texture, path2.GetRelativePosition().x - 90, path2.GetRelativePosition().y + 290, &rect2);
+		//App->render->Blit(texture, path2.GetRelativePosition().x - 90, path2.GetRelativePosition().y + 290, &rect2);
+		App->render->Blit(texture, 145 + path2.GetRelativePosition().x, 10 + path2.GetRelativePosition().y, &rect2);
 	}
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 300) != SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2800)) {
 		App->render->Blit(texture, 15, 241, &rect3);
 	}
 	else if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 300)) {
-		App->render->Blit(texture, 245 + path3.GetRelativePosition().x, path3.GetRelativePosition().y - 35, &rect3);
+		//App->render->Blit(texture, 245 + path3.GetRelativePosition().x, path3.GetRelativePosition().y - 35, &rect3);
+		App->render->Blit(texture, 15 + path3.GetRelativePosition().x, 241 + path3.GetRelativePosition().y, &rect3);
 	}
 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 200) != SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2800)) {
 		App->render->Blit(texture, 145, 241, &rect4);
 	}
 	else if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 200)) {
-		App->render->Blit(texture, path4.GetRelativePosition().x - 90, path4.GetRelativePosition().y - 35, &rect4);
+		//App->render->Blit(texture, path4.GetRelativePosition().x - 90, path4.GetRelativePosition().y - 35, &rect4);
+		App->render->Blit(texture, 145 + path4.GetRelativePosition().x, 241 + path4.GetRelativePosition().y, &rect4);
 	}
 
 	return update_status::UPDATE_CONTINUE;
