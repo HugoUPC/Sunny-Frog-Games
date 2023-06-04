@@ -20,7 +20,7 @@
 #include <iostream>
 
 
-#define SPAWN_MARGIN 50
+#define SPAWN_MARGIN 500
 
 
 ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
