@@ -838,7 +838,7 @@ update_status SceneLevel1::Update()
 			LOG("Spawn Mode disabled");
 		}
 
-		if (App->input->keys[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN) {
+		if (App->input->keys[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN && App->render->camera.y > -9000) {
 			App->render->camera.y = -9000;
 			App->player->position.y = -8900;
 		}

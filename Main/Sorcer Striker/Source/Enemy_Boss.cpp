@@ -194,6 +194,7 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 		LOG("%d", head1Health);
 		if (head1Health > 0)
 		{
+			//if(SDL_GetTicks() % 13 == 0) head1Health -= 10;
 			head1Health -= 10;
 			currentHead[0] = &headDamaged;
 		}
@@ -217,7 +218,8 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 		LOG("head2 HIT!");
 		if (head2Health > 0)
 		{
-			head2Health -= 10;
+			//if (SDL_GetTicks() % 13 == 0) head2Health -= 10;
+			head1Health -= 10;
 			currentHead[1] = &headDamaged;
 		}
 		else
@@ -247,7 +249,8 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 		LOG("head3 HIT!");
 		if (head3Health > 0)
 		{
-			head3Health -= 10;
+			//if (SDL_GetTicks() % 13 == 0) head3Health -= 10;
+			head1Health -= 10;
 			currentHead[2] = &headDamaged;
 		}
 		else
