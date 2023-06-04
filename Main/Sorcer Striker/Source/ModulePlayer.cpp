@@ -321,10 +321,16 @@ update_status ModulePlayer::PostUpdate()
 		bombState[1].Update();
 	}
 
-	if (win && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+	if (win && transitionTimer <= 0) {
+		App->speedMultiplier = 1;
+		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+	}
 	else if (win && transitionTimer > 0) transitionTimer--;
 
-	if (lives < 0 && transitionTimer <= 0) App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+	if (lives < 0 && transitionTimer <= 0) {
+		App->speedMultiplier = 1;
+		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+	}
 	else if (lives < 0 && transitionTimer > 0) transitionTimer--;
 
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT) {
