@@ -19,6 +19,7 @@ struct Collider
 		SCREENBOUNDINGBOX,
 		PLAYER_SHOT,
 		ENEMY_SHOT,
+		PARTICLE,
 
 		MAX
 	};
