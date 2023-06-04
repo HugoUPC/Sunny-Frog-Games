@@ -13,7 +13,7 @@ Enemy_RedBallStraight::Enemy_RedBallStraight(int x, int y) : Enemy(x, y)
 
 	currentAnim = &fly;
 
-	path.PushBack({ 0.0f, 4.0f }, 60);
+	path.PushBack({ 0.0f, 4.0f }, 45);
 	path.PushBack({ 1.3f, -0.5f }, 10);
 	path.PushBack({ 4.0f, -5.0f }, 80);
 	

@@ -265,11 +265,69 @@ bool SceneLevel1::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -4200);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -4500);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -4300);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -4310);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -4320);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -4330);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -4340);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -4350);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -5100);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -4600);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -4610);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -4620);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -4630);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -4640);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -4650);
 
-	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -5700);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 40, -4700);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 80, -4710);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 120, -4720);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -4600);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -4800);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -4810);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -4820);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -4830);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -4840);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -4850);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -4900);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -4910);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -4920);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -4930);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -4940);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -4950);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 40, -4990);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 80, -5000);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 120, -5010);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -5000);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 40, -5100);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 80, -5110);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 120, -5120);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -5200);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -5210);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -5220);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -5230);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -5240);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALL, 5, -5250);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -5300);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -5310);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -5320);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -5330);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -5340);
+	App->enemies->AddEnemy(ENEMY_TYPE::REDBALLSTRAIGHT, 5, -5350);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 40, -5450);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 80, -5460);
+	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 120, -5470);
+
+	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -5500);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::BLUEDRAGON, 50, -6300);
 
