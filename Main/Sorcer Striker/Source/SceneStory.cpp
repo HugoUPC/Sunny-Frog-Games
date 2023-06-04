@@ -36,7 +36,7 @@ SceneStory::SceneStory(bool startEnabled) : Module(startEnabled)
 	dragones.PushBack({ 36, 150, 242, 102 });
 	dragon.PushBack({ 289, 41, 39,  28});
 
-	black.PushBack({0, 0, 240, 117});
+	black.PushBack({0, 0, 241, 117});
 
 	path.PushBack({ 0.10f, 0.0f }, 200);
 	path1.PushBack({ 0.05f, 0.0f }, 200);
