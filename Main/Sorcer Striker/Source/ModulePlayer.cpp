@@ -156,6 +156,9 @@ update_status ModulePlayer::Update()
 				laser->collider->AddListener((Module*)App->enemies);
 			}
 			App->audio->PlayFx(laserFx);
+
+			if(PowerUpActivated[0]) PowerUp_1();
+			if (PowerUpActivated[1]) PowerUp_2();
 		}
 
 		if (burstCounter <= 0) {
@@ -171,6 +174,10 @@ update_status ModulePlayer::Update()
 				laser->collider->AddListener((Module*)App->enemies);
 			}
 			App->audio->PlayFx(laserFx);
+
+			if(PowerUpActivated[0]) PowerUp_1();
+			if (PowerUpActivated[1]) PowerUp_2();
+
 			burstCountdown = 5;
 			burstCounter--;
 		}
@@ -182,14 +189,6 @@ update_status ModulePlayer::Update()
 	}
 
 	if(shootCooldown > 0) shootCooldown--;
-
-	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || pad.a == true) && PowerUpActivated[0] && shootCooldown <= 0) {
-		PowerUp_1();
-	}
-
-	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || pad.a == true) && PowerUpActivated[1] && shootCooldown <= 0) {
-		PowerUp_2();
-	}
 
 	if ((App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN || pad.b == true) && bombAmount > 0 && bombActivated == false && bombStarted == false) {
 		bombStarted = true;
@@ -217,8 +216,7 @@ update_status ModulePlayer::Update()
 			win = true;
 		}
 		if (App->input->keys[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN) {
-			lives = 0;
-			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+			lives = -1;
 		}
 		if (App->input->keys[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN && !godMode) {
 			godMode = true;
