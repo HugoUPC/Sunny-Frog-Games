@@ -39,6 +39,7 @@ public:
 	SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* shiptexture = nullptr;
 	SDL_Texture* shiptexture2 = nullptr;
+	SDL_Texture* shiptexture3 = nullptr;
 
 	int bgPos = 0;
 	int bgSpeed = 10;
@@ -53,10 +54,12 @@ public:
 
 	Animation ships;
 	Animation ships2;
+	Animation ships3;
 
 	Path path;
 	Path pathscroll;
 	Path pathship;
+	Path pathship3;
 };
 
 #endif
