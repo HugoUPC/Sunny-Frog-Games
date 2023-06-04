@@ -41,9 +41,9 @@ bool ModuleParticles::Start()
 	explosion.anim.speed = 0.7f;
 
 	bossFire.anim.PushBack({ 77, 67, 30, 41 });
-	bossFire.anim.PushBack({ 107, 67, 41, 41 });
-	bossFire.anim.PushBack({ 146, 67, 41, 41 });
-	bossFire.anim.PushBack({ 190, 67, 41, 41 });
+	bossFire.anim.PushBack({ 107, 67, 39, 41 });
+	bossFire.anim.PushBack({ 146, 67, 39, 41 });
+	bossFire.anim.PushBack({ 190, 67, 39, 41 });
 	bossFire.anim.PushBack({ 237, 67, 41, 41 });
 	bossFire.anim.PushBack({ 287, 67, 41, 41 });
 	bossFire.anim.loop = false;
