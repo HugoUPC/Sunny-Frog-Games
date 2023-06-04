@@ -15,12 +15,13 @@
 
 ModuleUI::ModuleUI(bool startEnabled) : Module(startEnabled)
 {
-	stage1.PushBack({ 50,30,240,71 });
-	stage1.PushBack({ 50,30,240,71 });
-	stage1.PushBack({ 50,30,240,71 });
-	stage1.PushBack({ 50,30,240,71 });
-	stage1.speed = 0.1f;
-	stage1.loop = false;
+	stage.PushBack({ 56, 43, 94, 40 });
+	one.PushBack({ 160,35,14,39 });
+	cinta.PushBack({ 197,67,112,23 });
+
+	pathstage.PushBack({ 2.0f, 0.0f }, 50);
+	pathone.PushBack({ 0.0f, 2.0f }, 50);
+	pathcinta.PushBack({ -2.0f, 0.0f }, 50);
 
 	type.PushBack({ 4,8,91,132 });
 	type.PushBack({ 102,8,91,132 });
@@ -62,7 +63,7 @@ bool ModuleUI::Start()
 
 	UIElements = App->textures->Load("Assets/UI/gp-ui.png");
 	wintexture = App->textures->Load("Assets/Sprites/stageclear1.png");
-	stage1texture = App->textures->Load("Assets/Sprites/stage1.png");
+	stage1texture = App->textures->Load("Assets/Sprites/stage.png");
 	typingtexture = App->textures->Load("Assets/Sprites/typing.png");
 
 	// TODO 0: Notice how a font is loaded and the meaning of all its arguments 
@@ -75,14 +76,26 @@ bool ModuleUI::Start()
 
 	char lookupTable2[] = { "! #$%&'()*+,-./0123456789:;<=>? ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^- abcdefghijklmnopqrstuvwxyz | _" };
 	debugFont = App->fonts->Load("Assets/Fonts/ddrtiny.bmp", lookupTable2, 1);
+	
+	stage.Reset();
+	one.Reset();
+	cinta.Reset();
+	type.Reset();
+	pathstage.Reset();
+	pathone.Reset();
+	pathcinta.Reset();
 
 	return true;
 }
 
 update_status ModuleUI::Update() {
-	stage1.Update();
+	stage.Update(); 
+	one.Update();
+	cinta.Update();
 	type.Update();
-
+	if (App->render->camera.y < -100 && App->render->camera.y > -300) pathstage.Update();
+	if (App->render->camera.y < -100 && App->render->camera.y > -300) pathone.Update();
+	if (App->render->camera.y < -100 && App->render->camera.y > -300) pathcinta.Update();
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -170,9 +183,32 @@ update_status ModuleUI::PostUpdate()
 	}
 
 	if (App->render->camera.y < -100 && App->render->camera.y > -300) {
-		SDL_Rect rect = stage1.GetCurrentFrame();
-		App->render->Blit(stage1texture, 50, App->render->camera.y + 50, &rect);
+		SDL_Rect rect = stage.GetCurrentFrame();
+		//App->render->Blit(stage1texture, 50, App->render->camera.y + 50, &rect);
+		position.x = pathstage.GetRelativePosition().x;
+		if (position.x <= 50.0) {
+			App->render->Blit(stage1texture, position.x, App->render->camera.y + 50, &rect);
+		}
+		else{App->render->Blit(stage1texture, 56, App->render->camera.y + 50, &rect); }
 	}
+	if (App->render->camera.y < -100 && App->render->camera.y > -300) {
+		SDL_Rect rect = one.GetCurrentFrame();
+		position.y = pathone.GetRelativePosition().y;
+		if (position.y <= 42) {
+			App->render->Blit(stage1texture, 160, App->render->camera.y + position.y, &rect);
+		}
+		else{App->render->Blit(stage1texture, 160, App->render->camera.y + 42, &rect);
+		}
+	}
+	if (App->render->camera.y < -100 && App->render->camera.y > -300) {
+		SDL_Rect rect = cinta.GetCurrentFrame();
+		position.x = pathcinta.GetRelativePosition().x;
+		if (position.x >= -62.0) {
+			App->render->Blit(stage1texture, 130 + position.x, App->render->camera.y + 77, &rect);
+		}
+		else { App->render->Blit(stage1texture, 62, App->render->camera.y + 77, &rect); }
+	}
+
 	if (App->render->camera.y > -200) {
 		SDL_Rect rect = type.GetCurrentFrame();
 		App->render->Blit(typingtexture, 10, 150 + App->render->camera.y, &rect);

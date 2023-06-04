@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "Path.h"
 
 struct SDL_Texture;
 struct Collider;
@@ -36,13 +37,21 @@ public:
 	int debugFont = -1;
 	char selectedObjectText[10] = { "\0" };
 
-	SDL_Texture* UIElements = nullptr;
-	SDL_Texture* wintexture = nullptr;
-	SDL_Texture* stage1texture = nullptr;
-	SDL_Texture* typingtexture = nullptr;
+	SDL_Texture* UIElements = nullptr; 
+	SDL_Texture* wintexture = nullptr; 
+	SDL_Texture* stage1texture = nullptr; 
+	SDL_Texture* typingtexture = nullptr; 
 
-	Animation stage1;
+	iPoint position;
+
+	Animation stage;
+	Animation one;
+	Animation cinta;
 	Animation type;
+	
+	Path pathstage;
+	Path pathone; 
+	Path pathcinta;
 };
 
 #endif //!__MODULE_PLAYER_H__
