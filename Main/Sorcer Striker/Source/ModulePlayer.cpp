@@ -273,7 +273,7 @@ update_status ModulePlayer::PostUpdate()
 
 	if (bombStarted)
 	{
-		if (bombStartedTimer < 120)
+		if (bombStartedTimer < 150)
 		{
 			App->render->Blit(texture, bombPosition.x, bombPosition.y - bombStartedTimer, &(powerUp1.GetCurrentFrame())); //textura provisional, cambiar por la de la bomba
 			bombStartedTimer++;

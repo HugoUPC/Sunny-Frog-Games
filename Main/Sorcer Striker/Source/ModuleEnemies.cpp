@@ -203,7 +203,6 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		if(enemies[i] != nullptr && enemies[i]->ContainsCollider(c1))
 		{
-			
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 			enemies[i]->OnCollision(c1, c2);
 			break;
