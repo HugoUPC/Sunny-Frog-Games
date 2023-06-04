@@ -111,9 +111,9 @@ void Enemy_Boss::Update()
 
 		if (!(stateChangerTimer % 5) && stateChangerTimer > 45 && stateChangerTimer < 90) //spawn dragon fire
 		{
-			App->particles->AddParticle(App->particles->bossFire, position.x + 50, position.y + 100, Collider::Type::ENEMY_SHOT);
-			App->particles->AddParticle(App->particles->bossFire, position.x + 121, position.y + 100, Collider::Type::ENEMY_SHOT);
-			App->particles->AddParticle(App->particles->bossFire, position.x + 193, position.y + 100, Collider::Type::ENEMY_SHOT);
+			if (currentHead[0] != nullptr) App->particles->AddParticle(App->particles->bossFire, position.x + 50, position.y + 100, Collider::Type::ENEMY_SHOT);
+			if (currentHead[1] != nullptr) App->particles->AddParticle(App->particles->bossFire, position.x + 121, position.y + 100, Collider::Type::ENEMY_SHOT);
+			if (currentHead[2] != nullptr) App->particles->AddParticle(App->particles->bossFire, position.x + 193, position.y + 100, Collider::Type::ENEMY_SHOT);
 		}
 		break;
 	case MAX:
