@@ -118,7 +118,7 @@ void Enemy_BlueDragon::OnCollision(Collider* collider) {
 	if (collider->type != Collider::Type::SCREENBOUNDINGBOX && App->player->spawnCountdown <= 0)
 	{
 		if (lives <= 0) {
-			App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+			App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::PARTICLE);
 			App->audio->PlayFx(destroyedFx);
 
 			if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER)

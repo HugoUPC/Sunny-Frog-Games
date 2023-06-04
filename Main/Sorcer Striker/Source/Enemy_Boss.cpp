@@ -111,9 +111,9 @@ void Enemy_Boss::Update()
 
 		if (!(stateChangerTimer % 10) && stateChangerTimer > 45 && stateChangerTimer < 90) //spawn dragon fire
 		{
-			App->particles->AddParticle(App->particles->explosion, position.x + 50, position.y + 100);
-			App->particles->AddParticle(App->particles->explosion, position.x + 121, position.y + 100);
-			App->particles->AddParticle(App->particles->explosion, position.x + 193, position.y + 100);
+			App->particles->AddParticle(App->particles->explosion, position.x + 50, position.y + 100, Collider::Type::PARTICLE);
+			App->particles->AddParticle(App->particles->explosion, position.x + 121, position.y + 100, Collider::Type::PARTICLE);
+			App->particles->AddParticle(App->particles->explosion, position.x + 193, position.y + 100, Collider::Type::PARTICLE);
 		}
 		break;
 	case MAX:
@@ -201,7 +201,7 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 		{
 			currentHead[0] = nullptr;
 			head1->pendingToDelete = true;
-			App->particles->AddParticle(App->particles->bigExplosion, position.x + 100, position.y - 20); //no se no va jo
+			App->particles->AddParticle(App->particles->bigExplosion, position.x + 100, position.y - 20, Collider::Type::PARTICLE); //no se no va jo
 			if (currentBody == &fullBody)
 			{
 				currentBody = &leftBodyPart;
@@ -236,7 +236,7 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 
 			destroyed = true;
 
-			App->particles->AddParticle(App->particles->bigExplosion, position.x + 100, position.y + 50);
+			App->particles->AddParticle(App->particles->bigExplosion, position.x + 100, position.y + 50, Collider::Type::PARTICLE);
 			App->audio->PlayFx(destroyedFx);
 
 			currentBody = nullptr;
@@ -255,7 +255,7 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 			currentHead[2] = nullptr;
 			head3->pendingToDelete = true;
 
-			App->particles->AddParticle(App->particles->explosion, position.x + 198, position.y + 84);
+			App->particles->AddParticle(App->particles->explosion, position.x + 198, position.y + 84, Collider::Type::PARTICLE);
 			App->audio->PlayFx(destroyedFx);
 
 			if (currentBody == &fullBody)

@@ -131,7 +131,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			//spawn a explosion particle if the collider is not the screenboundingbox
 			if (c2->type != Collider::Type::SCREENBOUNDINGBOX)
 			{
-				AddParticle(explosion, particles[i]->position.x, particles[i]->position.y);
+				AddParticle(explosion, particles[i]->position.x, particles[i]->position.y, Collider::Type::PARTICLE);
 			}
 
 			delete particles[i];
