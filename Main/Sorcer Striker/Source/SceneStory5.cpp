@@ -84,12 +84,15 @@ SceneStory5::SceneStory5(bool startEnabled) : Module(startEnabled)
 	ships2.PushBack({ 408, 643, 202, 123 });
 	ships2.PushBack({ 408, 643, 202, 123 });
 	ships2.PushBack({ 408, 643, 202, 123 });
+	ships2.speed = 0.3f;
 
-	ships2.speed = 0.25f;
-	//ships2.loop = false;
+	ships3.PushBack({ 408, 643, 202, 123 });
 
-	pathship.PushBack({ 0.0f,0.0f }, 200);
-	
+	pathship.PushBack({ 0.0f, -3.0f }, 150);
+	pathship.PushBack({ 0.0f, 0.0f }, 20);
+	pathship.PushBack({ 0.0f, 3.0f }, 70);
+	pathship.PushBack({ 0.0f, -3.0f }, 80);
+	pathship.PushBack({ 0.0f, 0.0f }, 200);
 }
 
 SceneStory5::~SceneStory5()
@@ -109,6 +112,7 @@ bool SceneStory5::Start()
 	bgTexture = App->textures->Load("Assets/Intro/backgroundd.png");
 	shiptexture = App->textures->Load("Assets/Intro/ships.png");
 	shiptexture2 = App->textures->Load("Assets/Intro/ships.png");
+	shiptexture3 = App->textures->Load("Assets/Intro/ships.png");
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -142,9 +146,11 @@ update_status SceneStory5::Update()
 	letras.Update(); 
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2200)) explosion.Update();
 	man.Update();
-	ships.Update();
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4000))ships2.Update();
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 5000))ships.Update();
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 5000))ships2.Update();
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 5000))ships3.Update();
 	pathscroll.Update();
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 5000))pathship.Update();
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -237,16 +243,20 @@ update_status SceneStory5::PostUpdate()
 	}
 	//END EXPLOSIONS (unload letras, man and explosions. Load ships)
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 4000)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 5000)) {
 		SDL_Rect rect = ships.GetCurrentFrame();
-		App->render->Blit(shiptexture, 25, 194  + pathship.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
+		App->render->Blit(shiptexture, 25, 500 + pathship.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
 	}
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 8500)) {
 		App->textures->Unload(shiptexture);
 		SDL_Rect rect = ships2.GetCurrentFrame(); 
-		App->render->Blit(shiptexture2, 25, 194 + pathscroll.GetRelativePosition().y, &rect);
+		App->render->Blit(shiptexture2, 25, 500 + pathship.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
 	}
-
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 9500)) {
+		App->textures->Unload(shiptexture2);
+		SDL_Rect rect = ships3.GetCurrentFrame();
+		App->render->Blit(shiptexture3, 25, 500 + pathship.GetRelativePosition().y + pathscroll.GetRelativePosition().y, &rect);
+	}
 	return update_status::UPDATE_CONTINUE;
 }
 

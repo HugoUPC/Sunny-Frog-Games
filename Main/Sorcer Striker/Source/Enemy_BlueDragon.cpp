@@ -16,7 +16,7 @@ Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 	
 	fly.speed = 0.07f;
 
-	path.PushBack({ 0.0f, 1.0f }, 15);
+	path.PushBack({ 0.0f, 2.0f }, 30);
 	path.PushBack({ 0.3f, -0.9f }, 120);
 	path.PushBack({ -0.3f, -0.9f }, 120);
 	path.PushBack({ 0.0f, 2.0f }, 25);
@@ -43,7 +43,7 @@ Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 
 void Enemy_BlueDragon::Update()
 {
-	if (position.y > App->render->camera.y - 200) {
+	if (position.y > App->render->camera.y - 120) {
 		path.Update();
 	}
 	
