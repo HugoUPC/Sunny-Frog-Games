@@ -125,6 +125,12 @@ update_status ModuleUI::PostUpdate()
 	//DEBUG
 	if (App->DEBUG == true)
 	{
+		App->fonts->BlitText(0, 235, debugFont, "F3-WIN");
+
+		App->fonts->BlitText(0, 250, debugFont, "F4-LOSE");
+
+		App->fonts->BlitText(0, 265, debugFont, "F5-GO TO BOSS");
+
 		if (!App->sceneLevel_1->spawnMode)
 		{
 			App->fonts->BlitText(0, 280, debugFont, "F6-SPAWNMODE:");
