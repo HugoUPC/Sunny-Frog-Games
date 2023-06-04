@@ -17,7 +17,7 @@ public:
 	void Draw() override;
 	void OnCollision(Collider* collider) override;
 
-	int lives = 5;
+	int lives = 20;
 
 private:
 	// A set of steps that define the position in the screen

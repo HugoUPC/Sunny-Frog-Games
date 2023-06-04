@@ -43,7 +43,7 @@ Enemy_BlueDragon::Enemy_BlueDragon(int x, int y) : Enemy(x, y)
 
 void Enemy_BlueDragon::Update()
 {
-	if (position.y > App->render->camera.y - 120) {
+	if (position.y > App->render->camera.y - 50) {
 		path.Update();
 	}
 	
