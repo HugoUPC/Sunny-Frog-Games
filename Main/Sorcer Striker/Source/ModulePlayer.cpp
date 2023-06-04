@@ -348,7 +348,7 @@ void ModulePlayer::PowerUp_1() {
 
 void ModulePlayer::PowerUp_2() {
 	Particle* redShot = App->particles->AddParticle(App->particles->redShot, position.x - 20, position.y + 20, Collider::Type::PLAYER_SHOT); //CHANGE THE PARTICLE!!!
-	redShot = App->particles->AddParticle(App->particles->redShot, position.x + 30, position.y + 20, Collider::Type::PLAYER_SHOT);
+	redShot = App->particles->AddParticle(App->particles->redShot, position.x + 40, position.y + 20, Collider::Type::PLAYER_SHOT);
 	if (redShot != nullptr)
 	{
 		redShot->collider->AddListener(this);
