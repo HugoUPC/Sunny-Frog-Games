@@ -56,6 +56,8 @@ public:
 	Particle explosion;
 	Particle bigExplosion;
 
+	Particle bossFire;
+
 	//Template particle for a laser
 	Particle laser;
 	Particle laserR;
