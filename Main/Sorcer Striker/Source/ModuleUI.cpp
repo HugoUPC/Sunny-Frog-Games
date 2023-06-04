@@ -125,6 +125,9 @@ update_status ModuleUI::PostUpdate()
 	//DEBUG
 	if (App->DEBUG == true)
 	{
+		App->fonts->BlitText(0, 220, debugFont, "F8-GAMESPEED:");
+		App->fonts->BlitText(120, 220, debugFont, App->speedMultiplier == 1 ? "1" : "2");
+
 		App->fonts->BlitText(0, 235, debugFont, "F3-WIN");
 
 		App->fonts->BlitText(0, 250, debugFont, "F4-LOSE");

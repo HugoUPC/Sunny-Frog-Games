@@ -105,7 +105,7 @@ update_status Application::Update()
 		ret = modules[i]->IsEnabled() ? modules[i]->PostUpdate() : update_status::UPDATE_CONTINUE;
 
 	//Sync
-	SDL_Delay(16.66666);
+	SDL_Delay(16.66666 / speedMultiplier);
 
 	return ret;
 }

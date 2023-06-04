@@ -390,6 +390,13 @@ update_status SceneLevel1::Update()
 			App->render->camera.y = -9000;
 			App->player->position.y = -8900;
 		}
+
+		if (App->input->keys[SDL_SCANCODE_F8] == KEY_STATE::KEY_DOWN) {
+
+			if(App->speedMultiplier == 1)App->speedMultiplier = 2;
+			else App->speedMultiplier = 1;
+			
+		}
 	}
 
 	if(App->render->camera.y == -9100) App->enemies->AddEnemy(ENEMY_TYPE::BOSS, -15, -9050);

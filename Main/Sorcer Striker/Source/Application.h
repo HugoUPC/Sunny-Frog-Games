@@ -90,6 +90,7 @@ public:
 
 	//DEBUG
 	bool DEBUG = false;
+	uint speedMultiplier = 1;
 };
 
 // Global var made extern for Application ---
