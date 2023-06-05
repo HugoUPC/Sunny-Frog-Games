@@ -34,27 +34,31 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 
 	bombState[0].PushBack({ 19, 291, 28, 28 });
 	bombState[0].PushBack({ 52, 291, 28, 28 });
-	bombState[0].PushBack({ 79, 291, 28, 28 });
+	bombState[0].PushBack({ 75, 291, 28, 28 });
 	bombState[0].loop = false;
 	bombState[0].speed = 0.16f;
 
 	bombState[1].PushBack({ 104, 285, 129, 38 });
+
 	bombState[1].PushBack({ 8, 326, 71, 71 });
 	bombState[1].PushBack({ 83, 326, 86, 86 });
 	bombState[1].PushBack({ 172, 326, 130, 130 });
 	bombState[1].PushBack({ 305, 324, 102, 102 });
-	bombState[1].PushBack({ 16, 453, 51, 49 });
-	bombState[1].PushBack({ 75, 467, 24, 24 });
-	bombState[1].PushBack({ 105, 472, 16, 16 });
-	bombState[1].PushBack({ 127, 470, 15, 15 });
-	bombState[1].PushBack({ 105, 472, 16, 16 });
-	bombState[1].PushBack({ 127, 470, 15, 15 });
-	bombState[1].PushBack({ 105, 472, 16, 16 });
-	bombState[1].PushBack({ 127, 470, 15, 15 });
-	bombState[1].PushBack({ 105, 472, 16, 16 });
-	bombState[1].PushBack({ 127, 470, 15, 15 });
-	bombState[1].PushBack({ 105, 472, 16, 16 });
-	bombState[1].PushBack({ 127, 470, 15, 15 });
+
+	bombState[1].PushBack({ 15, 423, 78, 81 });
+
+	bombState[1].PushBack({ 90, 425, 78, 81 });
+
+	bombState[1].PushBack({ 296, 435, 77, 80 });
+	bombState[1].PushBack({ 389, 435, 77, 81 });
+	bombState[1].PushBack({ 296, 435, 77, 80 });
+	bombState[1].PushBack({ 389, 435, 77, 81 });
+	bombState[1].PushBack({ 296, 435, 77, 80 });
+	bombState[1].PushBack({ 389, 435, 77, 81 });
+	bombState[1].PushBack({ 296, 435, 77, 80 });
+	bombState[1].PushBack({ 389, 435, 77, 81 });
+	bombState[1].PushBack({ 296, 435, 77, 80 });
+	bombState[1].PushBack({ 389, 435, 77, 81 });
 	bombState[1].loop = false;
 	bombState[1].speed = 0.16f;
 
@@ -335,7 +339,7 @@ update_status ModulePlayer::PostUpdate()
 			bombState[1].Reset();
 			App->input->ShakeController(0, 2000, 0.1f);
 		}
-		App->render->Blit(bombTexture, bombPosition.x, bombPosition.y - 150, &(bombState[1].GetCurrentFrame()));
+		App->render->Blit(bombTexture, bombPosition.x - 40, bombPosition.y - 150, &(bombState[1].GetCurrentFrame()));
 		bombState[1].Update();
 	}
 
