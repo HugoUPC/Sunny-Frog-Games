@@ -12,10 +12,8 @@ html {
 /* Estilos generales */
 body {
   font-family: 'Press start 2P', Arial, sans-serif;
-  line-height: 1.5; 
   background-color: #1a1a1a;
   color: #ffffff;
-  font-family: Arial, sans-serif;
 }
 
 .container {
@@ -28,18 +26,15 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Press start 2P', Arial, sans-serif;
-  line-height: 1.5; 
   color: #ffffff;
   margin-bottom: 10px;
+  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
   max-width: 800px;
 }
 
 p {
-  font-family: 'Press start 2P', Arial, sans-serif;
-  line-height: 1.5; 
   margin-bottom: 15px;
   margin-left: auto;
   margin-right: auto;
@@ -48,8 +43,6 @@ p {
 
 /* Estilos de encabezado */
 header {
-  font-family: 'Press start 2P', Arial, sans-serif;
-  line-height: 1.5; 
   text-align: center;
   padding: 40px 0;
 }
@@ -88,9 +81,7 @@ section {
   text-align: center; /* Añadir estilo para centrar el contenido */
 }
 
-ul {
-  font-family: 'Press start 2P', Arial, sans-serif;
-  line-height: 1.5; 
+ul { 
   text-align: left; /* Cambiar la alineación del texto a izquierda */
   max-width: 800px;
   margin-left: auto;
@@ -119,8 +110,6 @@ footer p {
 
 
 .title {
-  font-family: 'Press Start 2P', Arial, sans-serif;
-  line-height: 1.5; 
   font-size: 40px;
   color: #333;
   text-align: center;
