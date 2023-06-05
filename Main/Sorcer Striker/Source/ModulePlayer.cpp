@@ -329,7 +329,7 @@ update_status ModulePlayer::PostUpdate()
 
 	if (win && transitionTimer <= 0) {
 		App->speedMultiplier = 1;
-		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->scenefinal, 60);
 	}
 	else if (win && transitionTimer > 0) transitionTimer--;
 
