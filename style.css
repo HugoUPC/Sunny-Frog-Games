@@ -51,17 +51,13 @@ header {
 /* Estilos de barra de navegación */
 nav {
   background-color: #333333;
-  overflow-x: auto; /* Permitir desplazamiento horizontal si es necesario */
 }
 
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: flex-start; /* Alinear opciones del menú a la izquierda */
+  justify-content: center;
   padding: 20px 0;
-  margin: 0; /* Eliminar el margen por defecto del navegador */
-  overflow-x: auto; /* Permitir desplazamiento horizontal si es necesario */
-  white-space: nowrap; /* Evitar el ajuste automático del texto */
 }
 
 nav ul li {
@@ -73,12 +69,14 @@ nav ul li a {
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 3px;
+  white-space: nowrap; /* Evita el ajuste automático del texto */
 }
 
 nav ul li a:hover {
   background-color: #ffffff;
   color: #333333;
 }
+
 
 
 /* Estilos de secciones */
