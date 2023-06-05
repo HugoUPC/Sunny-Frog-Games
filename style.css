@@ -120,4 +120,6 @@ footer p {
   background-color: #FAB227 ;
   padding: 20px;
   text-align: center;
+  border-radius: 10px;
+  display: inline-block;
 }
