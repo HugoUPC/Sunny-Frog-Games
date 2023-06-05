@@ -133,6 +133,7 @@ void Enemy_BlueDragon::OnCollision(Collider* collider) {
 		else if (lives > 0) {
 			currentAnim = &dragonDamaged;
 			lives--;
+			App->audio->PlayFx(destroyedFx);
 			App->input->ShakeController(0, 100, 0.33f);
 		}
 	}
