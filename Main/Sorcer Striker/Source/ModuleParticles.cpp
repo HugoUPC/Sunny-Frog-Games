@@ -34,11 +34,14 @@ bool ModuleParticles::Start()
 	explosion.anim.loop = false;
 	explosion.anim.speed = 0.7f;
 
-	bigExplosion.anim.PushBack({ 408, 65, 83, 85 });
-	bigExplosion.anim.PushBack({ 500, 52, 101, 93 });
-	bigExplosion.anim.PushBack({ 606, 34, 123, 111 });
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.7f;
+	bigExplosion.anim.PushBack({ 5, 186, 83, 85 });
+	bigExplosion.anim.PushBack({ 90, 172, 101, 93 });
+	bigExplosion.anim.PushBack({ 196, 156, 123, 111 });
+	bigExplosion.anim.PushBack({ 90, 172, 101, 93 });
+	bigExplosion.anim.PushBack({ 5, 186, 83, 85 });
+	bigExplosion.anim.loop = false;
+	bigExplosion.anim.speed = 1.0f;
+	//bigExplosion.lifetime = 500;
 
 	bossFire.anim.PushBack({ 77, 67, 30, 41 });
 	bossFire.anim.PushBack({ 107, 67, 39, 41 });
