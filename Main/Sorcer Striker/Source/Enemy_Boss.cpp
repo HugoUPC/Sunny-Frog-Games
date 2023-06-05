@@ -4,6 +4,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
+#include "ModuleInput.h"
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
 #include "ModuleRender.h"
@@ -192,6 +193,7 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 	{
 		LOG("head1 HIT!");
 		LOG("%d", head1Health);
+		App->input->ShakeController(0, 100, 0.33f);
 		if (head1Health > 0)
 		{
 			//if(SDL_GetTicks() % 13 == 0) head1Health -= 10;
@@ -202,7 +204,8 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 		{
 			currentHead[0] = nullptr;
 			head1->pendingToDelete = true;
-			App->particles->AddParticle(App->particles->bigExplosion, position.x + 100, position.y - 20, Collider::Type::PARTICLE); //no se no va jo
+			App->particles->AddParticle(App->particles->bigExplosion, position.x + 40, position.y - 40, Collider::Type::PARTICLE);
+			App->particles->AddParticle(App->particles->bigExplosion, position.x + 10, position.y - 10, Collider::Type::PARTICLE);
 			if (currentBody == &fullBody)
 			{
 				currentBody = &leftBodyPart;
@@ -217,6 +220,7 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 	{
 		LOG("head2 HIT!");
 		LOG("%d", head2Health);
+		App->input->ShakeController(0, 100, 0.33f);
 		if (head2Health > 0)
 		{
 			//if (SDL_GetTicks() % 13 == 0) head2Health -= 10;
@@ -238,8 +242,11 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 			head3Health = 0;
 
 			destroyed = true;
+			App->input->ShakeController(0, 2000, 0.2f);
 
+			App->particles->AddParticle(App->particles->bigExplosion, position.x + 70, position.y + 40, Collider::Type::PARTICLE);
 			App->particles->AddParticle(App->particles->bigExplosion, position.x + 100, position.y + 50, Collider::Type::PARTICLE);
+			App->particles->AddParticle(App->particles->bigExplosion, position.x + 130, position.y + 60, Collider::Type::PARTICLE);
 			App->audio->PlayFx(destroyedFx);
 
 			currentBody = nullptr;
@@ -249,6 +256,7 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 	{
 		LOG("head3 HIT!");
 		LOG("%d", head3Health);
+		App->input->ShakeController(0, 100, 0.4f);
 		if (head3Health > 0)
 		{
 			//if (SDL_GetTicks() % 13 == 0) head3Health -= 10;
@@ -260,7 +268,9 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 			currentHead[2] = nullptr;
 			head3->pendingToDelete = true;
 
-			App->particles->AddParticle(App->particles->explosion, position.x + 198, position.y + 84, Collider::Type::PARTICLE);
+			App->particles->AddParticle(App->particles->bigExplosion, position.x + 198, position.y + 84, Collider::Type::PARTICLE);
+			App->particles->AddParticle(App->particles->bigExplosion, position.x + 178, position.y + 74, Collider::Type::PARTICLE);
+
 			App->audio->PlayFx(destroyedFx);
 
 			if (currentBody == &fullBody)

@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 #include "ModuleParticles.h"
+#include "ModuleInput.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
@@ -120,6 +121,7 @@ void Enemy_BlueDragon::OnCollision(Collider* collider) {
 		if (lives <= 0) {
 			App->particles->AddParticle(App->particles->bigExplosion, position.x, position.y, Collider::Type::PARTICLE);
 			App->audio->PlayFx(destroyedFx);
+			App->input->ShakeController(0, 100, 0.33f);
 
 			if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER)
 			{
@@ -131,6 +133,7 @@ void Enemy_BlueDragon::OnCollision(Collider* collider) {
 		else if (lives > 0) {
 			currentAnim = &dragonDamaged;
 			lives--;
+			App->input->ShakeController(0, 100, 0.33f);
 		}
 	}
 }

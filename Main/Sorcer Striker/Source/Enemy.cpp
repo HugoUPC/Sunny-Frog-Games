@@ -6,6 +6,7 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
+#include "ModuleInput.h"
 
 
 Enemy::Enemy(int x, int y) : position(x, y)
@@ -49,6 +50,7 @@ void Enemy::OnCollision(Collider* collider)
 		if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER)
 		{
 			killedByPlayer = true;
+			App->input->ShakeController(0, 100, 0.33f);
 		}
 		SetToDelete();
 	}

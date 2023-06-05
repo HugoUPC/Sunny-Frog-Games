@@ -221,7 +221,7 @@ bool ModuleInput::ShakeController(int id, int duration, float strength)
 	else
 	{
 		SDL_HapticRumbleStop(pad.haptic);
-		SDL_HapticRumblePlay(pad.haptic, strength, duration / 60 * 1000); //Conversion from frames to ms at 60FPS
+		SDL_HapticRumblePlay(pad.haptic, strength, duration); //Conversion from frames to ms at 60FPS
 
 		pad.rumble_countdown = duration;
 		pad.rumble_strength = strength;
