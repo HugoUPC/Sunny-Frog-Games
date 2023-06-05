@@ -43,6 +43,10 @@ bool SceneIntro::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
+	letras.Reset();
+	ships.Reset();
+	piedras.Reset();
+
 	return ret;
 }
 
