@@ -34,6 +34,7 @@ bool SceneLevel1::Start()
 
 	bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	warning = App->textures->Load("Assets/Sprites/enemies.png");
+	warningFx = App->audio->LoadFx("Assets/Fx/bossWarning.wav");
 	App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 40, -210);
@@ -843,8 +844,8 @@ update_status SceneLevel1::Update()
 		}
 
 		if (App->input->keys[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN && App->render->camera.y > -9000) {
-			App->render->camera.y = -9000;
-			App->player->position.y = -8900;
+			App->render->camera.y = -8700; //-9000
+			App->player->position.y = -8600; //-8900
 		}
 
 		if (App->input->keys[SDL_SCANCODE_F8] == KEY_STATE::KEY_DOWN) {
@@ -898,10 +899,12 @@ update_status SceneLevel1::PostUpdate()
 		LOG("Warning");
 		if (warningSelected)
 		{
+			App->audio->PlayFx(warningFx);
 			App->render->Blit(warning, 0, App->render->camera.y + 100, &warningSize, 1);
 		}
 		else
 		{
+			App->audio->PlayFx(warningFx);
 			App->render->Blit(warning, 0, App->render->camera.y + 100, &warningSize1, 1);
 		}
 		

@@ -8,6 +8,7 @@
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
 #include "SceneLevel1.h"
+#include "ModuleAudio.h"
 
 #include <stdio.h>
 

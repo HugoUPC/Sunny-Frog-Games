@@ -49,6 +49,8 @@ public:
 	iPoint mousePos;
 	Uint32 mouseState;
 
+	int warningFx = 0;
+
 };
 
 #endif

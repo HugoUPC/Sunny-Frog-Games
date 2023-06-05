@@ -77,6 +77,7 @@ bool ModulePlayer::Start()
 	
 	laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
+	bombFx = App->audio->LoadFx("Assets/Fx/bomb.wav");
 
 	position.x = 110;
 	position.y = 150;
@@ -220,6 +221,7 @@ update_status ModulePlayer::Update()
 	if(shootCooldown > 0) shootCooldown--;
 
 	if ((App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN || pad.b == true) && bombAmount > 0 && bombActivated == false && bombStarted == false) {
+		App->audio->PlayFx(bombFx);
 		bombStarted = true;
 		bombPosition = position;
 		bombAmount--;

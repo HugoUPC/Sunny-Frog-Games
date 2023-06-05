@@ -74,6 +74,7 @@ public:
 	Collider* bombCollider = nullptr;
 	iPoint bombPosition;
 	int bombAmount = 3;
+	int bombFx = 0;
 
 	// A set of animations
 	Animation idleAnim;
