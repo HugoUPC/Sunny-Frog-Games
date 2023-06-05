@@ -105,8 +105,14 @@ footer p {
   margin-bottom: 0;
 }
 
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('https://github.com/Sunny-Frog-Games/Sorcer-Striker/blob/webpage/Wiki/press-start-2p/PressStart2P.ttf') format('truetype');
+}
+
+
 .title {
-  font-family: Arial, sans-serif;
+  font-family: 'Press Start 2P';
   font-size: 40px;
   color: #333;
   text-align: center;
