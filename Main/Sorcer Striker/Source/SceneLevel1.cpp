@@ -13,6 +13,8 @@
 #include "ModuleParticles.h"
 #include <stdio.h>
 
+#include "SDL/include/SDL.h"
+
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
 
@@ -31,6 +33,7 @@ bool SceneLevel1::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Sprites/background.png");
+	warning = App->textures->Load("Assets/Sprites/enemies.png");
 	App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
 
 	App->enemies->AddEnemy(ENEMY_TYPE::WIZZARD, 40, -210);
@@ -744,6 +747,7 @@ bool SceneLevel1::Start()
 	screenBoundingBox = App->collisions->AddCollider({ 0, 0, 240, 10 }, Collider::Type::SCREENBOUNDINGBOX, this);
 
 	bgSize = { 518, 1, 240, 340 };
+	warningTimer = 30;
 
 	App->UI->Enable();
 	App->player->Enable();
@@ -885,6 +889,35 @@ update_status SceneLevel1::PostUpdate()
 		bgPos = 0;
 		App->render->Blit(bgTexture, 0, bgPos, &bgSize, 0);
 		App->render->Blit(bgTexture, 0, bgPos - 340, &bgSize, 0);
+	}
+
+	if ((App->render->camera.y < -8800) && (App->render->camera.y > -8900))
+	{
+		SDL_Rect warningSize = { 163,166,265,44 };
+		SDL_Rect warningSize1 = { 168,212,265,44 };
+		LOG("Warning");
+		if (warningSelected)
+		{
+			App->render->Blit(warning, 0, App->render->camera.y + 100, &warningSize, 1);
+		}
+		else
+		{
+			App->render->Blit(warning, 0, App->render->camera.y + 100, &warningSize1, 1);
+		}
+		
+		if (warningTimer > 0) warningTimer--;
+		else
+		{
+			warningTimer = 30;
+			if (warningSelected)
+			{
+				warningSelected = false;
+			}
+			else
+			{
+				warningSelected = true;
+			}
+		}
 	}
 
 	return update_status::UPDATE_CONTINUE;
