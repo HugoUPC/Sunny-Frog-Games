@@ -78,13 +78,15 @@ bool ScenePlayerSelect::Start()
 
 update_status ScenePlayerSelect::Update()
 {
-    if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+    GamePad& pad = App->input->pads[0];
+
+    if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN || pad.a == true)
     {
         App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
         App->audio->PlayFx(PowerUpCollectFx);
     }
 
-    if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_DOWN)
+    if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || pad.l_x < 0.0f)
     {
         App->audio->PlayFx(selectedPlayerFx);
        if (position.x == 0) {
@@ -95,7 +97,7 @@ update_status ScenePlayerSelect::Update()
        }
     }
 
-    if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_DOWN)
+    if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || pad.l_x > 0.0f)
     {
         App->audio->PlayFx(selectedPlayerFx);
         if (position.x == -738) {
