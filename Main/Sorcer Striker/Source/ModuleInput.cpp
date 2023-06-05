@@ -76,6 +76,13 @@ update_status ModuleInput::PreUpdate()
 				return update_status::UPDATE_STOP;
 				break;
 			}
+			case(SDL_KEYDOWN):
+			{
+				if (event.key.keysym.sym == SDLK_ESCAPE) {
+					return update_status::UPDATE_STOP;
+					break;
+				}
+			}
 		}
 	}
 
