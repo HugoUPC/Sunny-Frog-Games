@@ -35,7 +35,7 @@ h1, h2, h3 {
 }
 
 p {
-  line-height: 3;
+  line-height: 1.5;
   margin-bottom: 15px;
   margin-left: auto;
   margin-right: auto;
@@ -69,12 +69,14 @@ nav ul li a {
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 3px;
+  white-space: nowrap; 
 }
 
 nav ul li a:hover {
   background-color: #ffffff;
   color: #333333;
 }
+
 
 /* Estilos de secciones */
 section {
