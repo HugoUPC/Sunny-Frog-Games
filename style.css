@@ -27,6 +27,7 @@ body {
 }
 
 h1, h2, h3 {
+  font-family: 'Press start 2P', Arial, sans-serif;
   color: #ffffff;
   margin-bottom: 10px;
   margin-left: auto;
@@ -35,6 +36,7 @@ h1, h2, h3 {
 }
 
 p {
+  font-family: 'Press start 2P', Arial, sans-serif;
   margin-bottom: 15px;
   margin-left: auto;
   margin-right: auto;
@@ -43,6 +45,7 @@ p {
 
 /* Estilos de encabezado */
 header {
+  font-family: 'Press start 2P', Arial, sans-serif;
   text-align: center;
   padding: 40px 0;
 }
@@ -82,6 +85,7 @@ section {
 }
 
 ul {
+  font-family: 'Press start 2P', Arial, sans-serif;
   text-align: left; /* Cambiar la alineación del texto a izquierda */
   max-width: 800px;
   margin-left: auto;
