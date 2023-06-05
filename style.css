@@ -110,7 +110,7 @@ footer p {
 
 
 .title {
-  font-family: 'Press Start 2P', Arial, sans-serif;;
+  font-family: 'Press Start 2P', Arial, sans-serif;
   font-size: 40px;
   color: #333;
   text-align: center;
@@ -126,4 +126,8 @@ footer p {
   text-align: center;
   border-radius: 10px;
   display: inline-block;
+}
+
+.explanation{
+  font-family: 'Press Start 2P', Arial, sans-serif;
 }
