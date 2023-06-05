@@ -897,6 +897,7 @@ bool SceneLevel1::CleanUp()
 	App->player->Disable();
 	App->enemies->Disable();
 	App->collisions->Disable();
+	App->powerups->Disable();
 	//App->textures->Unload(bgTexture);
 
 	return true;
