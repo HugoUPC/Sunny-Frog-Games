@@ -132,3 +132,8 @@ footer p {
 .explanation{
   font-family: 'Press Start 2P', Arial, sans-serif;
 }
+
+.flyer1{
+  vertical-align: top;
+  horizontal-align: left;
+}
