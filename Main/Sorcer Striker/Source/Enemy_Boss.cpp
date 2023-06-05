@@ -152,7 +152,7 @@ void Enemy_Boss::Update()
 
 	position = { spawnPos.x + currentPath->GetRelativePosition().x, spawnPos.y + currentPath->GetRelativePosition().y };
 
-	LOG("(%d,%d)", position.x, position.y);
+	//LOG("(%d,%d)", position.x, position.y);
 
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
@@ -216,10 +216,11 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 	if (c1 == head2 && c2->type == Collider::Type::PLAYER_SHOT)
 	{
 		LOG("head2 HIT!");
+		LOG("%d", head2Health);
 		if (head2Health > 0)
 		{
 			//if (SDL_GetTicks() % 13 == 0) head2Health -= 10;
-			head1Health -= 10;
+			head2Health -= 10;
 			currentHead[1] = &headDamaged;
 		}
 		else
@@ -247,10 +248,11 @@ void Enemy_Boss::OnCollision(Collider* c1, Collider* c2) {
 	if (c1 == head3 && c2->type == Collider::Type::PLAYER_SHOT)
 	{
 		LOG("head3 HIT!");
+		LOG("%d", head3Health);
 		if (head3Health > 0)
 		{
 			//if (SDL_GetTicks() % 13 == 0) head3Health -= 10;
-			head1Health -= 10;
+			head3Health -= 10;
 			currentHead[2] = &headDamaged;
 		}
 		else
