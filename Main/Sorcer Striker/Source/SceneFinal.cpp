@@ -19,14 +19,14 @@ SceneFinal::SceneFinal(bool startEnabled) : Module(startEnabled)
 	cuadrado.speed = 1.0f;
 	cuadrado.loop;
 
-	letras.PushBack({});
-	letras.PushBack({});
-	letras.PushBack({});
-	letras.PushBack({});
-	letras.PushBack({});
-	letras.PushBack({});
-	letras.speed = 1.0f;
-	letras.loop;
+	letras.PushBack({264,114,7,7});
+	letras.PushBack({274,84,7,7});
+	letras.PushBack({274,104,7,7});
+	letras.PushBack({244,84,7,7});
+	letras.PushBack({274,124,7,7});
+	letras.PushBack({244,104,7,7});
+	letras.speed = 0.5f;
+	letras.loop = true;
 
 	n.PushBack({ 244,95,7,6 });
 	u.PushBack({275,105,6,6});
@@ -54,7 +54,10 @@ bool SceneFinal::Start()
 	timeout = SDL_GetTicks() + 1000;
 
 	cuadrado.Reset();
-
+	letras.Reset();
+	n.Reset();
+	u.Reset();
+	b.Reset();
 	return ret;
 }
 
@@ -68,11 +71,15 @@ update_status SceneFinal::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 10000)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 15000)) {
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
 
 	cuadrado.Update();
+	letras.Update();
+	n.Update();
+	u.Update();
+	b.Update();
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -83,36 +90,36 @@ update_status SceneFinal::PostUpdate()
 	// Draw everything --------------------------------------
 	App->render->Blit(textura, 0, 0, NULL);
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2000) != SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2500)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout - 1000) != SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
 		SDL_Rect rect = cuadrado.GetCurrentFrame();
 		App->render->Blit(textura, 4, 32, &rect);
 		SDL_Rect rect1 = letras.GetCurrentFrame();
-		App->render->Blit(textura, 6, 34, &rect1);
+		App->render->Blit(textura, 7, 35, &rect1);
 	}
-	else if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2500) != SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
+	else if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000) != SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 7000)) {
 		SDL_Rect rect = cuadrado.GetCurrentFrame();
 		App->render->Blit(textura, 20, 32, &rect);
 		SDL_Rect rect1 = letras.GetCurrentFrame();
-		App->render->Blit(textura, 22, 34, &rect1);
+		App->render->Blit(textura, 23, 35, &rect1);
 	}
-	else if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000) != SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3500)) {
+	else if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 7000) != SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 9000)) {
 		SDL_Rect rect = cuadrado.GetCurrentFrame();
 		App->render->Blit(textura, 36, 32, &rect);
 		SDL_Rect rect1 = letras.GetCurrentFrame();
-		App->render->Blit(textura, 38, 34, &rect1);
+		App->render->Blit(textura, 39, 35, &rect1);
 	}
 
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 2500)) {
-		SDL_Rect rect = n.GetCurrentFrame();
-		App->render->Blit(textura, 6, 34, &rect);
-	}
 	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3000)) {
-		SDL_Rect rect = u.GetCurrentFrame();
-		App->render->Blit(textura, 22, 34, &rect);
+		SDL_Rect rect = n.GetCurrentFrame();
+		App->render->Blit(textura, 7, 35, &rect);
 	}
-	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 3500)) {
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 7000)) {
+		SDL_Rect rect = u.GetCurrentFrame();
+		App->render->Blit(textura, 23, 35, &rect);
+	}
+	if (SDL_TICKS_PASSED(SDL_GetTicks(), timeout + 9000)) {
 		SDL_Rect rect = b.GetCurrentFrame();
-		App->render->Blit(textura, 38, 34, &rect);
+		App->render->Blit(textura, 39, 35, &rect);
 	}
 
 	return update_status::UPDATE_CONTINUE;
