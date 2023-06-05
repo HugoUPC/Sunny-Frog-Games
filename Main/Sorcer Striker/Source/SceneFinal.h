@@ -27,9 +27,19 @@ public:
 	// Performs the render call of all the parts of the scene's background
 	update_status PostUpdate() override;
 
+	bool CleanUp();
+
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
+	Uint32 timeout;
+
 	SDL_Texture* textura = nullptr;
+
+	Animation cuadrado;
+	Animation letras; 
+	Animation n;
+	Animation u;
+	Animation b;
 };
 
 #endif

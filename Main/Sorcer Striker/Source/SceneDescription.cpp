@@ -44,7 +44,10 @@ update_status SceneDescription::Update()
 	if (App->render->camera.y >= 340) {
 		App->fade->FadeToBlack(this, (Module*)App->intro1, 90);	
 	}
-
+	if (App->input->keys[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->scenefinal, 0);
+	}
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN) 
 	{
 		App->fade->FadeToBlack(this, (Module*)App->intro1, 90);
