@@ -60,8 +60,8 @@ bool ScenePlayerSelect::Start()
     numberstexture = App->textures->Load("Assets/Sprites/numbers.png");
 
     App->audio->PlayMusic("Assets/Music/characterSelect.ogg", 1.0f);
-    PowerUpCollectFx = App->audio->LoadFx("Assets/Fx/powerUp.wav");
-    selectedPlayerFx = App->audio->LoadFx("Assets/Fx/selectedplayer.wav");
+    PowerUpCollectFx = App->audio->LoadFx("Assets/Fx/character_confirm.wav");
+    selectedPlayerFx = App->audio->LoadFx("Assets/Fx/charSelectMovement.wav");
 
     App->render->camera.x = 0;
     App->render->camera.y = 0;

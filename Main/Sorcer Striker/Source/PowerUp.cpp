@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 #include "ModuleParticles.h"
+#include "ModuleInput.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 
@@ -43,6 +44,7 @@ void PowerUp::OnCollision(Collider* collider)
 	if (collider->type == Collider::Type::PLAYER) {
 		SetToDelete();
 		App->audio->PlayFx(PowerUpCollectFx);
+		App->input->ShakeController(0, 50, 0.2f);
 	}
 }
 

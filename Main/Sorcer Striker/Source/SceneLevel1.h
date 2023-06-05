@@ -34,6 +34,9 @@ public:
 	
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
+	SDL_Texture* warning = nullptr;
+	uint warningTimer;
+	bool warningSelected;
 	int bgPos = 0;
 	int bgSpeed = 10;
 
@@ -45,6 +48,8 @@ public:
 
 	iPoint mousePos;
 	Uint32 mouseState;
+
+	int warningFx = 0;
 
 };
 

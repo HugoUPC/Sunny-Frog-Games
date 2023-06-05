@@ -34,27 +34,31 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 
 	bombState[0].PushBack({ 19, 291, 28, 28 });
 	bombState[0].PushBack({ 52, 291, 28, 28 });
-	bombState[0].PushBack({ 79, 291, 28, 28 });
+	bombState[0].PushBack({ 75, 291, 28, 28 });
 	bombState[0].loop = false;
 	bombState[0].speed = 0.16f;
 
 	bombState[1].PushBack({ 104, 285, 129, 38 });
+
 	bombState[1].PushBack({ 8, 326, 71, 71 });
 	bombState[1].PushBack({ 83, 326, 86, 86 });
 	bombState[1].PushBack({ 172, 326, 130, 130 });
 	bombState[1].PushBack({ 305, 324, 102, 102 });
-	bombState[1].PushBack({ 16, 453, 51, 49 });
-	bombState[1].PushBack({ 75, 467, 24, 24 });
-	bombState[1].PushBack({ 105, 472, 16, 16 });
-	bombState[1].PushBack({ 127, 470, 15, 15 });
-	bombState[1].PushBack({ 105, 472, 16, 16 });
-	bombState[1].PushBack({ 127, 470, 15, 15 });
-	bombState[1].PushBack({ 105, 472, 16, 16 });
-	bombState[1].PushBack({ 127, 470, 15, 15 });
-	bombState[1].PushBack({ 105, 472, 16, 16 });
-	bombState[1].PushBack({ 127, 470, 15, 15 });
-	bombState[1].PushBack({ 105, 472, 16, 16 });
-	bombState[1].PushBack({ 127, 470, 15, 15 });
+
+	bombState[1].PushBack({ 15, 423, 78, 81 });
+
+	bombState[1].PushBack({ 90, 425, 78, 81 });
+
+	bombState[1].PushBack({ 296, 435, 77, 80 });
+	bombState[1].PushBack({ 389, 435, 77, 81 });
+	bombState[1].PushBack({ 296, 435, 77, 80 });
+	bombState[1].PushBack({ 389, 435, 77, 81 });
+	bombState[1].PushBack({ 296, 435, 77, 80 });
+	bombState[1].PushBack({ 389, 435, 77, 81 });
+	bombState[1].PushBack({ 296, 435, 77, 80 });
+	bombState[1].PushBack({ 389, 435, 77, 81 });
+	bombState[1].PushBack({ 296, 435, 77, 80 });
+	bombState[1].PushBack({ 389, 435, 77, 81 });
 	bombState[1].loop = false;
 	bombState[1].speed = 0.16f;
 
@@ -77,6 +81,7 @@ bool ModulePlayer::Start()
 	
 	laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
+	bombFx = App->audio->LoadFx("Assets/Fx/bomb.wav");
 
 	position.x = 110;
 	position.y = 150;
@@ -186,6 +191,7 @@ update_status ModulePlayer::Update()
 
 			if(PowerUpActivated[0]) PowerUp_1();
 			if (PowerUpActivated[1]) PowerUp_2();
+			App->input->ShakeController(0, 30, 0.4f);
 		}
 
 		if (burstCounter <= 0) {
@@ -204,6 +210,7 @@ update_status ModulePlayer::Update()
 
 			if(PowerUpActivated[0]) PowerUp_1();
 			if (PowerUpActivated[1]) PowerUp_2();
+			App->input->ShakeController(0, 30, 0.4f);
 
 			burstCountdown = 5;
 			burstCounter--;
@@ -218,6 +225,7 @@ update_status ModulePlayer::Update()
 	if(shootCooldown > 0) shootCooldown--;
 
 	if ((App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN || pad.b == true) && bombAmount > 0 && bombActivated == false && bombStarted == false) {
+		App->audio->PlayFx(bombFx);
 		bombStarted = true;
 		bombPosition = position;
 		bombAmount--;
@@ -304,7 +312,11 @@ update_status ModulePlayer::PostUpdate()
 
 	if (bombStarted)
 	{
-		if (bombStartedTimer == 0) bombState[0].Reset();
+		if (bombStartedTimer == 0)
+		{
+			bombState[0].Reset();
+			App->input->ShakeController(0, 100, 0.4f);
+		}
 		if (bombStartedTimer < 50)
 		{
 			App->render->Blit(bombTexture, bombPosition.x, bombPosition.y - bombStartedTimer*3, &(bombState[0].GetCurrentFrame())); //textura provisional, cambiar por la de la bomba
@@ -322,8 +334,12 @@ update_status ModulePlayer::PostUpdate()
 
 	if (bombActivatedTimer < 120 && bombActivatedTimer != 0)
 	{
-		if (bombActivatedTimer == 1) bombState[1].Reset();
-		App->render->Blit(bombTexture, bombPosition.x, bombPosition.y - 150, &(bombState[1].GetCurrentFrame()));
+		if (bombActivatedTimer == 1)
+		{
+			bombState[1].Reset();
+			App->input->ShakeController(0, 2000, 0.1f);
+		}
+		App->render->Blit(bombTexture, bombPosition.x - 40, bombPosition.y - 150, &(bombState[1].GetCurrentFrame()));
 		bombState[1].Update();
 	}
 
@@ -365,9 +381,11 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		App->audio->PlayFx(explosionFx);
 
 		destroyed = true;
+		App->input->ShakeController(0, 500, 0.33f);
 	}
 	else if(c1->type == Collider::Type::PLAYER && (c2->type == Collider::Type::ENEMY || c2->type == Collider::Type::ENEMY_SHOT) && destroyed == false && spawnCountdown <= 0 && !godMode){
 		destroyed = true;
+		App->input->ShakeController(0, 500, 0.33f);
 		backupPosition = position;
 		PowerUpActivated[0] = false;
 		PowerUpActivated[1] = false;
