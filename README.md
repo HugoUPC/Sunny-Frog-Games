@@ -32,6 +32,7 @@ F1 - Activate/Deactivate God Mode<br>
 F2 - Display Colliders<br>
 F3 - Direct Win<br>
 F4 - Direct Lose<br>
+G - Direct to Gameplay<br>
 
 ***
 ### Additional information <br/>

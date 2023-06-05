@@ -9,7 +9,8 @@
 enum class POWERUP_TYPE
 {
 	NO_TYPE,
-	POWERUP, //PLACEHOLDER, IT SHOULD HAVE PROPER NAME
+	POWERUP_1,
+	POWERUP_2,
 };
 
 struct PowerUpSpawnpoint

@@ -3,7 +3,7 @@
 
 #include "Module.h"
 
-#define MAX_ENEMIES 100
+#define MAX_ENEMIES 1000
 
 // TODO 4: Create a new enemy type: the Mech
 
@@ -14,6 +14,10 @@ enum class ENEMY_TYPE
 	BROWNSHIP,
 	BLUEDRAGON,
 	REDBALL,
+	REDBALLSTRAIGHT,
+	REDBAT,
+	BOSS,
+	WIZZARD,
 };
 
 struct EnemySpawnpoint

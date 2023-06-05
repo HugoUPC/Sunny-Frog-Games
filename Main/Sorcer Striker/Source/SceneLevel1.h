@@ -2,6 +2,7 @@
 #define __SCENE_LEVEL1_H__
 
 #include "Module.h"
+#include "p2Point.h"
 #include "Animation.h"
 
 struct SDL_Texture;
@@ -34,7 +35,16 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 	int bgPos = 0;
+	int bgSpeed = 10;
+
+	bool spawnMode = false;
+	uint selectedSpawnItem = 1;
+
+	SDL_Rect bgSize;
 	Collider* screenBoundingBox = nullptr;
+
+	iPoint mousePos;
+	Uint32 mouseState;
 
 };
 

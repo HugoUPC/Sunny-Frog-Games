@@ -45,3 +45,8 @@ void Path::Reset()
 	currentStepFrame = 0;
 	currentStep = 0;
 }
+
+void Path::ResetRelativePosition()
+{
+	relativePosition = { 0,0 };
+}

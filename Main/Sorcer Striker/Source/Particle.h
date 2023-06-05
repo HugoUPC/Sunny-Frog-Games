@@ -31,7 +31,7 @@ public:
 	iPoint position;
 
 	// Defines the speed at which the particle will move (pixels per second)
-	iPoint speed;
+	fPoint speed;
 
 	// A set of rectangle sprites
 	Animation anim;

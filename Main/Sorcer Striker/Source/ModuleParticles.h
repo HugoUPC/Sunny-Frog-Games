@@ -54,6 +54,9 @@ public:
 public:
 	//Template particle for an explosion
 	Particle explosion;
+	Particle bigExplosion;
+
+	Particle bossFire;
 
 	//Template particle for a laser
 	Particle laser;
@@ -63,10 +66,13 @@ public:
 	Particle bat_shotsR;
 	Particle bat_shotsL;
 
+	Particle redShot;
+
+	Particle fireBall;
+
 private:
 	// Particles spritesheet loaded into an SDL Texture
-	SDL_Texture* lasertexture = nullptr;
-	SDL_Texture* explosiontexture = nullptr;
+	SDL_Texture* texture = nullptr;
 
 	// An array to store and handle all the particles
 	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };

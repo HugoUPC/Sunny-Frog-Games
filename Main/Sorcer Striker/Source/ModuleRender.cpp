@@ -37,6 +37,8 @@ bool ModuleRender::Init()
 		ret = false;
 	}
 
+	if(WIN_FULLSCREEN_DESKTOP) SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+
 	return ret;
 }
 
@@ -77,7 +79,6 @@ update_status ModuleRender::PostUpdate()
 {
 	//Update the screen
 	SDL_RenderPresent(renderer);
-	SDL_Delay(16.66666);
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -102,8 +103,10 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* sect
 
 	if (useCamera)
 	{
-		dstRect.x -= (camera.x * speed);
-		dstRect.y -= (camera.y * speed);
+		dstRect = {
+		(int)((-camera.x * speed) + x) * SCREEN_SIZE,
+		(int)((-camera.y * speed) + y) * SCREEN_SIZE,
+		0, 0 };
 	}
 
 	if (section != nullptr)
@@ -140,8 +143,8 @@ bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uin
 
 	if (useCamera)
 	{
-		dstRect.x -= (camera.x * speed);
-		dstRect.y -= (camera.y * speed);
+		dstRect.x -= ((camera.x * speed) * SCREEN_SIZE);
+		dstRect.y -= ((camera.y * speed) * SCREEN_SIZE);
 	}
 
 	if (SDL_RenderFillRect(renderer, &dstRect) != 0)

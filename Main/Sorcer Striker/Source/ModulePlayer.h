@@ -30,7 +30,9 @@ public:
 	update_status PostUpdate() override;
 
 	void OnCollision(Collider* c1, Collider* c2) override;
-	void PowerUp();
+	void PowerUp_1();
+	void PowerUp_2();
+	void bomb();
 
 public:
 
@@ -47,24 +49,42 @@ public:
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
+	SDL_Texture* bombTexture = nullptr;
 	
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
 	Animation* currentAnimation = nullptr;
+
+	const uint SPAWNDELAY = 180;
+	uint spawnCountdown = SPAWNDELAY;
 
 	bool burst = false;
 	uint burstCountdown = 5;
 	uint burstCounter = 2;
 	uint shootCooldown = 0;
 
-	bool PowerUpActivated = false;
+	bool PowerUpActivated[2] = { false };
 
-	int transitionTimer = 50;
+	int transitionTimer = 240;
+
+	uint bombActivatedTimer = 0;
+	uint bombStartedTimer = 0;
+	bool bombActivated = false;
+	bool bombStarted = false;
+	Collider* bombCollider = nullptr;
+	iPoint bombPosition;
+	int bombAmount = 3;
 
 	// A set of animations
 	Animation idleAnim;
-	Animation upAnim;
-	Animation downAnim;
+	Animation leftAnim;
+	Animation rightAnim;
+	Animation powerUp1;
+	Animation shipleft;
+	Animation shipright;
+
+	Animation bombState[2];
+
 
 	Collider* collider = nullptr;
 
@@ -75,6 +95,7 @@ public:
 	uint explosionFx = 0;
 
 	uint kills = 0;
+	bool win = false;
 
 	uint score = 000;
 	int scoreFont = -1;
