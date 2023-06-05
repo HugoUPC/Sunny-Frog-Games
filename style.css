@@ -133,4 +133,13 @@ footer p {
   font-family: 'Press Start 2P', Arial, sans-serif;
 }
 
+.flyer1 {
+  margin-left: 0px; /* Márgen izquierdo */
+  margin-right: 1200px; /* Márgen derecho */
+}
+
+.flyer1 img {
+  width: 100%; /* Asegura que las imágenes se ajusten al ancho del contenedor */
+}
+
 
