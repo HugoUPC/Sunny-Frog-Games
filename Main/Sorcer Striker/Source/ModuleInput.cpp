@@ -243,9 +243,27 @@ const char* ModuleInput::GetControllerName(int id) const
 
 Uint32 ModuleInput::GetMouse(int* x, int* y)
 {
+	SDL_DisplayMode DM;
+	SDL_GetCurrentDisplayMode(0, &DM);
+
+	int screenWidth = DM.w;
+	int screenHeight = DM.h;
+
 	Uint32 ret = SDL_GetMouseState(x, y);
 	*x /= SCREEN_SIZE;
 	*y /= SCREEN_SIZE;
+
+	if (screenWidth == 1920 && screenHeight == 1080)
+	{
+		*x = (*x - 578) / 3.175;
+		*y = *y / 3.175;
+	}
+	else if (screenWidth == 1680 && screenHeight == 1050)
+	{
+		*x = (*x - 470) / 3.09;
+		*y = *y / 3.09;
+	}
+	
 
 	if (ret == 1 && previousMouseState != 1)
 	{
