@@ -123,7 +123,7 @@ update_status ModuleUI::PostUpdate()
 
 	// Draw UI (score) --------------------------------------
 	sprintf_s(scoreText, 10, "%7d", App->player->score);
-	sprintf_s(livesText, 10, "x%1d", App->player->lives);
+	sprintf_s(livesText, 10, "x%1d", App->player->lives >= 0 ? App->player->lives : 0);
 	sprintf_s(bombsText, 10, "x%1d", App->player->bombAmount);
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
