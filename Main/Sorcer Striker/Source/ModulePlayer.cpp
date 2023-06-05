@@ -225,9 +225,13 @@ update_status ModulePlayer::Update()
 	bomb();
 
 	// If no up/down movement detected, set the current animation back to idle
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
+	//if (pad.enabled)
+	//{
+	if ((pad.l_x == 0.0f && pad.l_y == 0.0f) && (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE && App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE))
 		currentAnimation = &idleAnim;
+	//}
+	//else if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE && App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
+		//currentAnimation = &idleAnim;
 
 	// TODO 4: Update collider position to player position
 	collider->SetPos(position.x, position.y);
@@ -261,6 +265,8 @@ update_status ModulePlayer::Update()
 
 update_status ModulePlayer::PostUpdate()
 {
+	GamePad& pad = App->input->pads[0];
+
 	if (!destroyed)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
@@ -333,11 +339,11 @@ update_status ModulePlayer::PostUpdate()
 	}
 	else if (lives < 0 && transitionTimer > 0) transitionTimer--;
 
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT) {
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT || pad.l_x < 0.0f) {
 		SDL_Rect rect = shipleft.GetCurrentFrame();
 		App->render->Blit(texture, position.x, position.y, &rect);
 	}
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT) {
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT || pad.l_x > 0.0f) {
 		SDL_Rect rect = shipright.GetCurrentFrame();
 		App->render->Blit(texture, position.x, position.y, &rect);
 	}
