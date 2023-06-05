@@ -105,7 +105,7 @@ footer p {
   margin-bottom: 0;
 }
 
-#title {
+.title {
   font-family: Arial, sans-serif;
   font-size: 40px;
   color: #333;
@@ -114,4 +114,10 @@ footer p {
   letter-spacing: 2px;
   margin-top: 20px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+}
+
+.title-wrapper {
+  background-color: #FAB227 ;
+  padding: 20px;
+  text-align: center;
 }
