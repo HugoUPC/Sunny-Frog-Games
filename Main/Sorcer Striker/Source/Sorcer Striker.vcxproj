@@ -53,6 +53,7 @@
     <ClCompile Include="Enemy_RedBall.cpp" />
     <ClCompile Include="PowerUp_2.cpp" />
     <ClCompile Include="SceneDescription.cpp" />
+    <ClCompile Include="SceneFinal.cpp" />
     <ClCompile Include="SceneIntro.cpp" />
     <ClCompile Include="SceneLevel1.cpp" />
     <ClCompile Include="ScenePlayerSelect.cpp" />
@@ -99,6 +100,7 @@
     <ClInclude Include="PowerUp.h" />
     <ClInclude Include="PowerUp_2.h" />
     <ClInclude Include="SceneDescription.h" />
+    <ClInclude Include="SceneFinal.h" />
     <ClInclude Include="SceneIntro.h" />
     <ClInclude Include="SceneLevel1.h" />
     <ClInclude Include="ScenePlayerSelect.h" />
