@@ -8,8 +8,6 @@
 #include "ModuleFadeToBlack.h"
 
 #include "SDL/include/SDL.h"
-#pragma comment( lib, "SDL/libx86/SDL2.lib")
-#pragma comment( lib, "SDL/libx86/SDL2main.lib")
 
 SceneFinal::SceneFinal(bool startEnabled) : Module(startEnabled)
 {

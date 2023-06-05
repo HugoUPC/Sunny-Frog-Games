@@ -52,21 +52,20 @@ Application::Application()
 	modules[10] =   scenestory3 =   new SceneStory3(false);
 	modules[11] =   scenestory4 =   new SceneStory4(false);
 	modules[12] = scenestory5 = new SceneStory5(false);
+	modules[13] = scenefinal = new SceneFinal(false);
 
-	modules[13] =    scenePlayerSelect = new ScenePlayerSelect(false);
+	modules[14] =    scenePlayerSelect = new ScenePlayerSelect(false);
 
-	modules[14] =	player =		new ModulePlayer(false);	//Player starts disabled
-	modules[15] =	particles =		new ModuleParticles(true);
-	modules[16] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
-	modules[17] =	powerups =		new ModulePowerUp(false);
+	modules[15] =	player =		new ModulePlayer(false);	//Player starts disabled
+	modules[16] =	particles =		new ModuleParticles(true);
+	modules[17] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
+	modules[18] =	powerups =		new ModulePowerUp(false);
 
-	modules[18] =	collisions =	new ModuleCollisions(true);
-	modules[19] =	UI =			new ModuleUI(false);
-	modules[20] =	fade =			new ModuleFadeToBlack(true);
-	modules[21] =	fonts =			new ModuleFonts(true);
-	modules[22] =	render =		new ModuleRender(true);
-
-	modules[23] =   scenefinal =    new SceneFinal(false);
+	modules[19] =	collisions =	new ModuleCollisions(true);
+	modules[20] =	UI =			new ModuleUI(false);
+	modules[21] =	fade =			new ModuleFadeToBlack(true);
+	modules[22] =	fonts =			new ModuleFonts(true);
+	modules[23] =	render =		new ModuleRender(true);
 }
 
 Application::~Application()
